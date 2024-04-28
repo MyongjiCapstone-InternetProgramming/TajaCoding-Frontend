@@ -1,3 +1,4 @@
+// 채윤 (마지막 수정 : 2024-04-28)
 import { Link } from "react-router-dom";
 
 export default function Main(){
