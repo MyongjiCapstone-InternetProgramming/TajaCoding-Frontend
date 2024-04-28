@@ -16,7 +16,7 @@ export default function Main(){
             </div>
             <div>
                 <Link to={'/origin'} className="link-tag">공식</Link>
-                <Link to={'/custom'} className="link-tag">커스텀</Link>
+                <Link to={'/custom'} className="link-tags">커스텀</Link>
             </div>
         </div>
     )
