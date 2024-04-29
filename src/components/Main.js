@@ -1,13 +1,11 @@
 // 채윤 (마지막 수정 : 2024-04-28)
 import { Link } from "react-router-dom";
+import UserNav from "./UserNav";
 
 export default function Main(){
     return (
         <div style={{height:'100%'}}>
-            <div style={{display:'flex', justifyContent:'flex-end', fontSize:'1rem', fontWeight:'600', marginTop:'1.3rem', marginRight:'2rem'}}>
-                <Link to={'/login'} className="link-tag" style={{marginRight:'1.5rem'}}>로그인</Link>  
-                <Link to={'/signup'} className="link-tag">회원가입</Link>  
-            </div>
+            <UserNav/>
             <div style={{display:'flex', height:'100%', flexDirection:'column', justifyContent:'center'}}>
                 <div style={{display:'flex', flexDirection:'column', alignItems:'center'}}>
                     <div style={{fontSize:'5rem', marginBottom:'1rem'}}>TACO</div>

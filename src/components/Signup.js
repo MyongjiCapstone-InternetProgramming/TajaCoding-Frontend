@@ -1,5 +1,9 @@
+import UserNav from "./UserNav";
+
 export default function Signup(){
     return(
-        <div></div>
+        <div style={{height:'100%'}}>
+            <UserNav/>
+        </div>
     )
 }
