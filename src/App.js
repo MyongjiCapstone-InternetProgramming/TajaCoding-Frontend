@@ -7,6 +7,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Origin from './components/Origin';
 import Custom from './components/Custom';
+import WordQuiz from './components/WordQuiz';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/origin' element={<Origin/>}/>
         <Route path='/custom' element={<Custom/>}/>
+        <Route path='/wordquiz' element={<WordQuiz/>}/>
       </Routes>
     </div>
   );
