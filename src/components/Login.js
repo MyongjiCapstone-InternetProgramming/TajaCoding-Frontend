@@ -1,13 +1,19 @@
 // 채윤 (마지막 수정 : 2024-05-02)
 import { useState } from "react";
 import UserNav from "./UserNav";
+import useLogin from "../hook/useLogin";
 
 export default function Login(){
+    const {login} = useLogin();
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
     const handleLogin = (e) => {
         e.preventDefault();
         if (id==="" || pw==="") return window.alert('빈칸을 입력할 수 없습니다.');
+        login({
+            id : id,
+            password : pw
+        });
     }
     return(
         <div style={{height:'100%'}}>

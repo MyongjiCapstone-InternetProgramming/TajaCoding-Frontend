@@ -1,14 +1,21 @@
 // 채윤 (마지막 수정 : 2024-05-02)
 import { useState } from "react";
 import UserNav from "./UserNav";
+import useSignup from "../hook/useSignup";
 
 export default function Signup(){
+    const {signup} = useSignup();
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
     const [nickname, setNickname] = useState("");
-    const handleLogin = (e) => {
+    const handleSignup = (e) => {
         e.preventDefault();
         if (id==="" || pw==="" || nickname==="") return window.alert('빈칸을 입력할 수 없습니다.');
+        signup({
+            id : id,
+            password : pw,
+            nickname : nickname
+        });
     }
     return(
         <div style={{height:'100%'}}>
@@ -16,7 +23,7 @@ export default function Signup(){
             <div style={{display:'flex', height:'80%', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
                 <div style={{fontSize:'3rem', margin: '0 0 2rem 0' }}>SIGN UP</div>
                 <div style={{border:"0.5rem dashed white"}}>
-                    <form onSubmit={handleLogin} style={{padding:'3rem 1.5rem', display:'flex', flexDirection:'column', alignItems:'center'}}>
+                    <form onSubmit={handleSignup} style={{padding:'3rem 1.5rem', display:'flex', flexDirection:'column', alignItems:'center'}}>
                         {/* ID와 PW를 입력받는 FORM */}
                         <div style={{marginBottom:'1.3rem'}}>
                             <div style={{marginBottom:'0.5rem'}}>아이디</div>
