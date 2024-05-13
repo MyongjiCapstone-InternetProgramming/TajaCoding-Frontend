@@ -19,8 +19,9 @@ export default function WordQuiz(){
                      onMouseOver={(e) => e.target.style.color = 'limegreen'}
                      onMouseOut={(e) => e.target.style.color = 'white'}>SELECT * FROM 긴글 코딩 연습;
                 </div>
-                <div style={{padding: '0.5rem 8rem', fontSize: '20px', color: 'white'}} onMouseOver={(e) => e.target.style.color = 'limegreen'} onMouseOut={(e) => e.target.style.color = 'white'}>SELECT * FROM 빈칸 퀴즈;</div>
-                <div><Link to="/pulicconceptBlock" style={{padding: '0.5rem 8rem', fontSize: '20px', color: 'white',  textDecoration: 'none'}} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>SELECT * FROM 개념 퀴즈;</Link></div>
+                <div><Link to="/pulicconceptBlock" style={{padding: '0.5rem 8rem', fontSize: '20px', color: 'white', textDecoration: 'none'}} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>SELECT * FROM 빈칸 퀴즈;</Link></div>
+                <div style={{padding: '0.5rem 8rem', fontSize: '20px', color: 'white'}} onMouseOver={(e) => e.target.style.color = 'limegreen'} onMouseOut={(e) => e.target.style.color = 'white'}>SELECT * FROM 개념 퀴즈;
+                </div>
             </div>
 
             <div style={{display: 'flex', padding: '5rem', position: 'absolute', top: '120px', right: '40px'}}>
