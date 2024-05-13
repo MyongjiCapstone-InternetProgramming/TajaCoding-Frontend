@@ -9,7 +9,7 @@ import Origin from './components/Origin';
 import Custom from './components/Custom';
 import WordQuiz from './components/WordQuiz';
 import WrongAnswer from './components/WrongAnswer';
-
+import PulicConceptBlock from './components/PulicConceptBlock'
 
 const App = () => {
   return (
@@ -23,7 +23,7 @@ const App = () => {
         <Route path='/custom' element={<Custom/>}/>
         <Route path='/wordquiz' element={<WordQuiz/>}/>
         <Route path='/wronganswer' element={<WrongAnswer/>}/>
-
+        <Route path='/pulicconceptblock' element={<PulicConceptBlock/>}/>
       </Routes>
     </div>
   );
