@@ -21,15 +21,15 @@ export default function WordQuiz() {
             <div style={{marginTop: '50px', padding: '0.5rem 8rem', fontSize: '80px'}}>
                 <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
                      onMouseOver={(e) => e.target.style.color = 'limegreen'}
-                     onMouseOut={(e) => e.target.style.color = 'white'}>-> SELECT * FROM 긴글 코딩 연습;
+                     onMouseOut={(e) => e.target.style.color = 'white'}>SELECT * FROM 긴글 코딩 연습;
                 </div>
                 <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
                      onMouseOver={(e) => e.target.style.color = 'limegreen'}
-                     onMouseOut={(e) => e.target.style.color = 'white'}>-> SELECT * FROM 빈칸 퀴즈;
+                     onMouseOut={(e) => e.target.style.color = 'white'}> SELECT * FROM 빈칸 퀴즈;
                 </div>
                 <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
                      onMouseOver={(e) => e.target.style.color = 'limegreen'}
-                     onMouseOut={(e) => e.target.style.color = 'white'}>-> SELECT * FROM 개념 퀴즈;
+                     onMouseOut={(e) => e.target.style.color = 'white'}> SELECT * FROM 개념 퀴즈;
                 </div>
             </div>
 
