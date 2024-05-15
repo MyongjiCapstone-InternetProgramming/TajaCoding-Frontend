@@ -9,7 +9,6 @@ import Origin from './components/Origin';
 import Custom from './components/Custom';
 import WordQuiz from './components/WordQuiz';
 import WrongAnswer from './components/WrongAnswer';
-import WrongAnswerRetry from './components/WrongAnswerRetry';
 import PulicConceptBlock from './components/PulicConceptBlock';
 import WordQuizStart from './components/WordQuizStart';
 
@@ -26,7 +25,6 @@ const App = () => {
         <Route path="/wordquiz" element={<WordQuiz />} />
         <Route path="/wordquizstart" element={<WordQuizStart />} />
         <Route path="/wronganswer" element={<WrongAnswer />} />
-        <Route path="/wronganswerretry" element={<WrongAnswerRetry />} />
         <Route path="/pulicconceptblock" element={<PulicConceptBlock />} />
       </Routes>
     </div>

@@ -4,21 +4,24 @@
   font-weight: 400;
   font-style: normal;
 } */
-*, body, html {
-    margin: 0;
-    padding: 0;
-    overflow: hidden; /* 페이지 오른쪽 스크롤바 없애기 */
+*,
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* 페이지 오른쪽 스크롤바 없애기 */
 }
 .app {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: black;
-    color: white;
-    font-family: "Nanum Gothic Coding", monospace;
-    overflow-x: hidden; /* 수평 스크롤 제거 */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  color: white;
+  font-family: 'Nanum Gothic Coding', monospace;
+  overflow-x: hidden; /* 수평 스크롤 제거 */
 }
-.link-tag {
+.retry-button-tag {
   text-decoration: none;
   color: white;
+  background-color: #000;
 }
