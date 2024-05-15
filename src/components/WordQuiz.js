@@ -17,6 +17,7 @@ export default function WordQuiz() {
           height: '40%',
         }}
       >
+        <Link to={'/longcode'} style={{textDecoration:'none'}}>
         <div
           style={{
             marginTop: '30px',
@@ -24,21 +25,22 @@ export default function WordQuiz() {
             fontSize: '20px',
             color: 'white',
           }}
-          onMouseOver={(e) => (e.target.style.color = 'limegreen')}
+          onMouseOver={(e) => (e.target.style.color = 'lime')}
           onMouseOut={(e) => (e.target.style.color = 'white')}
         >
           SELECT * FROM 긴글 코딩 연습;
         </div>
+        </Link>
         <div>
           <Link
-            to="/pulicconceptBlock"
+            to="/blockcode"
             style={{
               padding: '0.5rem 8rem',
               fontSize: '20px',
               color: 'white',
               textDecoration: 'none',
             }}
-            onMouseOver={(e) => (e.target.style.color = 'limegreen')}
+            onMouseOver={(e) => (e.target.style.color = 'lime')}
             onMouseOut={(e) => (e.target.style.color = 'white')}
           >
             SELECT * FROM 빈칸 퀴즈;
@@ -50,8 +52,8 @@ export default function WordQuiz() {
             fontSize: '20px',
             color: 'limegreen',
           }}
-          onMouseOut={(e) => (e.target.style.color = 'limegreen')}
-          onMouseOver={(e) => (e.target.style.color = 'white')}
+          // onMouseOut={(e) => (e.target.style.color = 'limegreen')}
+          // onMouseOver={(e) => (e.target.style.color = 'white')}
         >
           SELECT * FROM 개념 퀴즈;
         </div>
@@ -68,35 +70,35 @@ export default function WordQuiz() {
       >
         <div
           style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
-          onMouseOver={(e) => (e.target.style.color = 'limegreen')}
+          onMouseOver={(e) => (e.target.style.color = 'lime')}
           onMouseOut={(e) => (e.target.style.color = 'white')}
         >
           COMPUTER_SCIENCE
         </div>
         <div
           style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
-          onMouseOver={(e) => (e.target.style.color = 'limegreen')}
+          onMouseOver={(e) => (e.target.style.color = 'lime')}
           onMouseOut={(e) => (e.target.style.color = 'white')}
         >
           JAVA
         </div>
         <div
           style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
-          onMouseOver={(e) => (e.target.style.color = 'limegreen')}
+          onMouseOver={(e) => (e.target.style.color = 'lime')}
           onMouseOut={(e) => (e.target.style.color = 'white')}
         >
           PYTHON
         </div>
         <div
           style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
-          onMouseOver={(e) => (e.target.style.color = 'limegreen')}
+          onMouseOver={(e) => (e.target.style.color = 'lime')}
           onMouseOut={(e) => (e.target.style.color = 'white')}
         >
           C
         </div>
         <div
           style={{ fontSize: '1.8rem', color: 'white' }}
-          onMouseOver={(e) => (e.target.style.color = 'limegreen')}
+          onMouseOver={(e) => (e.target.style.color = 'lime')}
           onMouseOut={(e) => (e.target.style.color = 'white')}
         >
           C++

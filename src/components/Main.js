@@ -47,7 +47,7 @@ export default function Main() {
               padding: '8rem 10rem',
               fontSize: '2rem',
             }}
-            to={'/origin'}
+            to={'/longcode'}
             className="link-tag"
           >
             공식

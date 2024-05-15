@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import UserNav from "./UserNav";
 import styles from '../css/DotBorder.css'; // CSS 모듈 임포트
 
-export default function WordQuiz() {
+export default function BlockCode() {
     const rows = Array.from({length: 10}, (_, i) => (
         <tr key={i} className="dashed-row">
             <td>{`Row ${i + 1}, Col 1`}</td>
@@ -19,36 +19,41 @@ export default function WordQuiz() {
         <div style={{height: '100%'}}>
             <UserNav/>
             <div style={{marginTop: '50px', padding: '0.5rem 8rem', fontSize: '80px'}}>
+                <Link to={'/longcode'} style={{textDecoration:'none'}}>
                 <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
-                     onMouseOver={(e) => e.target.style.color = 'limegreen'}
-                     onMouseOut={(e) => e.target.style.color = 'white'}>-> SELECT * FROM 긴글 코딩 연습;
+                     onMouseOver={(e) => e.target.style.color = 'lime'}
+                     onMouseOut={(e) => e.target.style.color = 'white'}>SELECT * FROM 긴글 코딩 연습;
                 </div>
+                </Link>
+                <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'limegreen'}}
+                    //  onMouseOver={(e) => e.target.style.color = 'limegreen'}
+                    //  onMouseOut={(e) => e.target.style.color = 'white'}
+                     >SELECT * FROM 빈칸 퀴즈;
+                </div>
+                <Link to={'/wordquiz'} style={{textDecoration:'none'}}>
                 <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
-                     onMouseOver={(e) => e.target.style.color = 'limegreen'}
-                     onMouseOut={(e) => e.target.style.color = 'white'}>-> SELECT * FROM 빈칸 퀴즈;
+                     onMouseOver={(e) => e.target.style.color = 'lime'}
+                     onMouseOut={(e) => e.target.style.color = 'white'}>SELECT * FROM 개념 퀴즈;
                 </div>
-                <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
-                     onMouseOver={(e) => e.target.style.color = 'limegreen'}
-                     onMouseOut={(e) => e.target.style.color = 'white'}>-> SELECT * FROM 개념 퀴즈;
-                </div>
+                </Link>
             </div>
 
 
             <div style={{display: 'flex', padding: '5rem', position: 'absolute', top: '120px', right: '40px'}}>
                 <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
-                     onMouseOver={(e) => e.target.style.color = 'limegreen'}
+                     onMouseOver={(e) => e.target.style.color = 'lime'}
                      onMouseOut={(e) => e.target.style.color = 'white'}>JAVA
                 </div>
                 <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
-                     onMouseOver={(e) => e.target.style.color = 'limegreen'}
+                     onMouseOver={(e) => e.target.style.color = 'lime'}
                      onMouseOut={(e) => e.target.style.color = 'white'}>PYTHON
                 </div>
                 <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
-                     onMouseOver={(e) => e.target.style.color = 'limegreen'}
+                     onMouseOver={(e) => e.target.style.color = 'lime'}
                      onMouseOut={(e) => e.target.style.color = 'white'}>C
                 </div>
                 <div style={{fontSize: '1.8rem', color: 'white'}}
-                     onMouseOver={(e) => e.target.style.color = 'limegreen'}
+                     onMouseOver={(e) => e.target.style.color = 'lime'}
                      onMouseOut={(e) => e.target.style.color = 'white'}>C++
                 </div>
             </div>

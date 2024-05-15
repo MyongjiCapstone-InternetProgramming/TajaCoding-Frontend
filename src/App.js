@@ -5,12 +5,12 @@ import Main from './components/Main';
 import StatusBar from './components/StatusBar';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import Origin from './components/Origin';
 import Custom from './components/Custom';
 import WordQuiz from './components/WordQuiz';
 import WrongAnswer from './components/WrongAnswer';
-import PulicConceptBlock from './components/PulicConceptBlock';
 import WordQuizStart from './components/WordQuizStart';
+import LongCode from './components/LongCode';
+import BlockCode from './components/BlockCode';
 
 const App = () => {
   return (
@@ -20,12 +20,12 @@ const App = () => {
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/origin" element={<Origin />} />
-        <Route path="/custom" element={<Custom />} />
+        <Route path="/longcode" element={<LongCode />} />
+        <Route path="/blockcode" element={<BlockCode />} />
         <Route path="/wordquiz" element={<WordQuiz />} />
         <Route path="/wordquizstart" element={<WordQuizStart />} />
         <Route path="/wronganswer" element={<WrongAnswer />} />
-        <Route path="/pulicconceptblock" element={<PulicConceptBlock />} />
+        <Route path="/custom" element={<Custom />} />
       </Routes>
     </div>
   );

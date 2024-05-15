@@ -1,4 +1,5 @@
-// 채윤 (마지막 수정 : 2024-04-29)
+// 채윤 (Created : 2024-04-29)
+// Updated : 2024-05-15 : 네비게이션 업데이트. 일단 깔끔하게 모든 창에서 뒤로가기 누를시 홈으로 가게 세팅 (개발하기 편리하도록)
 
 import { MdArrowBack } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -9,12 +10,12 @@ import { Link } from "react-router-dom";
 export default function UserNav(){
     const currentPath = window.location.pathname;
     const handleBackPage = () => {
-        if(currentPath === '/login' || currentPath === '/signup') {
+        // if(currentPath === '/login' || currentPath === '/signup') {
             window.location.href = '/'
-        }
-        else{
-            window.history.back();
-        }
+        // }
+        // else{
+            // window.history.back();
+        // }
     }
     return(
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', fontSize:'1rem', fontWeight:'600', marginTop:'1.3rem', marginRight:'2rem'}}>
