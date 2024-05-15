@@ -1,5 +1,5 @@
 // 채윤 (Created : 2024-04-29)
-// Updated : 2024-05-15 : 네비게이션 업데이트. 일단 깔끔하게 모든 창에서 뒤로가기 누를시 홈으로 가게 세팅 (개발하기 편리하도록)
+// Updated : 2024-05-15 : 네비게이션 업데이트 - 오답노트 페이지가 아닌이상 모든 상단 뒤로가기는 Main페이지로 이동해도 되길래 그렇게 적용함.
 
 import { MdArrowBack } from "react-icons/md";
 import { Link } from "react-router-dom";
@@ -13,14 +13,9 @@ export default function UserNav(){
         if (currentPath === '/wronganswer'){
             window.history.back();
         }
-        // if(currentPath === '/login' || currentPath === '/signup') {
         else{
             window.location.href = '/'
         }
-        // }
-        // else{
-            // window.history.back();
-        // }
     }
     return(
         <div style={{display:'flex', justifyContent:'space-between', alignItems:'center', fontSize:'1rem', fontWeight:'600', marginTop:'1.3rem', marginRight:'2rem'}}>
