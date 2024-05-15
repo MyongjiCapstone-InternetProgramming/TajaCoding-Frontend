@@ -20,6 +20,10 @@ html {
   font-family: 'Nanum Gothic Coding', monospace;
   overflow-x: hidden; /* 수평 스크롤 제거 */
 }
+.link-tag {
+  text-decoration: none;
+  color: white;
+}
 .retry-button-tag {
   text-decoration: none;
   color: white;

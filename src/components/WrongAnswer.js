@@ -26,6 +26,7 @@ export default function WrongAnswer() {
 
   return (
     <div style={{ height: '100%' }}>
+      {modalOpen && <div className="modal-backdrop" />}
       <UserNav />
       <div
         style={{ marginTop: '50px', padding: '0.5rem 8rem', fontSize: '80px' }}
@@ -124,15 +125,17 @@ export default function WrongAnswer() {
           RETRY
         </button>
       </div>
+
       {modalOpen && (
         <div
-          style={{
-            width: '30%',
-            height: '50%',
-            backgroundColor: 'skyblue',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
+          className="modal-container"
+          // style={{
+          //   width: '30%',
+          //   height: '50%',
+          //   backgroundColor: 'skyblue',
+          //   justifyContent: 'center',
+          //   alignItems: 'center',
+          // }}
         >
           <WrongAnswerRetryStatusBar onClose={closeModal} />
           {
