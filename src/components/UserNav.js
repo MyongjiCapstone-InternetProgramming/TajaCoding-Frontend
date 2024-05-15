@@ -10,8 +10,13 @@ import { Link } from "react-router-dom";
 export default function UserNav(){
     const currentPath = window.location.pathname;
     const handleBackPage = () => {
+        if (currentPath === '/wronganswer'){
+            window.history.back();
+        }
         // if(currentPath === '/login' || currentPath === '/signup') {
+        else{
             window.location.href = '/'
+        }
         // }
         // else{
             // window.history.back();
