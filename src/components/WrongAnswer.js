@@ -4,17 +4,33 @@
 import { Link } from 'react-router-dom';
 import UserNav from './UserNav';
 import styles from '../css/DotBorder.css'; // CSS 모듈 임포트
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
 
 export default function WrongAnswer() {
-  const rows = Array.from({ length: 10 }, (_, i) => (
-    <tr key={i} className="dashed-row">
-      <td>{`Row ${i + 1}, Col 1`}</td>
-      <td>{`Row ${i + 1}, Col 2`}</td>
-      <td>{`Row ${i + 1}, Col 3`}</td>
+  const wrongs = [
+    {id: 0, subject: "Queue", question:"큐는 어떤 자료구조인가요"},
+    {id: 1, subject: "스택", question:"스택에필요한 어쩌구저쩌구"},
+    {id: 2, subject: "BFS", question:"이진검색트리어쩌구저쩌구"},
+  ]
+  const rows = wrongs.map((value, index)=>(
+    <tr key={index} className="dashed-row">
+      <td>{`${value.subject}`}</td>
+      <td>{`${value.question}`}</td>
+      <td>{`DELETE BUTTON`}</td>
     </tr>
-  ));
+  ))
+  // const rows = Array.from({ length: 10 }, (_, i) => (
+  //   <tr key={i} className="dashed-row">
+  //     <td>{`Row ${i + 1}, Col 1`}</td>
+  //     <td>{`Row ${i + 1}, Col 2`}</td>
+  //     <td>{`Row ${i + 1}, Col 3`}</td>
+  //   </tr>
+  // ));
+
+  useEffect(()=>{
+    console.log(rows);
+  },[])
 
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
@@ -43,13 +59,6 @@ export default function WrongAnswer() {
           right: '40px',
         }}
       >
-        <div
-          style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
-          onMouseOver={(e) => (e.target.style.color = 'limegreen')}
-          onMouseOut={(e) => (e.target.style.color = 'white')}
-        >
-          COMPUTER_SCIENCE
-        </div>
         <div
           style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
           onMouseOver={(e) => (e.target.style.color = 'limegreen')}
