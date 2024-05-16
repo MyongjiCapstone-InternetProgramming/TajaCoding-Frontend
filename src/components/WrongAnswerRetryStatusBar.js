@@ -6,7 +6,7 @@ export default function WrongAnswerRetryStatusBar({ onClose }) {
   return (
     <div
       style={{
-        backgroundColor: 'white',
+        backgroundColor: 'grey',
         color: 'black',
         display: 'flex',
         justifyContent: 'space-between',

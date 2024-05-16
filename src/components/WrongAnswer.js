@@ -126,37 +126,36 @@ export default function WrongAnswer() {
           marginBottom: '0rem',
         }}
       >
-        <button
-          style={{ fontSize: '2rem' }}
+        <span
+          style={{ fontSize: '2.3rem' }}
           className="retry-button-tag"
           onClick={openModal}
         >
           RETRY
-        </button>
+        </span>
       </div>
 
       {modalOpen && (
-        <div
-          className="modal-container"
-          // style={{
-          //   width: '30%',
-          //   height: '50%',
-          //   backgroundColor: 'skyblue',
-          //   justifyContent: 'center',
-          //   alignItems: 'center',
-          // }}
-        >
+        <div className="modal-container">
           <WrongAnswerRetryStatusBar onClose={closeModal} />
           {
             <div
               style={{
-                backgroundColor: 'yellow',
+                backgroundColor: 'black',
                 height: '100%',
-                color: 'black',
+                color: 'white',
                 textAlign: 'center',
+                padding:20,
+                position:'relative'
               }}
             >
-              <p>모달 구현부분</p>
+              <h1 style={{padding:20}}>문제</h1>
+              <p className='modal-QA'>이 부분에 문제</p>
+              <p className='modal-QA'>이 부분에 정답</p>
+              <div className='modal-button-container'>
+                <span className='modal-button' onClick={()=>{console.log('이전 문제로 이동시키기')}}>▶이전</span>
+                <span className='modal-button' onClick={()=>{console.log('다음 문제로 이동시키기')}}>▶다음</span>
+              </div>
             </div>
           }
         </div>

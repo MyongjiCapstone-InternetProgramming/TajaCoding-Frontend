@@ -31,3 +31,46 @@
 .table-marigin {
 
 }
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 투명도 조절 */
+    backdrop-filter: blur(5px); /* 배경 흐리게 만들기 */
+    z-index: 999; /* 다른 요소보다 위에 나타나도록 설정 */
+  }
+  
+  .modal-container {
+    position: fixed;
+    width: 30%;
+    height: 40%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.559);
+    padding: 1px;
+    z-index: 1000; /* 모달은 배경보다 위에 나타나도록 설정 */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* 그림자 효과 추가 */
+    border-color: white;
+  }
+  
+  .modal-button-container {
+    position: absolute;
+    /* bottom: 20px; */
+    left: 0%;
+    right:0%;
+  }
+  .modal-QA {
+    margin-top: 3%;
+    margin-bottom: 3%;
+  }
+  .modal-button {
+    background-color: black;
+    color: white;
+    font-size: 20px;
+    padding: 1%;
+    cursor: pointer;
+  }
