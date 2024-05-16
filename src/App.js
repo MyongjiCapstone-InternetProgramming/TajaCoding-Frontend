@@ -11,6 +11,7 @@ import WrongAnswer from './components/WrongAnswer';
 import WordQuizStart from './components/WordQuizStart';
 import LongCode from './components/LongCode';
 import BlockCode from './components/BlockCode';
+import TypeLong from './components/TypeLong';
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/wordquizstart" element={<WordQuizStart />} />
         <Route path="/wronganswer" element={<WrongAnswer />} />
         <Route path="/custom" element={<Custom />} />
+        <Route path="/type-long" element={<TypeLong />} />
       </Routes>
     </div>
   );
