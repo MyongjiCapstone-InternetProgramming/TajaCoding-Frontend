@@ -1,16 +1,22 @@
 import { Link } from "react-router-dom";
 import UserNav from "./UserNav";
+import longcode from "../longcode";
+
 
 export default function LongCode() {
 
-    const rows = Array.from({ length: 10 }, (_, i) => (
-        <tr key={i} className="dashed-row">
-            <td>{`Row ${i + 1}, Col 1`}</td>
-            <td>{`Row ${i + 1}, Col 2`}</td>
-            <td>{`Row ${i + 1}, Col 3`}</td>
-            <td>{`Row ${i + 1}, Col 4`}</td>
+    const dataset = longcode
+
+    const NewDataset = dataset.map((item, index) => (
+        <tr key={index} className="dashed-row">
+          <td>{item.title}</td>
+          <td>{item.descipt}</td>
+          <td>{item.level}</td>
+          <td>{item.avg}</td> 
         </tr>
-    ));
+      ));
+
+      
     return (
         <div style={{ height: '100%' }}>
         <UserNav />
@@ -101,7 +107,7 @@ export default function LongCode() {
                             </tr>
                         </thead>
                         <tbody>
-                            {rows}
+                            {NewDataset}
                         </tbody>
                     </table>
                 </div>
