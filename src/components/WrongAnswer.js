@@ -83,7 +83,7 @@ export default function WrongAnswer() {
             <div className='modal-inner-container'>
               <div className='modal-except-button'>
                 <h1 style={{padding:10}}>문제</h1>
-                <p className='modal-QA'>이 부분에 문제, 대략 문제는 2줄정도 됨. 힌트가 필요하니까 전체적으로 3줄정도 차지한다고 생각하면 됨. 이정도 길이로 생각.</p>
+                <p className='modal-QA' style={{height:70}}>이 부분에 문제, 대략 문제는 2줄정도 됨. 힌트가 필요하니까 전체적으로 3줄정도 차지한다고 생각하면 됨. 이정도 길이로 생각.</p>
                 <p className='modal-QA'>이 부분에 정답 들어감</p>
               </div>
               <div className='modal-button-container'>

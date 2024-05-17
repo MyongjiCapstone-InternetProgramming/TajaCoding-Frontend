@@ -10,7 +10,9 @@ export default function WrongAnswerRetry(){
       <TypingLayout timer={timer}>
         <div style={{display:'flex', flex:6, height:'100%', justifyContent:'center'}}>
           <div style={{backgroundColor:'red', width:'85%'}}>
-            <div></div>
+            <div>
+              <p>이 부분 수정해서 만들기</p>
+            </div>
           </div>
         </div>
       </TypingLayout>
