@@ -12,6 +12,7 @@ import WordQuizStart from './components/WordQuizStart';
 import LongCode from './components/LongCode';
 import BlockCode from './components/BlockCode';
 import TypeLong from './components/TypeLong';
+import WrongAnswerRetry from './components/WrongAnswerRetry';
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/wronganswer" element={<WrongAnswer />} />
         <Route path="/custom" element={<Custom />} />
         <Route path="/type-long" element={<TypeLong />} />
+        <Route path='/wronganswerretry' element={<WrongAnswerRetry/>}/>
       </Routes>
     </div>
   );

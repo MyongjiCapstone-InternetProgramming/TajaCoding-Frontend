@@ -1,7 +1,7 @@
 // 담당자 : 은희
 //수업시간 내용 : onmouseover 사용
 
-import { Link } from 'react-router-dom';
+import { Link, redirect } from 'react-router-dom';
 import UserNav from './UserNav';
 import styles from '../css/DotBorder.css'; // CSS 모듈 임포트
 import { useEffect, useState } from 'react';
@@ -44,14 +44,11 @@ export default function WrongAnswer() {
     <div style={{ height: '100%' }}>
       {modalOpen && <div className="modal-backdrop" />}
       <UserNav />
-      <div
-        style={{ marginTop: '50px', padding: '0.5rem 8rem', fontSize: '80px' }}
-      >
+      <div style={{ marginTop: '50px', padding: '0.5rem 8rem', fontSize: '80px' }}>
         오답노트
       </div>
 
-      <div
-        style={{
+      <div style={{
           display: 'flex',
           padding: '5rem',
           position: 'absolute',
@@ -138,26 +135,17 @@ export default function WrongAnswer() {
       {modalOpen && (
         <div className="modal-container">
           <WrongAnswerRetryStatusBar onClose={closeModal} />
-          {
-            <div
-              style={{
-                backgroundColor: 'black',
-                height: '100%',
-                color: 'white',
-                textAlign: 'center',
-                padding:20,
-                position:'relative'
-              }}
-            >
-              <h1 style={{padding:20}}>문제</h1>
-              <p className='modal-QA'>이 부분에 문제</p>
-              <p className='modal-QA'>이 부분에 정답</p>
+            <div className='modal-inner-container'>
+              <div className='modal-except-button'>
+                <h1 style={{padding:10}}>문제</h1>
+                <p className='modal-QA'>이 부분에 문제, 대략 문제는 2줄정도 됨. 힌트가 필요하니까 전체적으로 3줄정도 차지한다고 생각하면 됨. 이정도 길이로 생각.</p>
+                <p className='modal-QA'>이 부분에 정답 들어감</p>
+              </div>
               <div className='modal-button-container'>
                 <span className='modal-button' onClick={()=>{console.log('이전 문제로 이동시키기')}}>▶이전</span>
                 <span className='modal-button' onClick={()=>{console.log('다음 문제로 이동시키기')}}>▶다음</span>
               </div>
             </div>
-          }
         </div>
       )}
     </div>

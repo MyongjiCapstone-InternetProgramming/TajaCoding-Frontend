@@ -32,6 +32,10 @@
 
 }
 
+
+/*
+  정준 모달창 관련 css
+*/
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -54,23 +58,41 @@
     padding: 1px;
     z-index: 1000; /* 모달은 배경보다 위에 나타나도록 설정 */
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* 그림자 효과 추가 */
-    border-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   
+  .modal-inner-container {
+    background-color: black;
+    height: 100%;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+  }
+
   .modal-button-container {
-    position: absolute;
-    /* bottom: 20px; */
-    left: 0%;
-    right:0%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15%;
+    flex: 1;
   }
   .modal-QA {
     margin-top: 3%;
-    margin-bottom: 3%;
+    font-size: 20px;
+  }
+  .modal-except-button {
+    margin-bottom: 10%;
+    padding-left: 5px;
+    padding-right: 5px;
+    flex: 3;
   }
   .modal-button {
     background-color: black;
     color: white;
-    font-size: 20px;
+    font-size: 25px;
     padding: 1%;
     cursor: pointer;
+    margin: 0 20px;
   }
