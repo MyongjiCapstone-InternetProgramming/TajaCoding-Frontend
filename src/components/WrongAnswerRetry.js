@@ -6,7 +6,7 @@ export default function WrongAnswerRetry(){
   const [timer, setTimer] = useState(90);
   return(
     <div style={{height: '100%'}}>
-    <UserNav/>
+      <UserNav/>
       <TypingLayout timer={timer}>
         <div style={{display:'flex', flex:6, height:'100%', justifyContent:'center'}}>
           <div style={{backgroundColor:'red', width:'85%'}}>
