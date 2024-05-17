@@ -16,28 +16,62 @@ export default function BlockCode() {
     ));
 
     return (
-        <div style={{height: '100%'}}>
-            <UserNav/>
-            <div style={{marginTop: '50px', padding: '0.5rem 8rem', fontSize: '80px'}}>
-                <Link to={'/longcode'} style={{textDecoration:'none'}}>
-                <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
-                     onMouseOver={(e) => e.target.style.color = 'lime'}
-                     onMouseOut={(e) => e.target.style.color = 'white'}>SELECT * FROM 긴글 코딩 연습;
-                </div>
-                </Link>
-                <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'limegreen'}}
-                    //  onMouseOver={(e) => e.target.style.color = 'limegreen'}
-                    //  onMouseOut={(e) => e.target.style.color = 'white'}
-                     >SELECT * FROM 빈칸 퀴즈;
-                </div>
-                <Link to={'/wordquiz'} style={{textDecoration:'none'}}>
-                <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
-                     onMouseOver={(e) => e.target.style.color = 'lime'}
-                     onMouseOut={(e) => e.target.style.color = 'white'}>SELECT * FROM 개념 퀴즈;
-                </div>
-                </Link>
-            </div>
+    <div style={{ height: '100%' }}>
+      <UserNav />
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-start',
+          alignItems: 'flex-start',
+          height: '20%',
+        }}
+      >
+        <Link to={'/longcode'} style={{textDecoration:'none'}}>
+        <div
+          style={{
+            marginTop: '30px',
+            padding: '0.5rem 8rem',
+            fontSize: '20px',
+            color: 'white',
+          }}
+          onMouseOver={(e) => (e.target.style.color = 'lime')}
+          onMouseOut={(e) => (e.target.style.color = 'white')}
+        >
+          SELECT * FROM 긴글 코딩 연습;
+        </div>
+        </Link>
+        <div>
+          <Link
+            to="/blockcode"
+            style={{
+                padding: '0.5rem 8rem',
+                fontSize: '20px',
+                color: 'limegreen',
+                textDecoration: 'none'
+            }}
+          onMouseOut={(e) => (e.target.style.color = 'limegreen')}
+          onMouseOver={(e) => (e.target.style.color = 'white')}
+          >
+            SELECT * FROM 빈칸 퀴즈;
+          </Link>
+        </div>
+        <Link to={'/wordquiz'} style={{textDecoration:'none'}}>
 
+        <div
+          style={{
+            padding: '0.5rem 8rem',
+            fontSize: '20px',
+            color: 'white',
+            textDecoration: 'none',
+          }}
+          onMouseOver={(e) => (e.target.style.color = 'lime')}
+          onMouseOut={(e) => (e.target.style.color = 'white')}
+        >
+          SELECT * FROM 개념 퀴즈;
+        </div>
+        </Link>
+      </div>
 
             <div style={{display: 'flex', padding: '5rem', position: 'absolute', top: '120px', right: '40px'}}>
                 <div style={{marginRight: '3rem', fontSize: '1.8rem', color: 'white'}}
@@ -57,8 +91,9 @@ export default function BlockCode() {
                      onMouseOut={(e) => e.target.style.color = 'white'}>C++
                 </div>
             </div>
+
             <div style={{padding: 100}}>
-                <div className="scroll-container"> {/* 스크롤 컨테이너 */}
+                <div className="scroll-container"  style={{ maxHeight: '27rem', overflowY: 'auto' }}> {/* 스크롤 컨테이너 */}
                     <table className="dashed-table">
                         <thead>
                         <tr className="dashed-row">
@@ -74,6 +109,6 @@ export default function BlockCode() {
                     </table>
                 </div>
             </div>
-        </div>
+    </div>
     )
 }
