@@ -6,20 +6,42 @@ import UserNav from './UserNav';
 import styles from '../css/DotBorder.css'; // CSS 모듈 임포트
 import { useEffect, useState } from 'react';
 import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
+import WrongAnswerRetry from './WrongAnswerRetry';
 
 export default function WrongAnswer() {
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = () => {
+    setModalOpen(true);
+  };
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+  const [clickedRow, handleRowClick] = useState(''); // 클릭된 문제가 몇 번 인덱스에 해당하는지 확인해서 clickedRow에 담음
+  const handlePrevious = () => {
+    if (clickedRow > 0) {
+      handleRowClick(clickedRow - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (clickedRow < wrongs.length - 1) {
+      handleRowClick(clickedRow + 1);
+    }
+  };
   const wrongs = [
-    {id: 0, subject: "Queue", question:"큐는 어떤 자료구조인가요"},
-    {id: 1, subject: "스택", question:"스택에필요한 어쩌구저쩌구"},
-    {id: 2, subject: "BFS", question:"이진검색트리어쩌구저쩌구"},
+    {id: 0, subject: "Queue", question:"큐는 어떤 자료구조인가요", answer:'큐는 어쩌구입니다'},
+    {id: 1, subject: "스택", question:"스택에필요한 어쩌구저쩌구", answer:'스택은 어쩌구입니다'},
+    {id: 2, subject: "BFS", question:"이진검색트리어쩌구저쩌구", answer:'이진검색트리는 어쩌구입니다'},
   ]
   const rows = wrongs.map((value, index)=>(
-    <tr key={index} className="dashed-row">
-      <td>{`${value.subject}`}</td>
+    <tr key={index} className="dashed-row" onClick={() => handleRowClick(index)}>
+      <td className='clickable-subject' onClick={openModal} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{`${value.subject}`}</td>
       <td>{`${value.question}`}</td>
       <td>{`DELETE BUTTON`}</td>
     </tr>
   ))
+  console.log(clickedRow);
+
   // const rows = Array.from({ length: 10 }, (_, i) => (
   //   <tr key={i} className="dashed-row">
   //     <td>{`Row ${i + 1}, Col 1`}</td>
@@ -31,14 +53,6 @@ export default function WrongAnswer() {
   useEffect(()=>{
     console.log(rows);
   },[])
-
-  const [modalOpen, setModalOpen] = useState(false);
-  const openModal = () => {
-    setModalOpen(true);
-  };
-  const closeModal = () => {
-    setModalOpen(false);
-  };
 
   return (
     <div style={{ height: '100%' }}>
@@ -72,8 +86,8 @@ export default function WrongAnswer() {
         </div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '1rem', marginBottom: '0rem' }}>
-        <span style={{ fontSize: '2.3rem' }} className="retry-button-tag" onClick={openModal}>
-          RETRY
+        <span style={{ fontSize: '2.3rem' }} className="retry-button-tag" onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>
+          <Link to='/wronganswerretry' className='link-tag'>RETRY</Link>
         </span>
       </div>
       
@@ -82,13 +96,13 @@ export default function WrongAnswer() {
           <WrongAnswerRetryStatusBar onClose={closeModal} />
             <div className='modal-inner-container'>
               <div className='modal-except-button'>
-                <h1 style={{padding:10}}>문제</h1>
-                <p className='modal-QA' style={{height:70}}>이 부분에 문제, 대략 문제는 2줄정도 됨. 힌트가 필요하니까 전체적으로 3줄정도 차지한다고 생각하면 됨. 이정도 길이로 생각.</p>
-                <p className='modal-QA'>이 부분에 정답 들어감</p>
+                <h1 style={{padding:10}}>{wrongs[clickedRow].subject}</h1>
+                <p className='modal-QA' style={{height:70}}>{wrongs[clickedRow].question}</p>
+                <p className='modal-QA'>{wrongs[clickedRow].answer}</p>
               </div>
               <div className='modal-button-container'>
-                <span className='modal-button' onClick={()=>{console.log('이전 문제로 이동시키기')}}>▶이전</span>
-                <span className='modal-button' onClick={()=>{console.log('다음 문제로 이동시키기')}}>▶다음</span>
+                <span className='modal-button' onClick={handlePrevious}>▶이전</span>
+                <span className='modal-button' onClick={handleNext}>▶다음</span>
               </div>
             </div>
         </div>
