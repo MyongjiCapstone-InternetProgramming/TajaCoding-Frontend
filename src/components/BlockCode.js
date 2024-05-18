@@ -52,8 +52,8 @@ export default function BlockCode() {
                             color: 'limegreen',
                             textDecoration: 'none'
                         }}
-                        onMouseOut={(e) => (e.target.style.color = 'limegreen')}
-                        onMouseOver={(e) => (e.target.style.color = 'white')}
+                        // onMouseOut={(e) => (e.target.style.color = 'limegreen')}
+                        // onMouseOver={(e) => (e.target.style.color = 'white')}
                     >
                         SELECT * FROM 빈칸 퀴즈;
                     </Link>
