@@ -6,7 +6,6 @@ import longcode from "../longcode";
 export default function LongCode() {
 
     const dataset = longcode
-
     const NewDataset = dataset.map((item, index) => (
         <tr key={index} className="dashed-row">
           <td>{item.title}</td>
@@ -50,7 +49,7 @@ export default function LongCode() {
                     style={{
                         padding: '0.5rem 8rem',
                         fontSize: '20px',
-                        color: 'limegreen',
+                        color: 'white',
                         textDecoration: 'none'
                     }}
                     onMouseOver={(e) => (e.target.style.color = 'lime')}
