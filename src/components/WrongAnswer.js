@@ -16,6 +16,7 @@ export default function WrongAnswer() {
   const closeModal = () => {
     setModalOpen(false);
   };
+  
   const [clickedRow, handleRowClick] = useState(''); // 클릭된 문제가 몇 번 인덱스에 해당하는지 확인해서 clickedRow에 담음
   const handlePrevious = () => {
     if (clickedRow > 0) {
@@ -29,9 +30,9 @@ export default function WrongAnswer() {
     }
   };
   const wrongs = [
-    {id: 0, subject: "Queue", question:"큐는 어떤 자료구조인가요", answer:'큐는 어쩌구입니다'},
-    {id: 1, subject: "스택", question:"스택에필요한 어쩌구저쩌구", answer:'스택은 어쩌구입니다'},
-    {id: 2, subject: "BFS", question:"이진검색트리어쩌구저쩌구", answer:'이진검색트리는 어쩌구입니다'},
+    {id: 0, subject: "Queue", question:"큐는 어떤 자료구조인가요", hint:'큐 힌트랍니다', answer:'큐는 어쩌구입니다'},
+    {id: 1, subject: "스택", question:"스택에필요한 어쩌구저쩌구", hint:'스택 힌트랍니다', answer:'스택은 어쩌구입니다'},
+    {id: 2, subject: "BFS", question:"이진검색트리어쩌구저쩌구", hint:'이진검색트리 힌트랍니다', answer:'이진검색트리는 어쩌구입니다'},
   ]
   const rows = wrongs.map((value, index)=>(
     <tr key={index} className="dashed-row" onClick={() => handleRowClick(index)}>
@@ -40,7 +41,6 @@ export default function WrongAnswer() {
       <td>{`DELETE BUTTON`}</td>
     </tr>
   ))
-  console.log(clickedRow);
 
   // const rows = Array.from({ length: 10 }, (_, i) => (
   //   <tr key={i} className="dashed-row">
