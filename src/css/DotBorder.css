@@ -113,3 +113,41 @@
 .hint-button {
   cursor: pointer;
 }
+
+.result-modal-container {
+  background-color: black;
+  height: 100%;
+  color: white;
+  /* text-align: center; */
+  padding: 20px;
+  flex: 1;
+}
+
+.result-modal-inner-container {
+  flex: 1;
+}
+
+.result-modal-text {
+  background-color: black;
+  color: white;
+  font-size: 25px;
+  padding: 2%;
+}
+
+.result-modal-button-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 15%;
+  flex: 1;
+  margin-top: 5%;
+}
+
+.result-modal-button {
+  padding: 0.5em;
+  font-size: 25px;
+  font-weight: bold;
+  border-radius: 8%;
+  cursor: pointer;
+  height: 1.5rem;
+  background-color: red;
+}

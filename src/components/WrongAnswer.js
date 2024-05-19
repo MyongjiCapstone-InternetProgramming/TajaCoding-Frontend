@@ -9,6 +9,7 @@ import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
 import WrongAnswerRetry from './WrongAnswerRetry';
 
 export default function WrongAnswer() {
+  // 모달 관련
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
@@ -24,7 +25,7 @@ export default function WrongAnswer() {
     }
   };
 
-  const handleNext = () => {
+  const handleNext = () => { // 다음 문제 보여주기
     if (clickedRow < wrongs.length - 1) {
       handleRowClick(clickedRow + 1);
     }

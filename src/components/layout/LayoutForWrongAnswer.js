@@ -4,6 +4,7 @@ const LayoutForWrongAnswer = (props) => {
   const second = timer%60;
   const number = props.nowind;
   const len = props.len;
+  const correctCount = props.correctCount;
   return (
     <div style={{display:'flex', height:'100%', flexDirection:'row', justifyContent:'center', alignItems:'center'}}>
       <div style={{fontSize:'1.5rem' ,display:'flex', flexDirection:'column', justifyContent:'flex-end', alignItems:'center', flex:1, height:'75%', borderRight:'0.1rem solid #FFFFFF99'}}>
@@ -19,7 +20,7 @@ const LayoutForWrongAnswer = (props) => {
 
         <div style={{display:'flex', flexDirection:'column', alignItems:'center', margin:'0 0 3rem 0'}}>
           <div style={{borderBottom:'0.1rem solid #FFFFFF99', width:'6.2rem', textAlign:'center', paddingBottom:'0.3rem', marginBottom:'0.3rem'}}>정답률</div>
-          <div>92%</div>
+          {(number === 1) ? <div>0.00%</div> : <div>{((correctCount/(number-1))*100).toFixed(2)}%</div>}
         </div>
       </div>
       {props.children}
