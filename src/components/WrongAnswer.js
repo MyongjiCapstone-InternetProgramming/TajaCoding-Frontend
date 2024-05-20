@@ -94,7 +94,7 @@ export default function WrongAnswer() {
       
       {modalOpen && (
         <div className="modal-container">
-          <WrongAnswerRetryStatusBar onClose={closeModal} />
+          <WrongAnswerRetryStatusBar onClose={closeModal} title='오답노트' />
             <div className='modal-inner-container'>
               <div className='modal-except-button'>
                 <h1 style={{padding:10}}>{wrongs[clickedRow].subject}</h1>

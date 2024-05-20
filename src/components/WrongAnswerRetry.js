@@ -119,7 +119,7 @@ export default function WrongAnswerRetry(){
       {modalOpen && <div className="modal-backdrop" />}
       {modalOpen && (
         <div className="modal-container">
-          <WrongAnswerRetryStatusBar onClose={closeModal} />
+          <WrongAnswerRetryStatusBar onClose={closeModal} title={'RETRY 결과'} />
             <div className='result-modal-container'>
               <div className='result-modal-inner-container'>
                 <p className='result-modal-text'>소요시간 : </p>

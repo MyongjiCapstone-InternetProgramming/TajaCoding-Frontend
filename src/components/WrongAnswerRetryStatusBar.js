@@ -1,16 +1,19 @@
-
 import { VscChromeClose } from 'react-icons/vsc';
 import '../css/StatusBar.css';
 
-export default function WrongAnswerRetryStatusBar({ onClose }) {
+const WrongAnswerRetryStatusBar = (props) => {
+  const title = props.title;
+  const onclose = props.onClose;
   return (
     <div className='status-bar'>
-      <p>오답노트</p>
+      <p style={{fontSize:'20px'}}>{title}</p>
       <div className="status-bar-button">
-        <button onClick={onClose}>
+        <button onClick={onclose}>
           <VscChromeClose />
         </button>
       </div>
     </div>
   );
 }
+
+export default WrongAnswerRetryStatusBar;
