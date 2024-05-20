@@ -123,8 +123,8 @@ export default function WrongAnswerRetry(){
             <div className='result-modal-container'>
               <div className='result-modal-inner-container'>
                 <p className='result-modal-text'>소요시간 : </p>
-                <p className='result-modal-text'>오답수 : {wrongs.length - correctCount}</p>
-                <p className='result-modal-text'>정답률 : {((correctCount/wrongs.length)*100).toFixed(2)}%</p>
+                <p className='result-modal-text'>정답수 : {correctCount}/{wrongs.length}</p>
+                <p className='result-modal-text'>점수 : {((correctCount/wrongs.length)*100).toFixed(0)}점</p>
               </div>
               <div className='result-modal-button-container'>
                 <Link to='/wronganswer' className='result-modal-button'>확인</Link>
