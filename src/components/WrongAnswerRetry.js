@@ -49,19 +49,6 @@ export default function WrongAnswerRetry(){
   }
   console.log(userAnswer);
 
-  useEffect(()=>{
-    const handleKeyDown = (event) => {
-      if((event.key === 'Enter') && modalOpen) {
-        window.location.href = '/wronganswer'
-      }
-    }
-    window.addEventListener('keydown', handleKeyDown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [modalOpen]);
-
   const activeButton = () => {
     handleInd();
   }
