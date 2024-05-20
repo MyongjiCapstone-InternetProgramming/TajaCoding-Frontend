@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import UserNav from './UserNav';
 import LayoutForWrongAnswer from './layout/LayoutForWrongAnswer';
 import { Link } from 'react-router-dom';
@@ -26,6 +26,7 @@ export default function WrongAnswerRetry(){
   const [ind, setInd] = useState(0);
   const [userAnswer, setUserAnswer] = useState('');
   const [correctCount, setCorrectCount] = useState(0);
+
   const handleInd = () => {
     if(userAnswer === wrongs[ind].answer){
       setCorrectCount(correctCount + 1)
@@ -42,10 +43,34 @@ export default function WrongAnswerRetry(){
     }
   };
   console.log(correctCount)
+
   const handleInputChange = (e) => {
     setUserAnswer(e.target.value);
   }
   console.log(userAnswer);
+
+  useEffect(()=>{
+    const handleKeyDown = (event) => {
+      if((event.key === 'Enter') && modalOpen) {
+        window.location.href = '/wronganswer'
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [modalOpen]);
+
+  const activeButton = () => {
+    handleInd();
+  }
+  const activeEnter = (e) => {
+    if((e.key === 'Enter') && !modalOpen) {
+      activeButton();
+    }
+  }
+
   return(
     <div style={{height:'100%'}}>
       <div style={{ display: 'flex', position: 'fixed', left: '7%', marginTop:'1.3rem'}}>
@@ -82,6 +107,7 @@ export default function WrongAnswerRetry(){
                   type='text'
                   value={userAnswer} 
                   onChange={handleInputChange}
+                  onKeyDown={(e)=>{activeEnter(e)}}
                   style={{
                     borderBottom:'6px solid #FFFFFFFF', 
                     width:'100%', 
@@ -103,17 +129,18 @@ export default function WrongAnswerRetry(){
           </div>
         </div>
       </LayoutForWrongAnswer>
+      {modalOpen && <div className="modal-backdrop" />}
       {modalOpen && (
         <div className="modal-container">
           <WrongAnswerRetryStatusBar onClose={closeModal} />
             <div className='result-modal-container'>
               <div className='result-modal-inner-container'>
                 <p className='result-modal-text'>소요시간 : </p>
-                <p className='result-modal-text'>오답수 : </p>
-                <p className='result-modal-text'>정답률 : </p>
+                <p className='result-modal-text'>오답수 : {wrongs.length - correctCount}</p>
+                <p className='result-modal-text'>정답률 : {((correctCount/wrongs.length)*100).toFixed(2)}%</p>
               </div>
               <div className='result-modal-button-container'>
-                <span className='result-modal-button' onClick={{}}>확인</span>
+                <Link to='/wronganswer' className='result-modal-button'>확인</Link>
               </div>
             </div>
         </div>
