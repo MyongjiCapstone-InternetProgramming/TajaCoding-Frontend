@@ -21,11 +21,23 @@ export default function WrongAnswerRetry(){
     setModalOpen(false);
   };
 
-  const [timer, setTimer] = useState(90);
+  const [timer, setTimer] = useState(0);
   const [showHint, setshowHint] = useState(false);
   const [ind, setInd] = useState(0);
   const [userAnswer, setUserAnswer] = useState('');
   const [correctCount, setCorrectCount] = useState(0);
+  const minute = parseInt(timer/60);
+  const second = timer%60;
+
+  useEffect(()=>{ // 모달이 열려있지 않을 때만 시간이 카운트 됨
+    let id;
+    if(!modalOpen){
+      id = setInterval(() => {
+        setTimer(prevCount => prevCount + 1);
+      }, 1000);
+    }
+    return () => clearInterval(id);
+  },[!modalOpen])
 
   const handleInd = () => {
     if(userAnswer === wrongs[ind].answer){
@@ -122,7 +134,7 @@ export default function WrongAnswerRetry(){
           <WrongAnswerRetryStatusBar onClose={closeModal} title={'RETRY 결과'} />
             <div className='result-modal-container'>
               <div className='result-modal-inner-container'>
-                <p className='result-modal-text'>소요시간 : </p>
+                <p className='result-modal-text'>소요시간 : {("0"+minute).slice(-2)+"분 "+("0"+second).slice(-2) +'초'}</p>
                 <p className='result-modal-text'>정답수 : {correctCount}/{wrongs.length}</p>
                 <p className='result-modal-text'>점수 : {((correctCount/wrongs.length)*100).toFixed(0)}점</p>
               </div>
