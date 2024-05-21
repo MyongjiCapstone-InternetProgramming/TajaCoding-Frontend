@@ -39,7 +39,7 @@ export default function WrongAnswer() {
     <tr key={index} className="dashed-row" onClick={() => handleRowClick(index)}>
       <td className='clickable-subject' onClick={openModal} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{`${value.subject}`}</td>
       <td>{`${value.question}`}</td>
-      <td>{`DELETE BUTTON`}</td>
+      <td>{'DELETE'}</td>
     </tr>
   ))
 
@@ -59,7 +59,7 @@ export default function WrongAnswer() {
     <div style={{ height: '100%' }}>
       {modalOpen && <div className="modal-backdrop" />}
       <UserNav />
-      <div style={{ marginTop: '50px', padding: '0.5rem 8rem', fontSize: '80px' }}>
+      <div style={{  marginTop: '50px',padding: '0.5rem 8rem', fontSize: '80px',height: '10%' }}>
         오답노트
       </div>
 
@@ -74,7 +74,7 @@ export default function WrongAnswer() {
         <div className="scroll-container" style={{ maxHeight: '35rem', overflowY: 'auto' }}>
           {' '}
           {/* 스크롤 컨테이너 */}
-          <table className="dashed-table" style={{ width: '90%', fontSize: '1.5em' }}>
+          <table className="dashed-table" style={{ width: '90%', fontSize: '20px' }}>
             <thead>
               <tr className="dashed-row">
                 <th>SUBJECT</th>
