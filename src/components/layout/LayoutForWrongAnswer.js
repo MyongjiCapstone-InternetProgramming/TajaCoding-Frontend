@@ -1,3 +1,6 @@
+// 담당자 : 정준
+// 개념퀴즈 오답노트 RETRY 큰 틀
+
 const LayoutForWrongAnswer = (props) => {
   const timer = props.timer;
   const minute = parseInt(timer/60);
