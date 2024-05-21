@@ -6,6 +6,8 @@ import StatusBar from './components/StatusBar';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Custom from './components/Custom';
+import CustomWrite from './components/CustomWrite';
+import CustomDelete from './components/CustomDelete';
 import WordQuiz from './components/WordQuiz';
 import WrongAnswer from './components/WrongAnswer';
 import WordQuizStart from './components/WordQuizStart';
@@ -28,8 +30,11 @@ const App = () => {
         <Route path="/wordquizstart" element={<WordQuizStart />} />
         <Route path="/wronganswer" element={<WrongAnswer />} />
         <Route path="/custom" element={<Custom />} />
+        <Route path='/customwrite' element={<CustomWrite/>}/>
+        <Route path='/customdelete' element={<CustomDelete/>}/>
         <Route path="/type-long" element={<TypeLong />} />
         <Route path='/wronganswerretry' element={<WrongAnswerRetry/>}/>
+
       </Routes>
     </div>
   );

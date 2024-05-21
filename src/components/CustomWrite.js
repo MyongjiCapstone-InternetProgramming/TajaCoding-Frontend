@@ -6,7 +6,7 @@ export default function CustomWrite(){
         <div style={{height:'100%'}}>
             <UserNav/>
             <div style={{display:'flex', height:'80%', flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-                <div style={{fontSize:'3rem', margin: '0 0 2rem 0' }}>LOGIN</div>
+                <div style={{fontSize:'3rem', margin: '0 0 2rem 0' }}>Custom 글쓰기</div>
                 </div>
            </div>
     )
