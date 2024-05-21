@@ -1,7 +1,7 @@
 // 담당자 : 은희, 정준(언어 선택 안되면 시작 못하게 막아둠)
 //수업시간 내용 : onmouseover 사용
 
-import { Link, Route, Routes, useNavigate, useNavigation } from 'react-router-dom';
+import { Link, Route, Routes, useNavigate, useParams } from 'react-router-dom';
 import UserNav from './UserNav';
 import { useState } from 'react';
 import WordQuizStart from './WordQuizStart';
@@ -15,8 +15,12 @@ export default function WordQuiz() {
       alert('언어를 선택해주세요');
     } else {
       alert(`선택된 언어 : ${selectedOption}`)
+      const params = useParams();
+      console.log('params: ', params);
+  
     }
   }
+
   console.log('selectedOption : ', selectedOption)
   return (
     <div style={{ height: '100%' }}>
