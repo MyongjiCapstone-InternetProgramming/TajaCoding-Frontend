@@ -16,7 +16,7 @@ export default function WordQuiz() {
     } else {
       alert(`선택된 언어 : ${selectedOption}`)
       // const params = useParams(); 메소드 안에 use 훅 쓰면 에러나용 (채윤)
-      console.log('params: ', params);
+      // console.log('params: ', params);
   
     }
   }
