@@ -15,7 +15,7 @@ export default function WordQuiz() {
       alert('언어를 선택해주세요');
     } else {
       alert(`선택된 언어 : ${selectedOption}`)
-      const params = useParams();
+      // const params = useParams(); 메소드 안에 use 훅 쓰면 에러나용 (채윤)
       console.log('params: ', params);
   
     }
