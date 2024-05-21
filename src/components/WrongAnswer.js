@@ -1,4 +1,4 @@
-// 담당자 : 은희
+// 담당자 : 은희, 정준
 //수업시간 내용 : onmouseover 사용
 
 import { Link, redirect } from 'react-router-dom';
