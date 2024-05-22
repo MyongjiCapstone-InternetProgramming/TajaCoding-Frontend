@@ -139,7 +139,7 @@ export default function WrongAnswer() {
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '1rem', marginBottom: '0rem' }}>
         <span style={{ fontSize: '2.3rem' }} className="retry-button-tag" onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>
-          <Link to='/wronganswerretry' className='link-tag'>RETRY</Link>
+          <Link to={selectedOption ? `/wronganswerretry/${selectedOption}` : '#'} className='link-tag'>RETRY</Link>
         </span>
       </div>
       

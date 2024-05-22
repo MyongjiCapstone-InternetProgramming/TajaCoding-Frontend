@@ -3,11 +3,13 @@
 import { useEffect, useState } from 'react';
 import UserNav from './UserNav';
 import LayoutForWrongAnswer from './layout/LayoutForWrongAnswer';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import styles from '../css/DotBorder.css';
 import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
 
 export default function WrongAnswerRetry(){
+  const { selectedOption } = useParams();
+
   // 문제 다 풀었을 때 띄우는 모달 창 관련
   const [modalOpen, setModalOpen] = useState(false);
   const openModal = () => {
@@ -24,7 +26,6 @@ export default function WrongAnswerRetry(){
   const [correctCount, setCorrectCount] = useState(0);
   const minute = parseInt(timer/60);
   const second = timer%60;
-  const [selectedOption, setSelectedOption] = useState('');
 
   const C_wrongs = [
     {id: 0, subject: "Queue", question:"C큐", hint:'C큐 힌트', answer:'C큐입니다'},
@@ -46,8 +47,27 @@ export default function WrongAnswerRetry(){
     {id: 1, subject: "스택", question: "PYTHON 스택", hint: 'PYTHON 스택 힌트', answer: 'PYTHON 스택입니다'},
     {id: 2, subject: "BFS", question: "PYTHON 이진검색트리", hint: 'PYTHON 이진검색트리 힌트', answer: 'PYTHON 이진검색트리입니다'}
   ];
-  
-  const quizData_wrongs = {C_wrongs, Cpp_wrongs, JAVA_wrongs, PYTHON_wrongs}[selectedOption]
+
+  // 선택된 언어에 따라 문제 배열 선택
+  let quizData_wrongs;
+  switch(selectedOption) {
+    case 'C':
+      quizData_wrongs = C_wrongs;
+      break;
+    case 'Cpp':
+      quizData_wrongs = Cpp_wrongs;
+      break;
+    case 'JAVA':
+      quizData_wrongs = JAVA_wrongs;
+      break;
+    case 'PYTHON':
+      quizData_wrongs = PYTHON_wrongs;
+      break;
+    default:
+      quizData_wrongs = [];
+  }
+  console.log('quizData_wrongs: ',quizData_wrongs)
+
   useEffect(()=>{ // 모달이 열려있지 않을 때만 시간이 카운트 됨
     let id;
     if(!modalOpen){
@@ -92,10 +112,10 @@ export default function WrongAnswerRetry(){
   return(
     <div style={{height:'100%'}}>
       <div style={{ display: 'flex', position: 'fixed', left: '7%', marginTop:'1.3rem'}}>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'JAVA' ? 'limegreen' : 'white' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'JAVA' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('JAVA')}}>JAVA</div>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'PYTHON' ? 'limegreen' : 'white' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'PYTHON' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('PYTHON')}}>PYTHON</div>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'C' ? 'limegreen' : 'white' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'C' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('C')}}>C</div>
-        <div style={{ fontSize: '1.8rem', color: selectedOption === 'Cpp' ? 'limegreen' : 'white' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'Cpp' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('Cpp')}}>C++</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='JAVA'? 'limegreen': 'white' }}>JAVA</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='PYTHON'? 'limegreen': 'white' }}>PYTHON</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='C'? 'limegreen': 'white' }}>C</div>
+        <div style={{ fontSize: '1.8rem', color: selectedOption==='Cpp'? 'limegreen': 'white' }}>C++</div>
       </div>
       <UserNav/>
       <LayoutForWrongAnswer timer={timer} nowind={ind+1} len={quizData_wrongs.length} correctCount={correctCount}>

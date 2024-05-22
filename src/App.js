@@ -33,7 +33,7 @@ const App = () => {
         <Route path='/customwrite' element={<CustomWrite/>}/>
         <Route path='/customdelete' element={<CustomDelete/>}/>
         <Route path="/type-long" element={<TypeLong />} />
-        <Route path='/wronganswerretry' element={<WrongAnswerRetry/>}/>
+        <Route path='/wronganswerretry/:selectedOption' element={<WrongAnswerRetry/>}/>
 
       </Routes>
     </div>
