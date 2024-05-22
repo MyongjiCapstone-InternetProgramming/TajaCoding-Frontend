@@ -1,4 +1,4 @@
-//담당자 : 정준
+// 담당자 : 정준
 
 import { useEffect, useState } from 'react';
 import UserNav from './UserNav';
@@ -75,7 +75,6 @@ export default function WrongAnswerRetry(){
   return(
     <div style={{height:'100%'}}>
       <div style={{ display: 'flex', position: 'fixed', left: '7%', marginTop:'1.3rem'}}>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>COMPUTER_SCIENCE</div>
         <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>JAVA</div>
         <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>PYTHON</div>
         <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>C</div>

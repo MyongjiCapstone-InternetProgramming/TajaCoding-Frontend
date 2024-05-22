@@ -27,7 +27,7 @@ const App = () => {
         <Route path="/longcode" element={<LongCode />} />
         <Route path="/blockcode" element={<BlockCode />} />
         <Route path="/wordquiz" element={<WordQuiz />} />
-        <Route path="/wordquizstart" element={<WordQuizStart />} />
+        <Route path="/wordquizstart/:selectedOption" element={<WordQuizStart />} />
         <Route path="/wronganswer" element={<WrongAnswer />} />
         <Route path="/custom" element={<Custom />} />
         <Route path='/customwrite' element={<CustomWrite/>}/>
