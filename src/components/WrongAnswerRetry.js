@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import UserNav from './UserNav';
 import LayoutForWrongAnswer from './layout/LayoutForWrongAnswer';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import styles from '../css/DotBorder.css';
 import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
 

@@ -1,7 +1,7 @@
 // 담당자 : 은희, 정준
 //수업시간 내용 : onmouseover 사용
 
-import { Link, redirect } from 'react-router-dom';
+import { Link, redirect, useNavigate, useParams } from 'react-router-dom';
 import UserNav from './UserNav';
 import styles from '../css/DotBorder.css'; // CSS 모듈 임포트
 import { useEffect, useState } from 'react';
@@ -11,15 +11,39 @@ import WrongAnswerRetry from './WrongAnswerRetry';
 
 
 export default function WrongAnswer() {
+  const {selectedOption} = useParams();
+
+  const navigate = useNavigate(); // 추가
+
+
+
+
+
   // 모달 관련
   const [modalOpen, setModalOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
+  const setSelectedOption = (option) => {
+    selectedOption = option;
+  }
   const openModal = () => {
     setModalOpen(true);
   };
   const closeModal = () => {
     setModalOpen(false);
   };
+
+
+
+
+  // 추가
+  useEffect(()=>{
+    console.log('selectedOption: ', selectedOption)
+  },[selectedOption]);
+  const handleLanguageSelect = (option) => {
+    navigate(`/wronganswer/${option}`)
+  }
+
+
+
   
   const [clickedRow, handleRowClick] = useState(''); // 클릭된 문제가 몇 번 인덱스에 해당하는지 확인해서 clickedRow에 담음
   const handlePrevious = () => {
@@ -113,10 +137,10 @@ export default function WrongAnswer() {
       </div>
 
       <div style={{ display: 'flex', padding: '5rem', position: 'absolute', top: '120px', right: '40px'}}>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='JAVA'? 'limegreen': 'white', cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='JAVA' ? 'limegreen' : 'white')} onClick={()=>{setSelectedOption('JAVA')}}>JAVA</div>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='PYTHON'? 'limegreen': 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='PYTHON' ? 'limegreen' : 'white')} onClick={()=>{setSelectedOption('PYTHON')}}>PYTHON</div>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='C'? 'limegreen': 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='C' ? 'limegreen' : 'white')} onClick={()=>{setSelectedOption('C')}}>C</div>
-        <div style={{ fontSize: '1.8rem', color: selectedOption==='Cpp'? 'limegreen': 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='Cpp' ? 'limegreen' : 'white')} onClick={()=>{setSelectedOption('Cpp')}}>C++</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='JAVA'? 'limegreen': 'white', cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='JAVA' ? 'limegreen' : 'white')} onClick={()=>{handleLanguageSelect('JAVA')}}>JAVA</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='PYTHON'? 'limegreen': 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='PYTHON' ? 'limegreen' : 'white')} onClick={()=>{handleLanguageSelect('PYTHON')}}>PYTHON</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='C'? 'limegreen': 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='C' ? 'limegreen' : 'white')} onClick={()=>{handleLanguageSelect('C')}}>C</div>
+        <div style={{ fontSize: '1.8rem', color: selectedOption==='Cpp'? 'limegreen': 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='Cpp' ? 'limegreen' : 'white')} onClick={()=>{handleLanguageSelect('Cpp')}}>C++</div>
       </div>
 
       {/* <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '2rem', marginBottom: '0rem'}}></div> */}
