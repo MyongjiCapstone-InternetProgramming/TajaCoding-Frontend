@@ -12,12 +12,7 @@ import WrongAnswerRetry from './WrongAnswerRetry';
 
 export default function WrongAnswer() {
   const {selectedOption} = useParams();
-
-  const navigate = useNavigate(); // 추가
-
-
-
-
+  const navigate = useNavigate();
 
   // 모달 관련
   const [modalOpen, setModalOpen] = useState(false);
@@ -31,20 +26,13 @@ export default function WrongAnswer() {
     setModalOpen(false);
   };
 
-
-
-
-  // 추가
   useEffect(()=>{
     console.log('selectedOption: ', selectedOption)
   },[selectedOption]);
   const handleLanguageSelect = (option) => {
-    navigate(`/wronganswer/${option}`)
+    navigate(`/wronganswer/${option}`) // 선택한 언어에 해당하는 문제를 띄우기 위함
   }
 
-
-
-  
   const [clickedRow, handleRowClick] = useState(''); // 클릭된 문제가 몇 번 인덱스에 해당하는지 확인해서 clickedRow에 담음
   const handlePrevious = () => {
     if (clickedRow > 0) {
