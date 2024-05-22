@@ -26,7 +26,7 @@ export default function BlockCode() {
                     flexDirection: 'column',
                     justifyContent: 'flex-start',
                     alignItems: 'flex-start',
-                    height: '30%',
+                    height: '25%',
                 }}
             >
                 <Link to={'/longcode'} style={{ textDecoration: 'none' }}>
