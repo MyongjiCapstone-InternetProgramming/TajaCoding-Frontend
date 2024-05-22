@@ -1,3 +1,4 @@
+// 채윤 TypingLayout 제작
 const TypingLayout = (props) => {
     const timer = props.timer;
     const minute = parseInt(timer/60);
