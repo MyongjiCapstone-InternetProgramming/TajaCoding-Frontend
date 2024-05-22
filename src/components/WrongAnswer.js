@@ -11,6 +11,7 @@ import WrongAnswerRetry from './WrongAnswerRetry';
 export default function WrongAnswer() {
   // 모달 관련
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedOption, setSelectedOption] = useState('');
   const openModal = () => {
     setModalOpen(true);
   };
@@ -64,10 +65,10 @@ export default function WrongAnswer() {
       </div>
 
       <div style={{ display: 'flex', padding: '5rem', position: 'absolute', top: '120px', right: '40px'}}>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>JAVA</div>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>PYTHON</div>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>C</div>
-        <div style={{ fontSize: '1.8rem', color: 'white' }} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>C++</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='JAVA'? 'limegreen': 'white', cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='JAVA' ? 'limegreen' : 'white')} onClick={()=>{setSelectedOption('JAVA')}}>JAVA</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='PYTHON'? 'limegreen': 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='PYTHON' ? 'limegreen' : 'white')} onClick={()=>{setSelectedOption('PYTHON')}}>PYTHON</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='C'? 'limegreen': 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='C' ? 'limegreen' : 'white')} onClick={()=>{setSelectedOption('C')}}>C</div>
+        <div style={{ fontSize: '1.8rem', color: selectedOption==='Cpp'? 'limegreen': 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='Cpp' ? 'limegreen' : 'white')} onClick={()=>{setSelectedOption('Cpp')}}>C++</div>
       </div>
       <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '2rem', marginBottom: '0rem'}}></div>
       <div style={{ padding: 20 }}>
