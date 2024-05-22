@@ -27,13 +27,13 @@ const App = () => {
         <Route path="/longcode" element={<LongCode />} />
         <Route path="/blockcode" element={<BlockCode />} />
         <Route path="/wordquiz" element={<WordQuiz />} />
-        <Route path="/wordquizstart" element={<WordQuizStart />} />
-        <Route path="/wronganswer" element={<WrongAnswer />} />
+        <Route path="/wordquizstart/:selectedOption" element={<WordQuizStart />} />
+        <Route path="/wronganswer/:selectedOption" element={<WrongAnswer />} />
         <Route path="/custom" element={<Custom />} />
         <Route path='/customwrite' element={<CustomWrite/>}/>
         <Route path='/customdelete' element={<CustomDelete/>}/>
         <Route path="/type-long" element={<TypeLong />} />
-        <Route path='/wronganswerretry' element={<WrongAnswerRetry/>}/>
+        <Route path='/wronganswerretry/:selectedOption' element={<WrongAnswerRetry/>}/>
 
       </Routes>
     </div>

@@ -4,20 +4,15 @@
 import { Link, Route, Routes, useNavigate, useParams } from 'react-router-dom';
 import UserNav from './UserNav';
 import { useState } from 'react';
-import WordQuizStart from './WordQuizStart';
 
 export default function WordQuiz() {
   const [selectedOption, setSelectedOption] = useState('');
-  const navigate = useNavigate();
 
   const handleStartClick = () => {
     if (!selectedOption) {
       alert('언어를 선택해주세요');
     } else {
-      alert(`선택된 언어 : ${selectedOption}`)
-      // const params = useParams(); 메소드 안에 use 훅 쓰면 에러나용 (채윤)
-      // console.log('params: ', params);
-  
+      console(`선택된 언어 : ${selectedOption}`)  
     }
   }
 
@@ -36,20 +31,16 @@ export default function WordQuiz() {
       </div>
 
       <div style={{ display: 'flex', padding: '5rem', position: 'absolute', top: '120px', right: '40px'}}>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white', cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')} onClick={()=>{setSelectedOption('COMPUTER_SCIENCE')}}>COMPUTER_SCIENCE</div>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')} onClick={()=>{setSelectedOption('JAVA')}}>JAVA</div>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')} onClick={()=>{setSelectedOption('PYTHON')}}>PYTHON</div>
-        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')} onClick={()=>{setSelectedOption('C')}}>C</div>
-        <div style={{ fontSize: '1.8rem', color: 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')} onClick={()=>{setSelectedOption('C++')}}>C++</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'JAVA' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'JAVA' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('JAVA')}}>JAVA</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'PYTHON' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'PYTHON' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('PYTHON')}}>PYTHON</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'C' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'C' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('C')}}>C</div>
+        <div style={{ fontSize: '1.8rem', color: selectedOption === 'Cpp' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'Cpp' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('Cpp')}}>C++</div>
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '0rem', marginBottom: '6rem'}}>
-        <Link style={{ border: '0.5rem dashed white', padding: '8rem 10rem', fontSize: '2rem', cursor:'pointer'}} className="link-tag" onClick={handleStartClick}>시작하기</Link>
-        <Link style={{ border: '0.5rem dashed white', padding: '8rem 10rem', fontSize: '2rem'}} to={'/wronganswer'} className="link-tag">내 오답노트</Link>
+        <Link style={{ border: '0.5rem dashed white', padding: '8rem 10rem', fontSize: '2rem', cursor:'pointer'}} to={selectedOption ? `/wordquizstart/${selectedOption}` : '#'} className="link-tag" onClick={handleStartClick}>시작하기</Link>
+        <Link style={{ border: '0.5rem dashed white', padding: '8rem 10rem', fontSize: '2rem'}} to={`/wronganswer/${selectedOption}`} className="link-tag">내 오답노트</Link>
       </div>
-      <Routes>
-        <Route path="/wordquizstart/:selectedOption" element={<WordQuizStart />} />
-      </Routes>
     </div>
   );
 }

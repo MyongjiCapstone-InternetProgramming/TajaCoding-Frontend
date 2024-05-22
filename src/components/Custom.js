@@ -20,7 +20,7 @@ export default function Custom() {
     return (
         <div style={{ height: '100%' }}>
             <UserNav />
-            <div style={{display: 'flex', flexDirection: 'column',justifyContent: 'flex-start', alignItems: 'flex-start',height: '15%'}}>
+            <div style={{display: 'flex', flexDirection: 'column',justifyContent: 'flex-start', alignItems: 'flex-start',height: '30%'}}>
                 <Link to={'/custom'} style={{ textDecoration: 'none' }}>
                     <div style={{ marginTop: '30px',padding: '0.5rem 8rem',fontSize: '20px',color: 'limegreen', textDecoration: 'none'}}
                     >SELECT * FROM 커스텀_목록;
@@ -58,7 +58,7 @@ export default function Custom() {
                 </div>
             </div>
 
-            <div style={{ padding: 100 }}>
+            <div style={{ paddingRight:100, paddingLeft:100 }}>
                 <div className="scroll-container" style={{ maxHeight: '27rem', overflowY: 'auto' }}> {/* 스크롤 컨테이너 */}
                     <table className="dashed-table">
                         <thead>
