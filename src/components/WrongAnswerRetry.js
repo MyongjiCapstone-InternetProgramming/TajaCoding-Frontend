@@ -159,7 +159,7 @@ export default function WrongAnswerRetry(){
                 />
               </div>
               <div style={{display:'flex', justifyContent:'space-between', marginBottom:'2.8rem', padding:'1em 0', flex:1}}>
-                <span className='button-style' style={{backgroundColor:'red'}}><Link to='/wronganswer' className="link-tag">EXIT</Link></span>
+                <span className='button-style' style={{backgroundColor:'red'}}><Link to={`/wronganswer/${selectedOption}`} className="link-tag">EXIT</Link></span>
                 <span className='button-style' onClick={handleInd}>NEXT</span>
               </div>
             </div>
@@ -177,7 +177,7 @@ export default function WrongAnswerRetry(){
                 <p className='result-modal-text'>점수 : {((correctCount/quizData_wrongs.length)*100).toFixed(0)}점</p>
               </div>
               <div className='result-modal-button-container'>
-                <Link to='/wronganswer' className='result-modal-button'>확인</Link>
+                <Link to={`/wronganswer/${selectedOption}`} className='result-modal-button'>확인</Link>
               </div>
             </div>
         </div>
