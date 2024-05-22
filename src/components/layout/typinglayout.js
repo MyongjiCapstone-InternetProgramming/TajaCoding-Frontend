@@ -1,6 +1,7 @@
 // 채윤 TypingLayout 제작
 const TypingLayout = (props) => {
     const timer = props.timer;
+    const accuracy = props.accuracy;
     const minute = parseInt(timer/60);
     const second = timer%60;
     return (
@@ -12,7 +13,7 @@ const TypingLayout = (props) => {
             </div>
             <div style={{display:'flex', flexDirection:'column', alignItems:'center', margin:'3rem 0'}}>
                 <div style={{borderBottom:'0.1rem solid #FFFFFF99', width:'6.2rem', textAlign:'center', paddingBottom:'0.3rem', marginBottom:'0.3rem'}}>정확도</div>
-                <div>92%</div>
+                <div>{accuracy+"%"}</div>
             </div>
         </div>
         {props.children}
