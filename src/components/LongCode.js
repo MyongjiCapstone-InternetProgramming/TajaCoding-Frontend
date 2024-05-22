@@ -25,7 +25,7 @@ export default function LongCode() {
                 flexDirection: 'column',
                 justifyContent: 'flex-start',
                 alignItems: 'flex-start',
-                height: '15%',
+                height: '30%',
             }}>
         
             <Link to={'/longcode'} style={{ textDecoration: 'none' }}>
@@ -94,7 +94,7 @@ export default function LongCode() {
                     onMouseOut={(e) => e.target.style.color = 'white'}>C++
                 </div>
             </div>
-            <div style={{ padding: 100 }}>
+            <div style={{ paddingRight:100, paddingLeft:100  }}>
                 <div className="scroll-container" style={{ maxHeight: '27rem', overflowY: 'auto' }}> {/* 스크롤 컨테이너 */}
                     <table className="dashed-table">
                         <thead>
