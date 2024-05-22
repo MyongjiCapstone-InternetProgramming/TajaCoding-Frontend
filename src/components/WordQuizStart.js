@@ -94,10 +94,10 @@ export default function WordQuizStart() {
   return(
     <div style={{height:'100%'}}>
       <div style={{ display: 'flex', position: 'fixed', left: '7%', marginTop:'1.3rem'}}>
-        {selectedOption === 'JAVA'?<div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'limegreen' }}>JAVA</div>:<div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}>JAVA</div>}
-        {selectedOption === 'PYTHON'?<div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'limegreen' }}>PYTHON</div>:<div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}>PYTHON</div>}
-        {selectedOption === 'C'?<div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'limegreen' }}>C</div>:<div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}>C</div>}
-        {selectedOption === 'Cpp'?<div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'limegreen' }}>C++</div>:<div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}>C++</div>}
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='JAVA'? 'limegreen': 'white' }}>JAVA</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='PYTHON'? 'limegreen': 'white' }}>PYTHON</div>
+        <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='C'? 'limegreen': 'white' }}>C</div>
+        <div style={{ fontSize: '1.8rem', color: selectedOption==='Cpp'? 'limegreen': 'white' }}>C++</div>
       </div>
       <UserNav/>
       <LayoutForWrongAnswer timer={timer} nowind={ind+1} len={quizData.length} correctCount={correctCount}>
