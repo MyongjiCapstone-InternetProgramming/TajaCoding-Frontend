@@ -86,8 +86,11 @@ export default function WordQuizStart() {
     handleInd();
   }
   const activeEnter = (e) => {
-    if((e.key === 'Enter') && !modalOpen) {
+    if((e.key === 'Enter') && !modalOpen && userAnswer!=='') {
       activeButton();
+    }
+    if((e.key === 'Enter') && !modalOpen && userAnswer==='') {
+      alert('모르겠다면 NEXT 버튼을 눌러주세요')
     }
   }
 
