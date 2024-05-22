@@ -107,6 +107,9 @@ export default function WrongAnswerRetry(){
     if((e.key === 'Enter') && !modalOpen) {
       activeButton();
     }
+    if((e.key === 'Enter') && !modalOpen && userAnswer==='') {
+      alert('모르겠다면 NEXT 버튼을 눌러주세요')
+    }
   }
 
   return(
