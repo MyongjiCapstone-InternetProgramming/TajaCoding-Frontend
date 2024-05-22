@@ -7,6 +7,8 @@ import styles from '../css/DotBorder.css'; // CSS 모듈 임포트
 import { useEffect, useState } from 'react';
 import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
 import WrongAnswerRetry from './WrongAnswerRetry';
+//import block from "../wrong.json";
+
 
 export default function WrongAnswer() {
   // 모달 관련
@@ -56,11 +58,20 @@ export default function WrongAnswer() {
     console.log(rows);
   },[])
 
+  // const dataset = wrong
+  // const NewDataset = dataset.map((item, index) => (
+  //     <tr key={index} className="dashed-row">
+  //       <td>{item.subject}</td>
+  //       <td>{item.question}</td>
+  //       <td>{'DELETE'}</td> 
+  //     </tr>
+  //   ));
+
   return (
     <div style={{ height: '100%' }}>
       {modalOpen && <div className="modal-backdrop" />}
       <UserNav />
-      <div style={{  marginTop: '50px',padding: '0.5rem 8rem', fontSize: '80px',height: '10%' }}>
+      <div style={{  marginTop: '60px',marginBottom: '60px',padding: '0.5rem 10rem', fontSize: '65px',height: '10%' }}>
         오답노트
       </div>
 
@@ -70,10 +81,12 @@ export default function WrongAnswer() {
         <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='C'? 'limegreen': 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='C' ? 'limegreen' : 'white')} onClick={()=>{setSelectedOption('C')}}>C</div>
         <div style={{ fontSize: '1.8rem', color: selectedOption==='Cpp'? 'limegreen': 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption==='Cpp' ? 'limegreen' : 'white')} onClick={()=>{setSelectedOption('Cpp')}}>C++</div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '2rem', marginBottom: '0rem'}}></div>
-      <div style={{ padding: 20 }}>
-        <div className="scroll-container" style={{ maxHeight: '35rem', overflowY: 'auto' }}>
-          {' '}
+
+      {/* <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '2rem', marginBottom: '0rem'}}></div> */}
+      {/* <div style={{ padding: 20 }}> */}
+      <div style={{ paddingRight:10, paddingLeft:10}}>
+        <div className="scroll-container" style={{ maxHeight: '27rem', overflowY: 'auto' }}>
+          {/* {' '} */}
           {/* 스크롤 컨테이너 */}
           <table className="dashed-table" style={{ width: '90%', fontSize: '20px' }}>
             <thead>
