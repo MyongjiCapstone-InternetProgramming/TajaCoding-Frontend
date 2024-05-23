@@ -1,21 +1,38 @@
 // 담당자 : 민석
 //수업시간 내용 : onmouseover 사용
 
-import { Link } from "react-router-dom";
+import { Link,useNavigate  } from "react-router-dom";
 import UserNav from "./UserNav";
-import block from "../block.json";
+import { useState } from 'react';
+import block from "../block";
 
 export default function BlockCode() {
+    // 언어 선택 변수 상태
+    const [selectedOption, setSelectedOption] = useState('');
+
+    // 타이틀 선택시 이동
+    const navigate  = useNavigate ();
+
+    const handleTitleClick = (index) => {
+        if(!selectedOption) 
+            alert('언어를 선택해주세요');
+        else
+            navigate(`/type-block/${selectedOption}/${index}`);  // {/* 타이틀 선택시 -> type-long으로 옮겨지면서 ID 값 반환  */ }
+    };
 
     const dataset = block
     const NewDataset = dataset.map((item, index) => (
         <tr key={index} className="dashed-row">
-        {/*  <td>{item.title}</td> 타이틀이 애매하네 */}
-          <td>{item.descipt}</td>
-          <td>{item.level}</td>
-          <td>{item.avg}</td> 
+            <td 
+            onClick={() => handleTitleClick(index)}
+            onMouseOver={(e) => (e.target.style.color = 'lime')}
+            onMouseOut={(e) => (e.target.style.color = 'white')}>
+            {item.title} </td>
+            <td>{item.descipt}</td>
+            <td>{item.level}</td>
+            <td>{item.avg}</td>
         </tr>
-      ));
+    ));
 
     return (
         <div style={{ height: '100%' }}>
@@ -77,22 +94,10 @@ export default function BlockCode() {
 
 
             <div style={{ display: 'flex', padding: '5rem', position: 'absolute', top: '120px', right: '40px' }}>
-                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
-                    onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>JAVA
-                </div>
-                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
-                    onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>PYTHON
-                </div>
-                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
-                    onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>C
-                </div>
-                <div style={{ fontSize: '1.8rem', color: 'white' }}
-                    onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>C++
-                </div>
+                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'JAVA' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'JAVA' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('JAVA')}}>JAVA</div>
+                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'PYTHON' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'PYTHON' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('PYTHON')}}>PYTHON</div>
+                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'C' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'C' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('C')}}>C</div>
+                <div style={{ fontSize: '1.8rem', color: selectedOption === 'Cpp' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'Cpp' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('Cpp')}}>C++</div>
             </div>
             
             <div style={{ paddingRight:100, paddingLeft:100  }}>
@@ -101,6 +106,7 @@ export default function BlockCode() {
                     <table className="dashed-table">
                         <thead>
                             <tr className="dashed-row">
+                                <th>TITLE</th>
                                 <th>DESCRIPTION</th>
                                 <th>DIFFICULT</th>
                                 <th>AVERAGE_TIME</th>

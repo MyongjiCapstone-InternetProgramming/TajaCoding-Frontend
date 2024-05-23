@@ -1,35 +1,58 @@
-import { Link } from "react-router-dom";
+// 민석
+
+import { Link,useNavigate  } from "react-router-dom";
 import UserNav from "./UserNav";
 import longcode from "../longcode";
+import { useState } from 'react';
 
 
 export default function LongCode() {
+    
+    // 언어 선택
+    const [selectedOption, setSelectedOption] = useState('');
+
+
+
+
+    // 타이틀 선택시 이동
+    const navigate  = useNavigate ();
+
+    const handleTitleClick = (index) => {
+        if(!selectedOption) 
+            alert('언어를 선택해주세요');
+        else
+            navigate(`/type-long/${selectedOption}/${index}`);  // {/* 타이틀 선택시 -> type-long으로 옮겨지면서 ID 값 반환  */ }
+    };
 
     const dataset = longcode
     const NewDataset = dataset.map((item, index) => (
         <tr key={index} className="dashed-row">
-          <td>{item.title}</td>
-          <td>{item.descipt}</td>
-          <td>{item.level}</td>
-          <td>{item.avg}</td> 
+            <td 
+            onClick={() => handleTitleClick(index)}
+            onMouseOver={(e) => (e.target.style.color = 'lime')}
+            onMouseOut={(e) => (e.target.style.color = 'white')}>
+            {item.title} </td>
+            <td>{item.descipt}</td>
+            <td>{item.level}</td>
+            <td>{item.avg}</td>
         </tr>
-      ));
+    ));
 
-      
+
     return (
         <div style={{ height: '100%' }}>
-        <UserNav />
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-start',
-                alignItems: 'flex-start',
-                height: '25%',
-            }}>
-        
-            <Link to={'/longcode'} style={{ textDecoration: 'none' }}>
-                <div
+            <UserNav />
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-start',
+                    alignItems: 'flex-start',
+                    height: '25%',
+                }}>
+
+                <Link to={'/longcode'} style={{ textDecoration: 'none' }}>
+                    <div
                         style={{
                             padding: '0.5rem 8rem',
                             fontSize: '20px',
@@ -37,64 +60,52 @@ export default function LongCode() {
                             textDecoration: 'none',
                             marginTop: '30px'
                         }}
-                        // onMouseOut={(e) => (e.target.style.color = 'limegreen')}
-                        // onMouseOver={(e) => (e.target.style.color = 'white')}
-                >
-                    SELECT * FROM 긴글 코딩 연습;
+                    // onMouseOut={(e) => (e.target.style.color = 'limegreen')}
+                    // onMouseOver={(e) => (e.target.style.color = 'white')}
+                    >
+                        SELECT * FROM 긴글 코딩 연습;
+                    </div>
+                </Link>
+                <div>
+                    <Link
+                        to="/blockcode"
+                        style={{
+                            padding: '0.5rem 8rem',
+                            fontSize: '20px',
+                            color: 'white',
+                            textDecoration: 'none'
+                        }}
+                        onMouseOver={(e) => (e.target.style.color = 'lime')}
+                        onMouseOut={(e) => (e.target.style.color = 'white')}
+                    >
+                        SELECT * FROM 빈칸 퀴즈;
+                    </Link>
                 </div>
-            </Link>
-            <div>
-                <Link
-                    to="/blockcode"
-                    style={{
-                        padding: '0.5rem 8rem',
-                        fontSize: '20px',
-                        color: 'white',
-                        textDecoration: 'none'
-                    }}
-                    onMouseOver={(e) => (e.target.style.color = 'lime')}
-                    onMouseOut={(e) => (e.target.style.color = 'white')}
-                >
-                    SELECT * FROM 빈칸 퀴즈;
+                <Link to={'/wordquiz'} style={{ textDecoration: 'none' }}>
+
+                    <div
+                        style={{
+                            padding: '0.5rem 8rem',
+                            fontSize: '20px',
+                            color: 'white',
+                            textDecoration: 'none',
+                        }}
+                        onMouseOver={(e) => (e.target.style.color = 'lime')}
+                        onMouseOut={(e) => (e.target.style.color = 'white')}
+                    >
+                        SELECT * FROM 개념 퀴즈;
+                    </div>
                 </Link>
             </div>
-            <Link to={'/wordquiz'} style={{ textDecoration: 'none' }}>
-
-                <div
-                    style={{
-                        padding: '0.5rem 8rem',
-                        fontSize: '20px',
-                        color: 'white',
-                        textDecoration: 'none',
-                    }}
-                    onMouseOver={(e) => (e.target.style.color = 'lime')}
-                    onMouseOut={(e) => (e.target.style.color = 'white')}
-                >
-                    SELECT * FROM 개념 퀴즈;
-                </div>
-            </Link>
-        </div>
 
 
             <div style={{ display: 'flex', padding: '5rem', position: 'absolute', top: '120px', right: '40px' }}>
-                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
-                    onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>JAVA
-                </div>
-                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
-                    onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>PYTHON
-                </div>
-                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
-                    onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>C
-                </div>
-                <div style={{ fontSize: '1.8rem', color: 'white' }}
-                    onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>C++
-                </div>
+                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'JAVA' ? 'limegreen' : 'white', cursor: 'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'JAVA' ? 'lime' : 'white')} onClick={() => { setSelectedOption('JAVA') }}>JAVA</div>
+                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'PYTHON' ? 'limegreen' : 'white', cursor: 'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'PYTHON' ? 'lime' : 'white')} onClick={() => { setSelectedOption('PYTHON') }}>PYTHON</div>
+                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'C' ? 'limegreen' : 'white', cursor: 'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'C' ? 'lime' : 'white')} onClick={() => { setSelectedOption('C') }}>C</div>
+                <div style={{ fontSize: '1.8rem', color: selectedOption === 'Cpp' ? 'limegreen' : 'white', cursor: 'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'Cpp' ? 'lime' : 'white')} onClick={() => { setSelectedOption('Cpp') }}>C++</div>
             </div>
-            <div style={{ paddingRight:100, paddingLeft:100  }}>
+            <div style={{ paddingRight: 100, paddingLeft: 100 }}>
                 <div className="scroll-container" style={{ maxHeight: '27rem', overflowY: 'auto' }}> {/* 스크롤 컨테이너 */}
                     <table className="dashed-table">
                         <thead>
