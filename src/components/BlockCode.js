@@ -96,7 +96,8 @@ export default function BlockCode() {
             </div>
             
             <div style={{ paddingRight:100, paddingLeft:100  }}>
-                <div className="scroll-container" style={{ maxHeight: '27rem', overflowY: 'auto' }}> {/* 스크롤 컨테이너 */}
+                <div className="scroll-container" style={{ maxHeight: '27rem', overflowY: 'auto' }}> 
+                {/* 스크롤 컨테이너 */}
                     <table className="dashed-table">
                         <thead>
                             <tr className="dashed-row">
