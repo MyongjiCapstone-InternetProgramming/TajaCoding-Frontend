@@ -12,7 +12,7 @@ export default function WordQuiz() {
     if (!selectedOption) {
       alert('언어를 선택해주세요');
     } else {
-      console(`선택된 언어 : ${selectedOption}`)  
+      console.log(`선택된 언어 : ${selectedOption}`)  
     }
   }
 
