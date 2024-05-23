@@ -15,8 +15,8 @@
         "public static void main (String[] args) throws java.lang.Exception",
         "{",
         "// 생성 및 정렬",
-        "PriorityQueue<Item> queue = new PriorityQueue<>(new Comparator<Item>(){",
-        "public int compare(Item i1, Item i2){",
+        "PriorityQueue<Item> queue = new (  A [13글자]  )<>(new Comparator<Item>(){",
+        "public int (  B [7글자]  )(Item i1, Item i2){",
         "if(i1.val1 == i2.val1){",
         "return Integer.compare(i1.val2, i2.val2);",
         "}else",
@@ -27,7 +27,7 @@
         "queue.add(new Item(3, 6));",
         "queue.add(new Item(4, 8));",
         "queue.add(new Item(1, 1));",
-        "if(queue.size() != 0)",
+        "if(queue.(  C [4글자]  )() != 0)",
         "queue.poll();",     
         "queue.add(new Item(7, 3));",
         "queue.add(new Item(2, 6));",        
@@ -36,11 +36,17 @@
         "System.out.println(item.val1 + ' : ' + item.val2);",
         "}",        
         "// Sort 확인",
-        "while(queue.size() != 0){",
+        "(  D [5글자]  )(queue.size() != 0){",
         "Item item = queue.poll();",
         "System.out.println(item.val1 + ' : '' + item.val2);",
         "}",
         "}",
         "}"
+    ],
+    "result":[
+        "PriorityQueue",
+        "compare",
+        "size",
+        "while"
     ]
 }
