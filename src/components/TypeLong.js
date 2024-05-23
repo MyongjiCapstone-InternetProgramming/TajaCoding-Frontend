@@ -17,8 +17,7 @@ export default function TypeLong(){
     const [correctCount, setCorrectCount] = useState(0);
     useEffect(() => {
         if (currentLine > data.length - 1) {
-            const accuracy = (correctCount / totalCount) * 100;
-            navigate('/type-result', { state: { time: timer, accuracy: accuracy } });
+            navigate('/type-result', { state: { time: timer, correctCount: correctCount, totalCount:totalCount } });
         }
     }, [currentLine, correctCount, totalCount, timer, navigate, data.length]);
     const handleKeyDown = (event) => { //event 속성을 사용해 Enter키를 인식하고 Enter가 인식되면 다음줄로 넘어감
