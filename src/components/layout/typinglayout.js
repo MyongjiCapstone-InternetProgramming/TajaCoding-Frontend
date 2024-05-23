@@ -1,4 +1,4 @@
-// 채윤 TypingLayout 제작
+// 채윤 TypingLayout 기초 틀 제작
 const TypingLayout = (props) => {
     const timer = props.timer;
     const accuracy = props.accuracy;

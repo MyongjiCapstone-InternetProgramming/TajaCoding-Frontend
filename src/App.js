@@ -1,3 +1,4 @@
+// 네비게이션 구축
 // App.js
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
