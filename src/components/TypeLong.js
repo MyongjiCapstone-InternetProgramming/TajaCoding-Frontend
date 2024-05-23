@@ -79,7 +79,7 @@ const EnteredLine = ({enteredData,enteredLine,currentLine,setTotalCount,setCorre
     return (
         <div style={{height:'25%', display:'flex', flexDirection: 'column', justifyContent:'space-between'}}> 
             <div style={{border:'0.5rem solid #FFFFFF77', flex:1, color:'green', display:'flex', alignItems:'center', paddingLeft:'1rem', fontSize:'1.3rem', transform:'scale(0.98, 0.98)'}}>{enteredData}</div>
-            <div style={{paddingLeft:'1rem', fontSize:'1rem',color:'#FFFFFF77', borderStyle:'none', borderBottom:'0.2rem solid #FFFFFF77', flex:1, marginBottom:'1.5rem', alignItems:'center', display:'flex', transform:'scale(0.98, 0.98)'}}>{enteredLine}</div>
+            <div style={{paddingLeft:'1rem', fontSize:'1.3rem',color:'#FFFFFF77', borderStyle:'none', borderBottom:'0.2rem solid #FFFFFF77', flex:1, marginBottom:'1.5rem', alignItems:'center', display:'flex', transform:'scale(0.98, 0.98)'}}>{enteredLine}</div>
         </div>
     )
 }
@@ -107,7 +107,7 @@ const Line = ({text, index, dataIndex, inputLines, setInputLines}) => {
     return (
         <div style={{height:'25%', display:'flex', flexDirection: 'column', justifyContent:'space-between'}}> 
             <div style={{border:'0.5rem solid white', flex:1, color:'limegreen', display:'flex', alignItems:'center', paddingLeft:'1rem', fontSize:'1.3rem'}}>{text}</div>
-            <input value={inputValue} maxLength={text} onChange={handleChange} style={{paddingLeft:'1rem', fontSize:'1rem', backgroundColor:'black', color:'white', borderStyle:'none', borderBottom:'0.2rem solid white', flex:1, marginBottom:'1.5rem'}}></input>
+            <input value={inputValue} maxLength={text} onChange={handleChange} style={{fontFamily:'Nanum Gothic Coding', paddingLeft:'1rem', fontSize:'1.3rem', backgroundColor:'black', color:'white', borderStyle:'none', borderBottom:'0.2rem solid white', flex:1, marginBottom:'1.5rem'}}></input>
         </div>
     )
 }
@@ -116,7 +116,7 @@ const BeforeLine = ({text}) => {
     return (
         <div style={{height:'25%', display:'flex', flexDirection: 'column', justifyContent:'space-between'}}> 
             <div style={{border:'0.5rem dashed #FFFFFF77', flex:1, color:'green', display:'flex', alignItems:'center', paddingLeft:'1rem', fontSize:'1.3rem', transform:'scale(0.98, 0.98)'}}>{text}</div>
-            <div style={{paddingLeft:'1rem', fontSize:'1rem', color:'white', borderStyle:'none', borderBottom:'0.2rem solid #FFFFFF77', flex:1, marginBottom:'1.5rem', transform:'scale(0.98, 0.98)'}}></div>
+            <div style={{paddingLeft:'1rem', fontSize:'1.3rem', color:'white', borderStyle:'none', borderBottom:'0.2rem solid #FFFFFF77', flex:1, marginBottom:'1.5rem', transform:'scale(0.98, 0.98)'}}></div>
         </div>
     )
 }
