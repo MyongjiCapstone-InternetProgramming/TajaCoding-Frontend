@@ -17,7 +17,8 @@ export default function BlockCode() {
         if(!selectedOption) 
             alert('언어를 선택해주세요');
         else
-            navigate(`/type-block/${selectedOption}/${index}`);  // {/* 타이틀 선택시 -> type-long으로 옮겨지면서 ID 값 반환  */ }
+            navigate(`/type-long/${index}`);
+            // navigate(`/type-block/${selectedOption}/${index}`);  // {/* 타이틀 선택시 -> type-long으로 옮겨지면서 ID 값 반환  */ }
     };
 
     const dataset = block
