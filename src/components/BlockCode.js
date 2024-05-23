@@ -27,7 +27,8 @@ export default function BlockCode() {
             onClick={() => handleTitleClick(index)}
             onMouseOver={(e) => (e.target.style.color = 'lime')}
             onMouseOut={(e) => (e.target.style.color = 'white')}>
-            {item.descipt} </td>
+            {item.title} </td>
+            <td>{item.descipt}</td>
             <td>{item.level}</td>
             <td>{item.avg}</td>
         </tr>
@@ -105,6 +106,7 @@ export default function BlockCode() {
                     <table className="dashed-table">
                         <thead>
                             <tr className="dashed-row">
+                                <th>TITLE</th>
                                 <th>DESCRIPTION</th>
                                 <th>DIFFICULT</th>
                                 <th>AVERAGE_TIME</th>
