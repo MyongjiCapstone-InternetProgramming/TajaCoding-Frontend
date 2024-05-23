@@ -10,11 +10,11 @@ import { Link } from "react-router-dom";
 export default function UserNav(){
     const currentPath = window.location.pathname;
     const handleBackPage = () => {
-        if (currentPath === '/wronganswer'){
-            window.history.back();
+        if (currentPath === '/longcode'||currentPath === '/blockcode'||currentPath === '/wordquiz'||currentPath === '/custom'||currentPath === '/wronganswer'||currentPath === '/login'||currentPath === '/signup'){
+            window.location.href = '/'
         }
         else{
-            window.location.href = '/'
+            window.history.back();
         }
     }
     return(
