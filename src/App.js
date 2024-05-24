@@ -16,8 +16,9 @@ import LongCode from './components/LongCode';
 import BlockCode from './components/BlockCode';
 import TypeLong from './components/TypeLong';
 import WrongAnswerRetry from './components/WrongAnswerRetry';
-import TypeResult from './components/TypeResult';
 import TypeBlock from './components/TypeBlock';
+import LongResult from './components/LongResult';
+import BlockResult from './components/BlockResult';
 
 const App = () => {
   return (
@@ -35,9 +36,10 @@ const App = () => {
         <Route path="/custom" element={<Custom />} />
         <Route path='/customwrite' element={<CustomWrite/>}/>
         <Route path='/customdelete' element={<CustomDelete/>}/>
-        <Route path="/type-long" element={<TypeLong />} />
+        <Route path="/type-long/:id" element={<TypeLong />} />
         <Route path="/type-block" element={<TypeBlock />} />
-        <Route path="/type-result" element={<TypeResult />} />
+        <Route path="/long-result" element={<LongResult />} />
+        <Route path="/block-result" element={<BlockResult />} />
         <Route path='/wronganswerretry/:selectedOption' element={<WrongAnswerRetry/>}/>
 
       </Routes>

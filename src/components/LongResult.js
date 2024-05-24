@@ -1,7 +1,7 @@
 // 타자연습 결과 - 담당자 : 채윤 최종수정 240523
 import { useLocation, useNavigate } from "react-router-dom"
 
-export default function TypeResult(){
+export default function LongResult(){
     const { state } = useLocation();
     const navigate = useNavigate();
     const { time, correctCount, totalCount } = state;

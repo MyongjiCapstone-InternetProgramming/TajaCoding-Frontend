@@ -3,8 +3,10 @@ import { useEffect, useState } from "react";
 import UserNav from "./UserNav";
 import TypingLayout from "./layout/typinglayout";
 import jsonData from "../data/blocktest.json"
+import { useNavigate } from "react-router-dom";
 
 export default function TypeBlock(){
+    const navigate = useNavigate();
     const [data, setData] = useState(jsonData.content);
     const [timer, setTimer] = useState(0);
     const [resultData, setResultData] = useState(jsonData.result);
@@ -19,8 +21,18 @@ export default function TypeBlock(){
     };
 
     const handleSubmit = () => {
-        if (answers['A']===""||answers['B']===""||answers['C']===""||answers['D']){
-            console.log('빈칸있다');
+        if (answers.A==='' || answers.B==='' || answers.C==='' || answers.D===''){
+            return alert('빈칸이 존재합니다');
+        } else{
+            const problemCount = resultData.length;
+            let answerCount = 0;
+            const userAnswers = Object.values(answers); // Object 객체의 values 메소드를 통해 값들 가져오기
+            userAnswers.map((value, index)=>{
+                if (value===resultData[index]) {
+                    answerCount++;
+                }
+            })
+            navigate('/block-result', { state: { time: timer, correctCount: answerCount, totalCount:problemCount } })
         }
     }
     useEffect(()=>{
@@ -37,19 +49,24 @@ export default function TypeBlock(){
             <TypingLayout timer={timer} mode={'BLOCK'} >
                 <div style={{display:'flex', flex:6, height:'100%', flexDirection:'column', justifyContent:'center'}}>
                     <div style={{display:'flex', flex:6, justifyContent:'center', alignItems:'center'}}>
-                        <div style={{ height: '85%', overflowY:"scroll", width: '60%', fontSize:'1.5rem'}}>
-                            {data.map((value, index) => (
-                                <div key={index} style={{display:'flex',flex:1, alignItems:'center', padding: '10px', borderBottom: '1px solid #ccc', height:'8%' }}>
-                                    {value}
-                                </div>
-                            ))}
+                        <div style={{ height: '85%', overflowY:"scroll", width: '60%', fontSize:'1.3rem'}}>
+                            {data.map((value, index) => {
+                                const formatLine = value
+                                .replace(/</g, '&lt;') // '<' 문자를 '&lt;'로 치환
+                                .replace(/>/g, '&gt;') // '>' 문자를 '&gt;'로 치환
+                                .replace(/\(\s+[A-D]\s+\)/g, (match) => { //replace를 통해 문제 빈칸을 span태그로 감싸게 만듦
+                                    return `<span style="color: #32CD32; font-size:1.5rem; font-weight:600">${match}</span>`;
+                                });
+                                return (
+                                    <div dangerouslySetInnerHTML={{__html: formatLine}} key={index} style={{display:'flex',flex:1, alignItems:'center', padding: '10px', borderBottom: '1px solid #ccc', height:'8%'}}></div>
+                                )})}
                         </div>
                         <div style={{height: '82%', width:'25%', border:'0.2rem solid white', margin:'1rem'}}></div>
                     </div>
                     <div style={{display:'flex', flex:2,justifyContent:'space-evenly', alignItems:'center', marginBottom:'2rem'}}>
-                        {['A', 'B', 'C', 'D'].map((letter) => (
-                            <div key={letter} style={{fontSize:'1.5rem'}}>
-                                {letter} : <input name={letter} value={answers[letter]} onChange={handleInputChange} style={{padding:'1.4rem'}}/>
+                        {resultData.map((letter, index) => (
+                            <div key={index} style={{fontSize:'1.5rem'}}>
+                                {String.fromCharCode(index+65)} : <input placeholder={letter.length+'글자'} name={String.fromCharCode(index+65)} value={answers[String.fromCharCode(index+65)]} onChange={handleInputChange} style={{padding:'1.4rem'}}/>
                             </div>
                         ))}
                         <button type="submit" onClick={handleSubmit} style={{borderStyle:'none', padding:'1.5rem', borderRadius:'1rem', backgroundColor:'skyblue'}}>완료</button>

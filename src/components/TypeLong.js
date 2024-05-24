@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import UserNav from "./UserNav";
 import TypingLayout from "./layout/typinglayout";
 import jsonData from "../data/longtest.json"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function TypeLong(){
+    const { id } = useParams();
     const navigate = useNavigate();
     const [data, setData] = useState(jsonData.content);
     const [timer, setTimer] = useState(0);
