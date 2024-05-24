@@ -8,7 +8,7 @@ import block from "../block";
 
 export default function BlockCode() {
     // 언어 선택 변수 상태
-    const [selectedOption, setSelectedOption] = useState('');
+    const [selectedOption, setSelectedOption] = useState('JAVA');
 
     // 타이틀 선택시 이동
     const navigate  = useNavigate ();
@@ -17,22 +17,24 @@ export default function BlockCode() {
         if(!selectedOption) 
             alert('언어를 선택해주세요');
         else
-            navigate(`/type-long/${index}`);
+            navigate(`/type-block/${index}`);
             // navigate(`/type-block/${selectedOption}/${index}`);  // {/* 타이틀 선택시 -> type-long으로 옮겨지면서 ID 값 반환  */ }
     };
 
     const dataset = block
-    const NewDataset = dataset.map((item, index) => (
-        <tr key={index} className="dashed-row">
-            <td 
-            onClick={() => handleTitleClick(index)}
-            onMouseOver={(e) => (e.target.style.color = 'lime')}
-            onMouseOut={(e) => (e.target.style.color = 'white')}>
-            {item.title} </td>
-            <td>{item.descipt}</td>
-            <td>{item.level}</td>
-            <td>{item.avg}</td>
-        </tr>
+    const filteredDataset = dataset.filter(item => item.language === selectedOption);
+    
+    const NewDataset = filteredDataset.map((item, index) => (    
+            <tr key={index} className="dashed-row">
+                <td
+                onClick={() => handleTitleClick(index)}
+                onMouseOver={(e) => (e.target.style.color = 'lime')}
+                onMouseOut={(e) => (e.target.style.color = 'white')}>
+                {item.title} </td>
+                <td>{item.descipt}</td>
+                <td>{item.level}</td>
+                <td>{item.avg}</td>
+            </tr>
     ));
 
     return (

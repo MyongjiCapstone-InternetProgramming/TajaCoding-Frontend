@@ -9,8 +9,7 @@ import { useState } from 'react';
 export default function LongCode() {
     
     // 언어 선택
-    const [selectedOption, setSelectedOption] = useState('');
-
+    const [selectedOption, setSelectedOption] = useState('JAVA');
 
 
 
@@ -26,7 +25,9 @@ export default function LongCode() {
     };
 
     const dataset = longcode
-    const NewDataset = dataset.map((item, index) => (
+    const filteredDataset = dataset.filter(item => item.language === selectedOption);
+
+    const NewDataset = filteredDataset.map((item, index) => (
         <tr key={index} className="dashed-row">
             <td 
             onClick={() => handleTitleClick(index)}

@@ -1,17 +1,83 @@
 [
+  
   {
-    "title": "이진 탐?색",
+    "language": "JAVA",
+    "title": "이진 탐?색 자바 자바 자바 자바 자바자바자바 자바 자바자바 자바자바",
     "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
     "level": "중",
     "avg": "321초"
   },
   {
+    "language": "JAVA",
     "title": "선택 선택 선택",
     "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
     "level": "중",
     "avg": "321초"
   },
   {
+    "language": "JAVA",
+    "title": "병합 정렬",
+    "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
+    "level": "중",
+    "avg": "321초"
+  }
+  ,{
+    "language": "PYTHON",
+    "title": "이진 탐?색 파이썬이썬이썬이썬이썬이썬이썬이썬",
+    "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
+    "level": "중",
+    "avg": "321초"
+  },
+  {
+    "language": "PYTHON",
+    "title": "선택 선택 선택",
+    "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
+    "level": "중",
+    "avg": "321초"
+  },
+  {
+    "language": "PYTHON",
+    "title": "병합 정렬",
+    "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
+    "level": "중",
+    "avg": "321초"
+  }  ,{
+    "language": "C",
+    "title": "이진 탐?색 CCCCCCCCCCCCCCCCCCCC",
+    "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
+    "level": "중",
+    "avg": "321초"
+  },
+  {
+    "language": "C",
+    "title": "선택 선택 선택",
+    "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
+    "level": "중",
+    "avg": "321초"
+  },
+  {
+    "language": "C",
+    "title": "병합 정렬",
+    "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
+    "level": "중",
+    "avg": "321초"
+  },
+  {
+    "language": "CPP",
+    "title": "이진 탐?색C PPPPPPPPPPPPPPPPPCPCPCP",
+    "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
+    "level": "중",
+    "avg": "321초"
+  },
+  {
+    "language": "CPP",
+    "title": "선택 선택 선택",
+    "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
+    "level": "중",
+    "avg": "321초"
+  },
+  {
+    "language": "CPP",
     "title": "병합 정렬",
     "descipt": "두 정수 중에서 더 큰 값을 반환하는 함수",
     "level": "중",
