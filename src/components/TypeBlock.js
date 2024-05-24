@@ -3,9 +3,10 @@ import { useEffect, useState } from "react";
 import UserNav from "./UserNav";
 import TypingLayout from "./layout/typinglayout";
 import jsonData from "../data/blocktest.json"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function TypeBlock(){
+    const { id } = useParams();
     const navigate = useNavigate();
     const [data, setData] = useState(jsonData.content);
     const [example, setExample] = useState(jsonData.example);

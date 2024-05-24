@@ -37,11 +37,10 @@ const App = () => {
         <Route path='/customwrite' element={<CustomWrite/>}/>
         <Route path='/customdelete' element={<CustomDelete/>}/>
         <Route path="/type-long/:id" element={<TypeLong />} />
-        <Route path="/type-block" element={<TypeBlock />} />
+        <Route path="/type-block/:id" element={<TypeBlock />} />
         <Route path="/long-result" element={<LongResult />} />
         <Route path="/block-result" element={<BlockResult />} />
         <Route path='/wronganswerretry/:selectedOption' element={<WrongAnswerRetry/>}/>
-
       </Routes>
     </div>
   );
