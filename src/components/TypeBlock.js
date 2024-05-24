@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 export default function TypeBlock(){
     const navigate = useNavigate();
     const [data, setData] = useState(jsonData.content);
+    const [example, setExample] = useState(jsonData.example);
     const [timer, setTimer] = useState(0);
     const [resultData, setResultData] = useState(jsonData.result);
 
@@ -61,7 +62,15 @@ export default function TypeBlock(){
                                     <div dangerouslySetInnerHTML={{__html: formatLine}} key={index} style={{display:'flex',flex:1, alignItems:'center', padding: '10px', borderBottom: '1px solid #ccc', height:'8%'}}></div>
                                 )})}
                         </div>
-                        <div style={{height: '82%', width:'25%', border:'0.2rem solid white', margin:'1rem'}}></div>
+                        <div style={{height: '82%', width:'25%', border:'0.2rem solid white', margin:'1rem', padding:'1rem'}}>
+                            <div style={{fontSize:'1.4rem', color:'limegreen'}}>출력 예시</div>
+                            <div style={{fontSize:'1.4rem', color:'limegreen'}}>-----------------</div>
+                            {example.map((letter,index)=>(
+                                <div key={index} style={{fontSize:'1.4rem', color:'limegreen'}}>
+                                    {letter}
+                                </div>
+                            ))}
+                        </div>
                     </div>
                     <div style={{display:'flex', flex:2,justifyContent:'space-evenly', alignItems:'center', marginBottom:'2rem'}}>
                         {resultData.map((letter, index) => (
