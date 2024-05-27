@@ -1,9 +1,12 @@
-// 채윤 (마지막 수정 : 2024-05-02)
+// 채윤 (생성 : 2024-05-02)
+// 마지막 수정 : 2024-05-27 => node.js 로그인 기능 연결
 import { useState } from "react";
 import UserNav from "./UserNav";
 import useLogin from "../hook/useLogin";
+import { useNavigate } from "react-router-dom";
 
 export default function Login(){
+    const navigate = useNavigate();
     const {login} = useLogin();
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
@@ -13,7 +16,15 @@ export default function Login(){
         login({
             id : id,
             password : pw
-        });
+        }).then(result => {
+            if (result.status === 200){
+                window.alert(result.data.message); // 로그인 여부를 알려줌 (성공)
+                localStorage.setItem('id', result.data.id);
+                navigate('/');
+            } else {
+                window.alert(result.data.message); // 로그인 여부를 알려줌 (실패)
+            }
+        })
     }
     return(
         <div style={{height:'100%'}}>

@@ -1,9 +1,12 @@
-// 채윤 (마지막 수정 : 2024-05-02)
+// 채윤 (생성 : 2024-05-02)
+// 최종 수정 : 2024-05-27 => node.js 회원가입 연결 및 로그인페이지로 연결
 import { useState } from "react";
 import UserNav from "./UserNav";
 import useSignup from "../hook/useSignup";
+import { Navigate, useNavigate } from "react-router-dom";
 
 export default function Signup(){
+    const navigate = useNavigate();
     const {signup} = useSignup();
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
@@ -15,7 +18,16 @@ export default function Signup(){
             id : id,
             password : pw,
             nickname : nickname
-        });
+        }).then(result=>{
+            if (result.status === 200){
+                // console.log(result.data);
+                window.alert(result.data.message);
+                navigate('/login');
+            } else {
+                // console.log(result.data);
+                window.alert(result.data.message);
+            }
+        })
     }
     return(
         <div style={{height:'100%'}}>
