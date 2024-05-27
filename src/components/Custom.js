@@ -28,7 +28,7 @@ export default function Custom() {
                 </Link>
                 <Link to={'/customwrite'} style={{ textDecoration: 'none' }}>
                     <div style={{ padding: '0.5rem 8rem',fontSize: '20px',color: 'white', textDecoration: 'none'}}onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}
-                    >iNSERT INTO 내_코드 FROM 커스텀_목록;
+                    >INSERT INTO 내_코드 FROM 커스텀_목록;
                     </div>
                 </Link>
                 <Link to={'/customdelete'} style={{ textDecoration: 'none' }}>
