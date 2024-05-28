@@ -3,15 +3,17 @@
 import { Link } from "react-router-dom";
 import UserNav from "./UserNav";
 import custom from "../custom.json";
+import { useState } from 'react';
 
 export default function CustomDelete() {
+    const [selectedOption, setSelectedOption] = useState('JAVA');
 
-    const dataset = custom
+    const dataset = custom[selectedOption]
     const NewDataset = dataset.map((item, index) => (
         <tr key={index} className="dashed-row">
           <td>{item.title}</td>
           <td>{item.descipt}</td> 
-          <td>{'DELETE'}</td>
+          <td onClick={()=>{alert(`${selectedOption} ${index}번 인덱스 문제 삭제`)}} style={{cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'red')} onMouseOut={(e) => (e.target.style.color = 'white')}>{'DELETE'}</td>
         </tr>
       ));
 
@@ -24,21 +26,25 @@ export default function CustomDelete() {
 
 
             <div style={{ display: 'flex', padding: '5rem', position: 'absolute', top: '120px', right: '40px' }}>
-                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
+            <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'JAVA' ? 'limegreen' : 'white', cursor:'pointer' }}
                     onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>JAVA
+                    onMouseOut={(e) => (e.target.style.color = selectedOption === 'JAVA' ? 'lime' : 'white')}
+                    onClick={()=>{setSelectedOption('JAVA')}}>JAVA
                 </div>
-                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
+                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'PYTHON' ? 'limegreen' : 'white', cursor:'pointer' }}
                     onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>PYTHON
+                    onMouseOut={(e) => e.target.style.color = selectedOption === 'PYTHON' ? 'lime' : 'white'}
+                    onClick={()=>{setSelectedOption('PYTHON')}}>PYTHON
                 </div>
-                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: 'white' }}
+                <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'C' ? 'limegreen' : 'white', cursor:'pointer' }}
                     onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>C
+                    onMouseOut={(e) => e.target.style.color = selectedOption === 'C' ? 'lime' : 'white'}
+                    onClick={()=>{setSelectedOption('C')}}>C
                 </div>
-                <div style={{ fontSize: '1.8rem', color: 'white' }}
+                <div style={{ fontSize: '1.8rem', color: selectedOption === 'Cpp' ? 'limegreen' : 'white', cursor:'pointer' }}
                     onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = 'white'}>C++
+                    onMouseOut={(e) => e.target.style.color = selectedOption === 'Cpp' ? 'lime' : 'white'}
+                    onClick={()=>{setSelectedOption('Cpp')}}>C++
                 </div>
             </div>
 

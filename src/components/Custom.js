@@ -7,18 +7,18 @@ import custom from "../custom.json";
 import { useState } from 'react';
 
 export default function Custom() {
+    const [selectedOption, setSelectedOption] = useState('JAVA');
 
-    const dataset = custom
+    const dataset = custom[selectedOption]
     const NewDataset = dataset.map((item, index) => (
         <tr key={index} className="dashed-row">
-          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (title:${item.title})`)}} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.title}</td>
-          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (title:${item.title})`)}} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.descipt}</td>
+          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (index:${index})`)}} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.title}</td>
+          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (index:${index})`)}} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.descipt}</td>
           <td>{item.like}</td>
           <td>{item.avg}</td> 
         </tr>
       ));
 
-    const [selectedOption, setSelectedOption] = useState('JAVA');
 
     return (
         <div style={{ height: '100%' }}>
