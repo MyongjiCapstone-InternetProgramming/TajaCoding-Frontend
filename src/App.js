@@ -19,13 +19,14 @@ import WrongAnswerRetry from './components/WrongAnswerRetry';
 import TypeBlock from './components/TypeBlock';
 import LongResult from './components/LongResult';
 import BlockResult from './components/BlockResult';
+import { useState } from 'react';
 
 const App = () => {
   return (
     <div className="app">
       <StatusBar />
       <Routes>
-        <Route path="/" element={<Main />} />
+        <Route path="/" element={<Main />}/>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/longcode" element={<LongCode />} />
