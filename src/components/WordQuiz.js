@@ -6,7 +6,7 @@ import UserNav from './UserNav';
 import { useState } from 'react';
 
 export default function WordQuiz() {
-  const [selectedOption, setSelectedOption] = useState('');
+  const [selectedOption, setSelectedOption] = useState('JAVA');
 
   const handleStartClick = () => {
     if (!selectedOption) {

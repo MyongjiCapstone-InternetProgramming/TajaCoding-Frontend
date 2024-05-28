@@ -90,8 +90,8 @@ export default function WrongAnswer() {
   const rows = wrongs.map((value, index)=>(
     <tr key={index} className="dashed-row" onClick={() => handleRowClick(index)}>
       <td className='clickable-subject' onClick={openModal} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{`${value.subject}`}</td>
-      <td>{`${value.question}`}</td>
-      <td>{'DELETE'}</td>
+      <td className='clickable-subject' onClick={openModal} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{`${value.question}`}</td>
+      <td onClick={()=>{alert(`${index}번 id에 해당하는 내용 삭제`)}} style={{cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'red')} onMouseOut={(e) => (e.target.style.color = 'white')}>{'DELETE'}</td>
     </tr>
   ))
 
@@ -140,8 +140,8 @@ export default function WrongAnswer() {
           <table className="dashed-table" style={{ width: '90%', fontSize: '20px' }}>
             <thead>
               <tr className="dashed-row">
-                <th>SUBJECT</th>
-                <th>QUESTION</th>
+                <th style={{textAlign:'center'}}>SUBJECT</th>
+                <th style={{textAlign:'center'}}>QUESTION</th>
                 <th></th>
               </tr>
             </thead>
@@ -149,7 +149,7 @@ export default function WrongAnswer() {
           </table>
         </div>
       </div>
-      <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '1rem', marginBottom: '0rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '5rem', marginBottom: '0rem' }}>
         <span style={{ fontSize: '2.3rem' }} className="retry-button-tag" onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>
           <Link to={selectedOption ? `/wronganswerretry/${selectedOption}` : '#'} className='link-tag'>RETRY</Link>
         </span>

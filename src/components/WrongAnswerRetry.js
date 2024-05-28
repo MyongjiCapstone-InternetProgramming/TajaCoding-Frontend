@@ -162,7 +162,7 @@ export default function WrongAnswerRetry(){
                 />
               </div>
               <div style={{display:'flex', justifyContent:'space-between', marginBottom:'2.8rem', padding:'1em 0', flex:1}}>
-                <span className='button-style' style={{backgroundColor:'red'}}><Link to={`/wronganswer/${selectedOption}`} className="link-tag">EXIT</Link></span>
+                <span className='button-style' onClick={() => {window.history.back();}} style={{backgroundColor:'red'}}>EXIT</span>
                 <span className='button-style' onClick={handleInd}>NEXT</span>
               </div>
             </div>
