@@ -12,7 +12,7 @@ import useWordQuiz from '../hook/useWordQuiz';
 
   export default function WordQuizStart() {
     const { selectedOption } = useParams();
-const {getWordQuiz} = useWordQuiz();
+    const {getWordQuiz} = useWordQuiz();
 
   // // 채윤파트
   // const [quizData, setQuizData] = useState();
@@ -62,6 +62,7 @@ const {getWordQuiz} = useWordQuiz();
     const [correctCount, setCorrectCount] = useState(0);
     const minute = parseInt(timer/60);
     const second = timer%60;
+    const [wrongArr, setWrongArr] = useState([]);
 
     useEffect(()=>{ // 모달이 열려있지 않을 때만 시간이 카운트 됨
       let id;
@@ -73,13 +74,20 @@ const {getWordQuiz} = useWordQuiz();
       return () => clearInterval(id);
     },[!modalOpen])
 
+    useEffect(() => {
+      if (modalOpen) {
+        console.log(`틀린 문제 id값 배열: ${wrongArr}`);
+      }
+    }, [modalOpen, wrongArr]);
+
     const handleInd = () => {
       if(userAnswer === quizData[ind].answer){
         setCorrectCount(correctCount + 1)
         alert('맞았어요~')
-      }else(
+      } else {
+        setWrongArr(prevWrongArr => [...prevWrongArr, quizData[ind].quizId])
         alert('틀렸어요ㅠㅠ')
-      )
+      }
       if (ind < quizData.length - 1) {
         setshowHint(false); 
         setInd(ind + 1);
@@ -88,12 +96,10 @@ const {getWordQuiz} = useWordQuiz();
         openModal()
       }
     };
-    console.log(correctCount)
 
     const handleInputChange = (e) => {
       setUserAnswer(e.target.value);
     }
-    console.log(userAnswer);
 
     const activeButton = () => {
       handleInd();
