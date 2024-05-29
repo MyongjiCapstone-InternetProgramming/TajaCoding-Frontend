@@ -14,7 +14,7 @@ export default function WordQuizStart() {
   const { selectedOption } = useParams();
   const {getWordQuiz} = useWordQuiz();
 
-  // // 채윤파트
+  // //   채윤파트
   // const [quizData, setQuizData] = useState();
   // useEffect(()=>{
   //   getWordQuiz(selectedOption).then(res=>{
