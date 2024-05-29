@@ -1,37 +1,50 @@
 // 담당자 : 정준
 // 개념퀴즈 시작 누르면 여기로 이동
 
+// 채윤 : 
+
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import UserNav from './UserNav';
 import LayoutForWrongAnswer from './layout/LayoutForWrongAnswer';
 import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
+import useWordQuiz from '../hook/useWordQuiz';
 
 export default function WordQuizStart() {
   const { selectedOption } = useParams();
+  const {getWordQuiz} = useWordQuiz();
 
+  // // 채윤파트
+  // const [quizData, setQuizData] = useState();
+  // useEffect(()=>{
+  //   getWordQuiz(selectedOption).then(res=>{
+  //     setQuizData(res.data);
+  //   })
+  // },[])
+
+  // 정준파트
   const C = [
-    {id: 0, subject: "Queue", question:"C큐", hint:'C큐 힌트', answer:'C큐입니다'},
-    {id: 1, subject: "스택", question:"C스택", hint:'C스택 힌트', answer:'C스택입니다'},
-    {id: 2, subject: "BFS", question:"C이진검색트리", hint:'C이진검색트리 힌트', answer:'C이진검색트리입니다'},
+    {quizId: 0, subject: "Queue", question:"C큐", hint:'C큐 힌트', answer:'C큐입니다'},
+    {quizId: 1, subject: "스택", question:"C스택", hint:'C스택 힌트', answer:'C스택입니다'},
+    {quizId: 2, subject: "BFS", question:"C이진검색트리", hint:'C이진검색트리 힌트', answer:'C이진검색트리입니다'},
   ]
   const Cpp = [
-    {id: 0, subject: "Queue", question:"C++큐", hint:'C++큐 힌트', answer:'C++큐입니다'},
-    {id: 1, subject: "스택", question:"C++스택", hint:'C++스택 힌트', answer:'C++스택입니다'},
-    {id: 2, subject: "BFS", question:"C++이진검색트리", hint:'C++이진검색트리 힌트', answer:'C++이진검색트리입니다'},
+    {quizId: 0, subject: "Queue", question:"C++큐", hint:'C++큐 힌트', answer:'C++큐입니다'},
+    {quizId: 1, subject: "스택", question:"C++스택", hint:'C++스택 힌트', answer:'C++스택입니다'},
+    {quizId: 2, subject: "BFS", question:"C++이진검색트리", hint:'C++이진검색트리 힌트', answer:'C++이진검색트리입니다'},
   ]
   const JAVA = [
-    {id: 0, subject: "Queue", question: "JAVA 큐", hint: 'JAVA 큐 힌트', answer: 'JAVA 큐입니다'},
-    {id: 1, subject: "스택", question: "JAVA 스택", hint: 'JAVA 스택 힌트', answer: 'JAVA 스택입니다'},
-    {id: 2, subject: "BFS", question: "JAVA 이진검색트리", hint: 'JAVA 이진검색트리 힌트', answer: 'JAVA 이진검색트리입니다'}
+    {quizId: 0, subject: "Queue", question: "JAVA 큐", hint: 'JAVA 큐 힌트', answer: 'JAVA 큐입니다'},
+    {quizId: 1, subject: "스택", question: "JAVA 스택", hint: 'JAVA 스택 힌트', answer: 'JAVA 스택입니다'},
+    {quizId: 2, subject: "BFS", question: "JAVA 이진검색트리", hint: 'JAVA 이진검색트리 힌트', answer: 'JAVA 이진검색트리입니다'}
   ];
   const PYTHON = [
-    {id: 0, subject: "Queue", question: "PYTHON 큐", hint: 'PYTHON 큐 힌트', answer: 'PYTHON 큐입니다'},
-    {id: 1, subject: "스택", question: "PYTHON 스택", hint: 'PYTHON 스택 힌트', answer: 'PYTHON 스택입니다'},
-    {id: 2, subject: "BFS", question: "PYTHON 이진검색트리", hint: 'PYTHON 이진검색트리 힌트', answer: 'PYTHON 이진검색트리입니다'}
+    {quizId: 0, subject: "Queue", question: "PYTHON 큐", hint: 'PYTHON 큐 힌트', answer: 'PYTHON 큐입니다'},
+    {quizId: 1, subject: "스택", question: "PYTHON 스택", hint: 'PYTHON 스택 힌트', answer: 'PYTHON 스택입니다'},
+    {quizId: 2, subject: "BFS", question: "PYTHON 이진검색트리", hint: 'PYTHON 이진검색트리 힌트', answer: 'PYTHON 이진검색트리입니다'}
   ];
-
   const quizData = {C, Cpp, JAVA, PYTHON}[selectedOption]
+
 
   // 문제 다 풀었을 때 띄우는 모달 창 관련
   const [modalOpen, setModalOpen] = useState(false);
@@ -103,7 +116,8 @@ export default function WordQuizStart() {
         <div style={{ fontSize: '1.8rem', color: selectedOption==='Cpp'? 'limegreen': 'white' }}>C++</div>
       </div>
       <UserNav/>
-      <LayoutForWrongAnswer timer={timer} nowind={ind+1} len={quizData.length} correctCount={correctCount}>
+      {quizData ? (
+      <LayoutForWrongAnswer timer={timer} nowind={ind+1} len={quizData.length} correctCount={correctCount}> 
         <div style={{display:'flex', flex:6, height:'100%', justifyContent:'center'}}>
           <div style={{width:'85%', display:'flex', flexDirection:'column'}}>
             <div style={{ marginTop:'17%', flex:1}}>
@@ -151,6 +165,9 @@ export default function WordQuizStart() {
           </div>
         </div>
       </LayoutForWrongAnswer>
+      ):(
+        <></>
+      )}
       {modalOpen && <div className="modal-backdrop" />}
       {modalOpen && (
         <div className="modal-container">
