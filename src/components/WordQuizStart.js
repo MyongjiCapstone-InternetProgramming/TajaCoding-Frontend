@@ -1,7 +1,7 @@
   // 담당자 : 정준
   // 개념퀴즈 시작 누르면 여기로 이동
 
-// 채윤 : 
+// 채윤 : 개념퀴즈 가져오기 및 로그인 된 유저에게 오답노트 추가하기 기능 구현 (240530)
 
   import { useEffect, useState } from 'react';
   import { Link, useParams } from 'react-router-dom';
@@ -12,38 +12,38 @@ import useWordQuiz from '../hook/useWordQuiz';
 
   export default function WordQuizStart() {
     const { selectedOption } = useParams();
-    const {getWordQuiz} = useWordQuiz();
+    const {getWordQuiz, pushWrongNote} = useWordQuiz();
 
-  // //   채윤파트
-  // const [quizData, setQuizData] = useState();
-  // useEffect(()=>{
-  //   getWordQuiz(selectedOption).then(res=>{
-  //     setQuizData(res.data);
-  //   })
-  // },[])
+  //   채윤파트
+  const [quizData, setQuizData] = useState();
+  useEffect(()=>{
+    getWordQuiz(selectedOption).then(res=>{
+      setQuizData(res.data);
+    })
+  },[])
 
   // 정준파트
-    const C = [
-    {quizId: 0, subject: "Queue", question:"C큐", hint:'C큐 힌트', answer:'C큐입니다'},
-    {quizId: 1, subject: "스택", question:"C스택", hint:'C스택 힌트', answer:'C스택입니다'},
-    {quizId: 2, subject: "BFS", question:"C이진검색트리", hint:'C이진검색트리 힌트', answer:'C이진검색트리입니다'},
-    ]
-    const Cpp = [
-    {quizId: 0, subject: "Queue", question:"C++큐", hint:'C++큐 힌트', answer:'C++큐입니다'},
-    {quizId: 1, subject: "스택", question:"C++스택", hint:'C++스택 힌트', answer:'C++스택입니다'},
-    {quizId: 2, subject: "BFS", question:"C++이진검색트리", hint:'C++이진검색트리 힌트', answer:'C++이진검색트리입니다'},
-    ]
-    const JAVA = [
-    {quizId: 0, subject: "Queue", question: "JAVA 큐", hint: 'JAVA 큐 힌트', answer: 'JAVA 큐입니다'},
-    {quizId: 1, subject: "스택", question: "JAVA 스택", hint: 'JAVA 스택 힌트', answer: 'JAVA 스택입니다'},
-    {quizId: 2, subject: "BFS", question: "JAVA 이진검색트리", hint: 'JAVA 이진검색트리 힌트', answer: 'JAVA 이진검색트리입니다'}
-    ];
-    const PYTHON = [
-    {quizId: 0, subject: "Queue", question: "PYTHON 큐", hint: 'PYTHON 큐 힌트', answer: 'PYTHON 큐입니다'},
-    {quizId: 1, subject: "스택", question: "PYTHON 스택", hint: 'PYTHON 스택 힌트', answer: 'PYTHON 스택입니다'},
-    {quizId: 2, subject: "BFS", question: "PYTHON 이진검색트리", hint: 'PYTHON 이진검색트리 힌트', answer: 'PYTHON 이진검색트리입니다'}
-    ];
-    const quizData = {C, Cpp, JAVA, PYTHON}[selectedOption]
+    // const C = [
+    // {quizId: 0, subject: "Queue", question:"C큐", hint:'C큐 힌트', answer:'C큐입니다'},
+    // {quizId: 1, subject: "스택", question:"C스택", hint:'C스택 힌트', answer:'C스택입니다'},
+    // {quizId: 2, subject: "BFS", question:"C이진검색트리", hint:'C이진검색트리 힌트', answer:'C이진검색트리입니다'},
+    // ]
+    // const Cpp = [
+    // {quizId: 0, subject: "Queue", question:"C++큐", hint:'C++큐 힌트', answer:'C++큐입니다'},
+    // {quizId: 1, subject: "스택", question:"C++스택", hint:'C++스택 힌트', answer:'C++스택입니다'},
+    // {quizId: 2, subject: "BFS", question:"C++이진검색트리", hint:'C++이진검색트리 힌트', answer:'C++이진검색트리입니다'},
+    // ]
+    // const JAVA = [
+    // {quizId: 0, subject: "Queue", question: "JAVA 큐", hint: 'JAVA 큐 힌트', answer: 'JAVA 큐입니다'},
+    // {quizId: 1, subject: "스택", question: "JAVA 스택", hint: 'JAVA 스택 힌트', answer: 'JAVA 스택입니다'},
+    // {quizId: 2, subject: "BFS", question: "JAVA 이진검색트리", hint: 'JAVA 이진검색트리 힌트', answer: 'JAVA 이진검색트리입니다'}
+    // ];
+    // const PYTHON = [
+    // {quizId: 0, subject: "Queue", question: "PYTHON 큐", hint: 'PYTHON 큐 힌트', answer: 'PYTHON 큐입니다'},
+    // {quizId: 1, subject: "스택", question: "PYTHON 스택", hint: 'PYTHON 스택 힌트', answer: 'PYTHON 스택입니다'},
+    // {quizId: 2, subject: "BFS", question: "PYTHON 이진검색트리", hint: 'PYTHON 이진검색트리 힌트', answer: 'PYTHON 이진검색트리입니다'}
+    // ];
+    // const quizData = {C, Cpp, JAVA, PYTHON}[selectedOption]
 
 
     // 문제 다 풀었을 때 띄우는 모달 창 관련
@@ -76,9 +76,14 @@ import useWordQuiz from '../hook/useWordQuiz';
 
     useEffect(() => {
       if (modalOpen) {
-        console.log(`틀린 문제 id값 배열: ${wrongArr}`);
+        const userId = localStorage.getItem('id'); 
+        if (userId){ //채윤 : 사용자가 로그인 중일때만 오답노트에 추가함
+          pushWrongNote(userId, wrongArr).then(res=>{
+            console.log(res);
+          })
+        }
       }
-    }, [modalOpen, wrongArr]);
+    }, [modalOpen]);
 
     const handleInd = () => {
       if(userAnswer === quizData[ind].answer){
