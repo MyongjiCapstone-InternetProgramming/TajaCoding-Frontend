@@ -17,8 +17,11 @@ export default function UserNav(){
         setUserId(localStorage.getItem('id')); //localStorage에 있는 userId (세션으로 사용) 존재 여부를 확인하고 가져옴.
     },[userId])
     const handleBackPage = () => {
-        if (currentPath === '/longcode'||currentPath === '/blockcode'||currentPath === '/wordquiz'||currentPath === '/custom'||currentPath === '/wronganswer'||currentPath === '/login'||currentPath === '/signup'){
+        if (currentPath === '/longcode'||currentPath === '/blockcode'||currentPath === '/wordquiz'||currentPath === '/custom'||currentPath === '/login'||currentPath === '/signup'){
             window.location.href = '/'
+        }
+        else if (currentPath.startsWith('/wronganswer/')) {
+            window.location.href = '/wordquiz'
         }
         else{
             window.history.back();
