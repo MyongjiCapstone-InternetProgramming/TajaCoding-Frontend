@@ -10,5 +10,21 @@ export default function useWordQuiz(){
             return {status:400, data:{message:'WordQuizGet Server Error'}};
         }
     }
-    return {getWordQuiz}
+    const pushWrongNote = async(userId, wrongQuizArr) => {
+        try {
+            const response = await fetch(`${API_URL}/api/wrongnote`, {
+                method: "POST",
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify({
+                    userId: userId,
+                    quizId: wrongQuizArr
+                })
+            })
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            return {status:400, data:{message:'WrongNote Push Server Error'}};
+        }
+    }
+    return {getWordQuiz, pushWrongNote}
 }
