@@ -12,8 +12,8 @@ export default function Custom() {
     const dataset = custom[selectedOption]
     const NewDataset = dataset.map((item, index) => (
         <tr key={index} className="dashed-row">
-          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (index:${index})`)}} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.title}</td>
-          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (index:${index})`)}} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.descipt}</td>
+          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (index:${index})`)}} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.title}</td>
+          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (index:${index})`)}} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.descipt}</td>
           <td>{item.like}</td>
           <td>{item.avg}</td> 
         </tr>
@@ -45,22 +45,22 @@ export default function Custom() {
             <div style={{ display: 'flex', padding: '5rem', position: 'absolute', top: '120px', right: '40px' }}>
                 <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'JAVA' ? 'limegreen' : 'white', cursor:'pointer' }}
                     onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => (e.target.style.color = selectedOption === 'JAVA' ? 'lime' : 'white')}
+                    onMouseOut={(e) => (e.target.style.color = selectedOption === 'JAVA' ? 'limegreen' : 'white')}
                     onClick={()=>{setSelectedOption('JAVA')}}>JAVA
                 </div>
                 <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'PYTHON' ? 'limegreen' : 'white', cursor:'pointer' }}
                     onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = selectedOption === 'PYTHON' ? 'lime' : 'white'}
+                    onMouseOut={(e) => e.target.style.color = selectedOption === 'PYTHON' ? 'limegreen' : 'white'}
                     onClick={()=>{setSelectedOption('PYTHON')}}>PYTHON
                 </div>
                 <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'C' ? 'limegreen' : 'white', cursor:'pointer' }}
                     onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = selectedOption === 'C' ? 'lime' : 'white'}
+                    onMouseOut={(e) => e.target.style.color = selectedOption === 'C' ? 'limegreen' : 'white'}
                     onClick={()=>{setSelectedOption('C')}}>C
                 </div>
                 <div style={{ fontSize: '1.8rem', color: selectedOption === 'Cpp' ? 'limegreen' : 'white', cursor:'pointer' }}
                     onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = selectedOption === 'Cpp' ? 'lime' : 'white'}
+                    onMouseOut={(e) => e.target.style.color = selectedOption === 'Cpp' ? 'limegreen' : 'white'}
                     onClick={()=>{setSelectedOption('Cpp')}}>C++
                 </div>
             </div>
