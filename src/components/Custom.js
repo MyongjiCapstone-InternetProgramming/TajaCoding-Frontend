@@ -84,7 +84,7 @@ export default function Custom() {
                             <tr className="dashed-row">
                                 <th>TITLE</th>
                                 <th>DESCRIPTION</th>
-                                <th>LIKE</th>
+                                <th>WRITER</th>
                                 <th>AVERAGE_TIME</th>
                             </tr>
                         </thead>
