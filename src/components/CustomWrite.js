@@ -1,17 +1,18 @@
 // 담당자 : 은희
 import { useState } from 'react';
 import UserNav from "./UserNav";
+import useCustom from '../hook/useCustom';
 
 export default function CustomWrite(){
     const [userTitle, setUserTitle] = useState('');
     const [userDescription, setUserDescription] = useState('');
     const [userCode, setUserCode] = useState('');
-    const [selectedLanguage, setSelectedLanguage] = useState('java');
-    const id_writer = 1
+    const [selectedLanguage, setSelectedLanguage] = useState('JAVA');
 
+    const {writeCustom} = useCustom(); //커스텀 글작성 훅 사용
     const handleRegist = () => {
+        const id_writer = localStorage.getItem('id');
         const codeLines = userCode.split('\n');
-
         const result = {
             title: userTitle,
             descript: userDescription,
@@ -19,8 +20,10 @@ export default function CustomWrite(){
             language: selectedLanguage,
             writer: id_writer
         };
-        console.log(result);
-        window.history.back();
+        writeCustom(result).then(res=>{  // 커스텀 훅을 통해 글작성. 이후 글 작성 여부를 alert을 통해 알려줌
+            window.alert(res.data.message); 
+            window.history.back();
+        })
     }
     return(
         <div style={{height:'100%'}}>
@@ -49,10 +52,10 @@ export default function CustomWrite(){
                             onChange={(e) => setSelectedLanguage(e.target.value)}
                             style={{marginLeft: '10px', padding: '10px', fontSize: '20px', border: '0.5rem solid white', backgroundColor: 'black', color: 'white', boxSizing: 'border-box'}}
                         >
-                        <option value="java">JAVA</option>
-                        <option value="c++">C++</option>
-                        <option value="c">C</option>
-                        <option value="python">PYTHON</option>
+                        <option value="JAVA">JAVA</option>
+                        <option value="CPP">C++</option>
+                        <option value="C">C</option>
+                        <option value="PYTHON">PYTHON</option>
                     </select>
                     </div> 
 

@@ -4,20 +4,32 @@
 import { Link } from "react-router-dom";
 import UserNav from "./UserNav";
 import custom from "../custom.json";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import useCustom from "../hook/useCustom";
 
 export default function Custom() {
     const [selectedOption, setSelectedOption] = useState('JAVA');
+    const {getCustom} = useCustom();
+    const [dataset, setDataset] = useState([]);
 
-    const dataset = custom[selectedOption]
-    const NewDataset = dataset.map((item, index) => (
+    useEffect(()=>{
+        getCustom(selectedOption).then(res=>{
+            setDataset(res.data);
+            console.log(res.data);
+        })
+    },[selectedOption])
+    // const dataset = custom[selectedOption] // => 자바 데이터들을 가져옴 (배열로)
+/*     if (dataset) {
+        
+    } */
+     const NewDataset = dataset.map((item, index) => (
         <tr key={index} className="dashed-row">
           <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (index:${index})`)}} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.title}</td>
-          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (index:${index})`)}} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.descipt}</td>
-          <td>{item.like}</td>
-          <td>{item.avg}</td> 
+          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (index:${index})`)}} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.descript}</td>
+          <td>{item.writer}</td>
+          <td>{item.averageTime}</td> 
         </tr>
-      ));
+      )); 
 
 
     return (
@@ -58,10 +70,10 @@ export default function Custom() {
                     onMouseOut={(e) => e.target.style.color = selectedOption === 'C' ? 'limegreen' : 'white'}
                     onClick={()=>{setSelectedOption('C')}}>C
                 </div>
-                <div style={{ fontSize: '1.8rem', color: selectedOption === 'Cpp' ? 'limegreen' : 'white', cursor:'pointer' }}
+                <div style={{ fontSize: '1.8rem', color: selectedOption === 'CPP' ? 'limegreen' : 'white', cursor:'pointer' }}
                     onMouseOver={(e) => e.target.style.color = 'lime'}
-                    onMouseOut={(e) => e.target.style.color = selectedOption === 'Cpp' ? 'limegreen' : 'white'}
-                    onClick={()=>{setSelectedOption('Cpp')}}>C++
+                    onMouseOut={(e) => e.target.style.color = selectedOption === 'CPP' ? 'limegreen' : 'white'}
+                    onClick={()=>{setSelectedOption('CPP')}}>C++
                 </div>
             </div>
 
