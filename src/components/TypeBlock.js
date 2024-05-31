@@ -4,6 +4,7 @@ import UserNav from "./UserNav";
 import TypingLayout from "./layout/typinglayout";
 import jsonData from "../data/blocktest.json"
 import { useNavigate, useParams } from "react-router-dom";
+import useTyping from "../hook/useTyping";
 
 export default function TypeBlock(){
     const { id } = useParams();
@@ -37,7 +38,14 @@ export default function TypeBlock(){
             navigate('/block-result', { state: { time: timer, correctCount: answerCount, totalCount:problemCount } })
         }
     }
+    const {getBlankType} = useTyping();
     useEffect(()=>{
+        getBlankType(id).then(res=>{
+            console.log(res.data);
+            setData(res.data.content);
+            setExample(res.data.example);
+            setResultData(res.data.result);
+        })
         const timerInterval = setInterval(()=>{
             setTimer(prev=>prev+1);
         },1000)

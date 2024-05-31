@@ -4,6 +4,7 @@ import UserNav from "./UserNav";
 import TypingLayout from "./layout/typinglayout";
 import jsonData from "../data/longtest.json"
 import { useNavigate, useParams } from "react-router-dom";
+import useTyping from "../hook/useTyping";
 
 export default function TypeLong(){
     const { id } = useParams();
@@ -26,7 +27,11 @@ export default function TypeLong(){
             setCurrentLine(prev => prev + 1);
         }
     }
+    const {getLongType} = useTyping();
     useEffect(()=>{
+        getLongType(id).then(res=>{
+            setData(res.data);
+        })
         const timerInterval = setInterval(()=>{
             setTimer(prev=>prev+1);
         },1000)
