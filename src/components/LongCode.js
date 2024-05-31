@@ -1,45 +1,47 @@
-// 민석
-
-import { Link,useNavigate  } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from "react-router-dom";
 import UserNav from "./UserNav";
-import longcode from "../longcode";
-import { useState } from 'react';
-
+import axios from 'axios';
 
 export default function LongCode() {
-    
-    // 언어 선택
     const [selectedOption, setSelectedOption] = useState('JAVA');
+    const [longcode, setLongcode] = useState([]);
 
-
+    // 데이터 가져오기
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:8081/longcode');
+                setLongcode(response.data);
+            } catch (error) {
+                console.error('Error fetching longcode data:', error);
+            }
+        };
+        fetchData();
+    }, []);
 
     // 타이틀 선택시 이동
-    const navigate  = useNavigate ();
-
+    const navigate = useNavigate();
     const handleTitleClick = (index) => {
-        if(!selectedOption) 
+        if (!selectedOption) 
             alert(`언어를 선택해주세요`);
         else
             navigate(`/type-long/${index}`);
-            // navigate(`/type-long/${selectedOption}/${index}`);  // {/* 타이틀 선택시 -> type-long으로 옮겨지면서 ID 값 반환  */ }
     };
 
-    const dataset = longcode
-    const filteredDataset = dataset.filter(item => item.language === selectedOption);
-
+    const filteredDataset = longcode.filter(item => item.language === selectedOption);
     const NewDataset = filteredDataset.map((item, index) => (
         <tr key={index} className="dashed-row">
             <td 
-            onClick={() => handleTitleClick(index)}
+            onClick={() => handleTitleClick(item.id)}
             onMouseOver={(e) => (e.target.style.color = 'lime')}
             onMouseOut={(e) => (e.target.style.color = 'white')}>
             {item.title} </td>
-            <td>{item.descipt}</td>
-            <td>{item.level}</td>
-            <td>{item.avg}</td>
+            <td>{item.description}</td>
+            <td>{item.difficulty}</td>
+            <td>{item.averageTime}</td>
         </tr>
     ));
-
 
     return (
         <div style={{ height: '100%' }}>
@@ -62,8 +64,6 @@ export default function LongCode() {
                             textDecoration: 'none',
                             marginTop: '30px'
                         }}
-                    // onMouseOut={(e) => (e.target.style.color = 'limegreen')}
-                    // onMouseOver={(e) => (e.target.style.color = 'white')}
                     >
                         SELECT * FROM 긴글 코딩 연습;
                     </div>
@@ -84,7 +84,6 @@ export default function LongCode() {
                     </Link>
                 </div>
                 <Link to={'/wordquiz'} style={{ textDecoration: 'none' }}>
-
                     <div
                         style={{
                             padding: '0.5rem 8rem',
@@ -100,21 +99,20 @@ export default function LongCode() {
                 </Link>
             </div>
 
-
             <div style={{ display: 'flex', padding: '5rem', position: 'absolute', top: '120px', right: '40px' }}>
                 <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'JAVA' ? 'limegreen' : 'white', cursor: 'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'JAVA' ? 'lime' : 'white')} onClick={() => { setSelectedOption('JAVA') }}>JAVA</div>
                 <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'PYTHON' ? 'limegreen' : 'white', cursor: 'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'PYTHON' ? 'lime' : 'white')} onClick={() => { setSelectedOption('PYTHON') }}>PYTHON</div>
                 <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'C' ? 'limegreen' : 'white', cursor: 'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'C' ? 'lime' : 'white')} onClick={() => { setSelectedOption('C') }}>C</div>
-                <div style={{ fontSize: '1.8rem', color: selectedOption === 'Cpp' ? 'limegreen' : 'white', cursor: 'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'Cpp' ? 'lime' : 'white')} onClick={() => { setSelectedOption('Cpp') }}>C++</div>
+                <div style={{ fontSize: '1.8rem', color: selectedOption === 'CPP' ? 'limegreen' : 'white', cursor: 'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'CPP' ? 'lime' : 'white')} onClick={() => { setSelectedOption('CPP') }}>C++</div>
             </div>
             <div style={{ paddingRight: 100, paddingLeft: 100 }}>
-                <div className="scroll-container" style={{ maxHeight: '27rem', overflowY: 'auto' }}> {/* 스크롤 컨테이너 */}
+                <div className="scroll-container" style={{ maxHeight: '27rem', overflowY: 'auto' }}>
                     <table className="dashed-table">
                         <thead>
                             <tr className="dashed-row">
                                 <th>TITLE</th>
                                 <th>DESCRIPTION</th>
-                                <th>DIFFICULT</th>
+                                <th>DIFFICULTY</th>
                                 <th>AVERAGE_TIME</th>
                             </tr>
                         </thead>

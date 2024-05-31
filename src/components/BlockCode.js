@@ -3,12 +3,28 @@
 
 import { Link,useNavigate  } from "react-router-dom";
 import UserNav from "./UserNav";
-import { useState } from 'react';
-import block from "../block";
+import {useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 export default function BlockCode() {
     // 언어 선택 변수 상태
     const [selectedOption, setSelectedOption] = useState('JAVA');
+    const [blockcode, setLongcode] = useState([]);
+
+    // 데이터 가져오기
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axios.get('http://localhost:8081/blankcode');
+                setLongcode(response.data);
+            } catch (error) {
+                console.error('Error fetching longcode data:', error);
+            }
+        };
+        fetchData();
+    }, []);
+
 
     // 타이틀 선택시 이동
     const navigate  = useNavigate ();
@@ -21,20 +37,18 @@ export default function BlockCode() {
             // navigate(`/type-block/${selectedOption}/${index}`);  // {/* 타이틀 선택시 -> type-long으로 옮겨지면서 ID 값 반환  */ }
     };
 
-    const dataset = block
-    const filteredDataset = dataset.filter(item => item.language === selectedOption);
-    
-    const NewDataset = filteredDataset.map((item, index) => (    
-            <tr key={index} className="dashed-row">
-                <td
-                onClick={() => handleTitleClick(index)}
-                onMouseOver={(e) => (e.target.style.color = 'lime')}
-                onMouseOut={(e) => (e.target.style.color = 'white')}>
-                {item.title} </td>
-                <td>{item.descipt}</td>
-                <td>{item.level}</td>
-                <td>{item.avg}</td>
-            </tr>
+    const filteredDataset = blockcode.filter(item => item.language === selectedOption);
+    const NewDataset = filteredDataset.map((item, index) => (
+        <tr key={index} className="dashed-row">
+            <td 
+            onClick={() => handleTitleClick(item.id)}
+            onMouseOver={(e) => (e.target.style.color = 'lime')}
+            onMouseOut={(e) => (e.target.style.color = 'white')}>
+            {item.title} </td>
+            <td>{item.description}</td>
+            <td>{item.difficulty}</td>
+            <td>{item.averageScore}</td>
+        </tr>
     ));
 
     return (
@@ -100,7 +114,7 @@ export default function BlockCode() {
                 <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'JAVA' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'JAVA' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('JAVA')}}>JAVA</div>
                 <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'PYTHON' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'PYTHON' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('PYTHON')}}>PYTHON</div>
                 <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption === 'C' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'C' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('C')}}>C</div>
-                <div style={{ fontSize: '1.8rem', color: selectedOption === 'Cpp' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'Cpp' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('Cpp')}}>C++</div>
+                <div style={{ fontSize: '1.8rem', color: selectedOption === 'CPP' ? 'limegreen' : 'white', cursor:'pointer' }} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = selectedOption === 'CPP' ? 'lime' : 'white')} onClick={()=>{setSelectedOption('CPP')}}>C++</div>
             </div>
             
             <div style={{ paddingRight:100, paddingLeft:100  }}>

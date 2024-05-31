@@ -1,22 +1,24 @@
 [
   {
+    "id":0,
     "language": "JAVA",
-    "title": "이진 탐색(Binary Search) 자바잦밪밪밪바",
+    "title": "버블 정렬 (Bubble Sort)",
+    "descipt": "절반씩 나눠서 값을 탐색하는 알고리즘",
+    "like": "5",
+    "avg": "123초"
+  },
+  {
+    
+    "language": "JAVA",
+    "title": "삽입 정렬 (Insertion Sort)",
     "descipt": "절반씩 나눠서 값을 탐색하는 알고리즘",
     "like": "5",
     "avg": "123초"
   },
   {
     "language": "JAVA",
-    "title": "김탐색 김탐색 김탐색 김탐색",
-    "descipt": "절반씩 나눠서 값을 탐색하는 알고리즘",
-    "like": "5",
-    "avg": "123초"
-  },
-  {
-    "language": "JAVA",
-    "title": "나탐색 색ㄹㅇㄴ멀댜ㅐ너랻내ㅓㅁ랴댄",
-    "descipt": "절반씩 나눠서 값을 탐색하는 알고리즘",
+    "title": "이진 탐색(Binary Search)",
+    "descipt": "각 노드가 최대 두 개의 자식을 가지며 왼쪽 자식은 작은 값, 오른쪽 자식은 큰 값을 가지며 두 값을 비교",
     "like": "5",
     "avg": "123초"
   },
