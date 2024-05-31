@@ -21,8 +21,23 @@ import LongResult from './components/LongResult';
 import BlockResult from './components/BlockResult';
 import TypeCustom from './components/TypeCustom';
 import CustomResult from './components/CustomResult';
+import { useEffect } from 'react';
 
 const App = () => {
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.ctrlKey) {
+        event.preventDefault(); // Ctrl 키 눌림을 막음
+        alert("Ctrl 키는 이용할 수 없습니다.");
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
   return (
     <div className="app">
       <StatusBar />
