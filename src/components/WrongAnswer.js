@@ -10,21 +10,20 @@ import WrongAnswerRetry from './WrongAnswerRetry';
 import useWrongNote from '../hook/useWrongNote';  // useWrongNote 훅을 import
 
 
-//import block from "../wrong.json";
+// import block from "../wrong.json";
 
 
 export default function WrongAnswer() {
   const {selectedOption} = useParams();
+  const userId = localStorage.getItem('id')
   const navigate = useNavigate();
   //이 부분만 추가
-  // const {getWrongNote, deleteWrongNote} = useWrongNote();
-  // const [dataset, setDataset] = useState([]);
+  const {getWrongNote, deleteWrongNote} = useWrongNote();
+  const [dataset, setDataset] = useState([]);
 
   // 모달 관련
   const [modalOpen, setModalOpen] = useState(false);
-  const setSelectedOption = (option) => {
-    selectedOption = option;
-  }
+  
   const openModal = () => {
     setModalOpen(true);
   };
@@ -32,12 +31,13 @@ export default function WrongAnswer() {
     setModalOpen(false);
   };
 //이 부분만 추가
-  // useEffect(()=>{
-  //   getWrongNote(selectedOption).then(res=>{
-  //       setDataset(res.data);
-  //       console.log(res.data);
-  //   })
-  // },[selectedOption])
+  useEffect(()=>{
+    getWrongNote(userId).then(res=>{
+        setDataset(res.data);
+        console.log(res.data);
+        console.log(userId)
+    })
+  },[selectedOption])
 
   // const handleDelete = (quizId) => {
   //   deleteWrongNote(quizId).then(res => {
@@ -48,94 +48,38 @@ export default function WrongAnswer() {
   //       console.error(err);
   //   });
   // };
+  const handleDelete = (wrongId) => {
+    console.log('인덱스', wrongId, "삭제")
+  }
 
   useEffect(()=>{
     console.log('selectedOption: ', selectedOption)
   },[selectedOption]);
+
   const handleLanguageSelect = (option) => {
     navigate(`/wronganswer/${option}`) // 선택한 언어에 해당하는 문제를 띄우기 위함
   }
 
-  const [clickedRow, handleRowClick] = useState(''); // 클릭된 문제가 몇 번 인덱스에 해당하는지 확인해서 clickedRow에 담음
+  const [clickedRow, setClickedRow] = useState(''); // 클릭된 문제가 몇 번 인덱스에 해당하는지 확인해서 clickedRow에 담음
   const handlePrevious = () => {
     if (clickedRow > 0) {
-      handleRowClick(clickedRow - 1);
+      setClickedRow(clickedRow - 1);
     }
   };
 
   const handleNext = () => { // 다음 문제 보여주기
-    if (clickedRow < wrongs.length - 1) {
-      handleRowClick(clickedRow + 1);
+    if (clickedRow < dataset.length - 1) {
+      setClickedRow(clickedRow + 1);
     }
   };
 
-  // *여기 임시 문제니까 이따가 get하면 지우면 돼
-  const C_wrongs = [
-    {id: 0, subject: "Queue", question:"C큐", hint:'C큐 힌트', answer:'C큐입니다'},
-    {id: 1, subject: "스택", question:"C스택", hint:'C스택 힌트', answer:'C스택입니다'},
-    {id: 2, subject: "BFS", question:"C이진검색트리", hint:'C이진검색트리 힌트', answer:'C이진검색트리입니다'},
-  ];
-
-  const Cpp_wrongs = [
-    {id: 0, subject: "Queue", question:"C++큐", hint:'C++큐 힌트', answer:'C++큐입니다'},
-    {id: 1, subject: "스택", question:"C++스택", hint:'C++스택 힌트', answer:'C++스택입니다'},
-    {id: 2, subject: "BFS", question:"C++이진검색트리", hint:'C++이진검색트리 힌트', answer:'C++이진검색트리입니다'},
-  ];
-
-  const JAVA_wrongs = [
-    {id: 0, subject: "Queue", question: "JAVA 큐", hint: 'JAVA 큐 힌트', answer: 'JAVA 큐입니다'},
-    {id: 1, subject: "스택", question: "JAVA 스택", hint: 'JAVA 스택 힌트', answer: 'JAVA 스택입니다'},
-    {id: 2, subject: "BFS", question: "JAVA 이진검색트리", hint: 'JAVA 이진검색트리 힌트', answer: 'JAVA 이진검색트리입니다'}
-  ];
-
-  const PYTHON_wrongs = [
-    {id: 0, subject: "Queue", question: "PYTHON 큐", hint: 'PYTHON 큐 힌트', answer: 'PYTHON 큐입니다'},
-    {id: 1, subject: "스택", question: "PYTHON 스택", hint: 'PYTHON 스택 힌트', answer: 'PYTHON 스택입니다'},
-    {id: 2, subject: "BFS", question: "PYTHON 이진검색트리", hint: 'PYTHON 이진검색트리 힌트', answer: 'PYTHON 이진검색트리입니다'}
-  ];
-
-  // 선택된 언어에 따라 문제 배열 선택
-  let wrongs;
-  switch(selectedOption) {
-    case 'C':
-      wrongs = C_wrongs;
-      break;
-    case 'Cpp':
-      wrongs = Cpp_wrongs;
-      break;
-    case 'JAVA':
-      wrongs = JAVA_wrongs;
-      break;
-    case 'PYTHON':
-      wrongs = PYTHON_wrongs;
-      break;
-    default:
-      wrongs = [];
-  }
-  const rows = wrongs.map((value, index)=>(
-    <tr key={index} className="dashed-row" onClick={() => handleRowClick(index)}>
-      <td className='clickable-subject' onClick={openModal} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{`${value.subject}`}</td>
+  const rows = dataset.map((value, index)=>(
+    <tr key={index} className="dashed-row" onClick={() => setClickedRow(index)}>
       <td className='clickable-subject' onClick={openModal} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{`${value.question}`}</td>
-      <td onClick={()=>{alert(`${index}번 id에 해당하는 내용 삭제`)}} style={{cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'red')} onMouseOut={(e) => (e.target.style.color = 'white')}>{'DELETE'}</td>
+      <td className='clickable-subject' onClick={openModal} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{new Date(value.createDate).toISOString().split('T')[0]}</td>
+      <td onClick={handleDelete(clickedRow)} style={{cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'red')} onMouseOut={(e) => (e.target.style.color = 'white')}>{'DELETE'}</td>
     </tr>
   ))
-
-  // const rows = Array.from({ length: 10 }, (_, i) => (
-  //   <tr key={i} className="dashed-row">
-  //     <td>{`Row ${i + 1}, Col 1`}</td>
-  //     <td>{`Row ${i + 1}, Col 2`}</td>
-  //     <td>{`Row ${i + 1}, Col 3`}</td>
-  //   </tr>
-  // ));
-
-  // const dataset = wrong
-  // const NewDataset = dataset.map((item, index) => (
-  //     <tr key={index} className="dashed-row">
-  //       <td>{item.subject}</td>
-  //       <td>{item.question}</td>
-  //       <td>{'DELETE'}</td> 
-  //     </tr>
-  //   ));
 
   return (
     <div style={{ height: '100%' }}>
@@ -161,8 +105,8 @@ export default function WrongAnswer() {
           <table className="dashed-table" style={{ width: '90%', fontSize: '20px' }}>
             <thead>
               <tr className="dashed-row">
-                <th style={{textAlign:'center'}}>SUBJECT</th>
                 <th style={{textAlign:'center'}}>QUESTION</th>
+                <th style={{textAlign:'center'}}>WrongDate</th>
                 <th></th>
               </tr>
             </thead>
@@ -181,9 +125,9 @@ export default function WrongAnswer() {
           <WrongAnswerRetryStatusBar onClose={closeModal} title='오답노트' />
             <div className='modal-inner-container'>
               <div className='modal-except-button'>
-                <h1 style={{padding:10}}>{wrongs[clickedRow].subject}</h1>
-                <p className='modal-QA' style={{height:70}}>{wrongs[clickedRow].question}</p>
-                <p className='modal-QA'>{wrongs[clickedRow].answer}</p>
+                <h1 style={{padding:10}}>{dataset[clickedRow].subject}</h1>
+                <p className='modal-QA' style={{height:70}}>{dataset[clickedRow].question}</p>
+                <p className='modal-QA'>{dataset[clickedRow].answer}</p>
               </div>
               <div className='modal-button-container'>
                 <span className='modal-button' onClick={handlePrevious}>▶이전</span>

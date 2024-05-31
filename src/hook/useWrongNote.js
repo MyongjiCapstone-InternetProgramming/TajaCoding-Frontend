@@ -7,6 +7,7 @@ const useWrongNote = () => {
         try {
             const response = await fetch(`${API_URL}/api/wrongnote?userId=${userId}`);
             const result = await response.json();
+            console.log("result: ",result)
             return result;
         } catch (error) {
             return {status: 400, data: {message: 'Wrong Note Get Server Error'}};
