@@ -47,7 +47,7 @@ export default function BlockCode() {
             {item.title} </td>
             <td>{item.descript}</td>
             <td>{item.difficulty}</td>
-            <td>{item.averageScore}</td>
+            <td>{item.averageScore === 0 ? '기록이 없습니다.' : `${item.averageScore}점`}</td>
         </tr>
     ));
 
