@@ -123,7 +123,7 @@ export default function WrongAnswer() {
           <WrongAnswerRetryStatusBar onClose={closeModal} title='오답노트' />
             <div className='modal-inner-container'>
               <div className='modal-except-button'>
-                <h1 style={{padding:10}}>{dataset[clickedRow].subject}</h1>
+                <h1 style={{padding:10}}>{dataset[clickedRow].language}</h1>
                 <p className='modal-QA' style={{height:70}}>{dataset[clickedRow].question}</p>
                 <p className='modal-QA'>{dataset[clickedRow].answer}</p>
               </div>
