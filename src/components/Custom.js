@@ -25,8 +25,8 @@ export default function Custom() {
     } */
      const NewDataset = dataset.map((item, index) => (
         <tr key={index} className="dashed-row">
-          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (index:${index})`)}} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.title}</td>
-          <td className='clickable-subject' onClick={()=>{alert(`해당 문제로 이동!! (index:${index})`)}} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.descript}</td>
+          <td className='clickable-subject' onClick={()=>navigate(`/type-custom/${item.codeId}`)} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.title}</td>
+          <td className='clickable-subject' onClick={()=>navigate(`/type-custom/${item.codeId}`)} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.descript}</td>
           <td>{item.writer}</td>
           <td>{item.averageTime}</td> 
         </tr>

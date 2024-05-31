@@ -19,7 +19,8 @@ import WrongAnswerRetry from './components/WrongAnswerRetry';
 import TypeBlock from './components/TypeBlock';
 import LongResult from './components/LongResult';
 import BlockResult from './components/BlockResult';
-import { useState } from 'react';
+import TypeCustom from './components/TypeCustom';
+import CustomResult from './components/CustomResult';
 
 const App = () => {
   return (
@@ -39,8 +40,10 @@ const App = () => {
         <Route path='/customdelete' element={<CustomDelete/>}/>
         <Route path="/type-long/:id" element={<TypeLong />} />
         <Route path="/type-block/:id" element={<TypeBlock />} />
+        <Route path="/type-custom/:id" element={<TypeCustom />} />
         <Route path="/long-result" element={<LongResult />} />
         <Route path="/block-result" element={<BlockResult />} />
+        <Route path="/custom-result" element={<CustomResult />} />
         <Route path='/wronganswerretry/:selectedOption' element={<WrongAnswerRetry/>}/>
       </Routes>
     </div>

@@ -13,6 +13,15 @@ const useTyping = () => {
             // console.log('에러:',error);
         }
     }
+    const getCustomType = async(codeId) => {
+        try {
+            const response = await fetch(`${API_URL}/api/customstart/${codeId}`);
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            return {status:400, data:{message:'Long Typing Server Error'}};
+        }
+    }
     const getBlankType = async(codeId) => {
         try {
             const response = await fetch(`${API_URL}/blankcode/${codeId}`);
@@ -24,6 +33,12 @@ const useTyping = () => {
             // console.log('에러:',error);
         }
     }
-    return {getLongType, getBlankType}
+    const refreshAvgTime = async(codeId, time) => {
+        
+    }
+    const refreshAvgScore = async(codeId, time) => {
+        
+    }
+    return {getLongType, getCustomType, getBlankType}
 }
 export default useTyping

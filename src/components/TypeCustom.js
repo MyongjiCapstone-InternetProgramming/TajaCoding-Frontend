@@ -1,5 +1,4 @@
-// 긴글타자연습 - 담당자 : 채윤 240523
-// 최종수정 240531 : DB 컨텐츠 연결
+// 커스텀긴글연습 - 담당자 : 채윤 240531
 import { useEffect, useState } from "react";
 import UserNav from "./UserNav";
 import TypingLayout from "./layout/typinglayout";
@@ -7,7 +6,7 @@ import jsonData from "../data/longtest.json"
 import { useNavigate, useParams } from "react-router-dom";
 import useTyping from "../hook/useTyping";
 
-export default function TypeLong(){
+export default function TypeCustom(){
     const { id } = useParams();
     const navigate = useNavigate();
     const [data, setData] = useState(jsonData.content);
@@ -20,7 +19,7 @@ export default function TypeLong(){
     const [correctCount, setCorrectCount] = useState(0);
     useEffect(() => {
         if (currentLine > data.length - 1) {
-            navigate('/long-result', { state: { time: timer, correctCount: correctCount, totalCount:totalCount } });
+            navigate('/custom-result', { state: { time: timer, correctCount: correctCount, totalCount:totalCount } });
         }
     }, [currentLine, correctCount, totalCount, timer, navigate, data.length]);
     const handleKeyDown = (event) => { //event 속성을 사용해 Enter키를 인식하고 Enter가 인식되면 다음줄로 넘어감
@@ -28,9 +27,9 @@ export default function TypeLong(){
             setCurrentLine(prev => prev + 1);
         }
     }
-    const {getLongType} = useTyping();
+    const {getCustomType} = useTyping();
     useEffect(()=>{
-        getLongType(id).then(res=>{
+        getCustomType(id).then(res=>{
             setData(res.data);
         })
         const timerInterval = setInterval(()=>{

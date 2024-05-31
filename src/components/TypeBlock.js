@@ -1,4 +1,5 @@
-// 빈칸타자연습 - 담당자 : 채윤 최종수정 240523
+// 빈칸타자연습 - 담당자 : 채윤 240523
+// 최종수정 240531 : DB 컨텐츠 연결
 import { useEffect, useState } from "react";
 import UserNav from "./UserNav";
 import TypingLayout from "./layout/typinglayout";
