@@ -33,12 +33,54 @@ const useTyping = () => {
             // console.log('에러:',error);
         }
     }
-    const refreshAvgTime = async(codeId, time) => {
-        
+    const refreshLongAvgTime = async(codeId, time) => {
+        try {
+            const response = await fetch(`${API_URL}/api/longcode`,{
+                method:'PUT',
+                headers:{'Content-Type':'application/json'},
+                body: JSON.stringify({
+                    codeId: codeId,
+                    time: time
+                })
+            });
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            return {status:400, data:{message:'refreshAvgTime Server Error'}};
+        }
     }
-    const refreshAvgScore = async(codeId, time) => {
-        
+    const refreshCustomAvgTime = async(codeId, time) => {
+        try {
+            const response = await fetch(`${API_URL}/api/custom`,{
+                method:'PUT',
+                headers:{'Content-Type':'application/json'},
+                body: JSON.stringify({
+                    codeId: codeId,
+                    time: time
+                })
+            });
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            return {status:400, data:{message:'refreshAvgTime Server Error'}};
+        }
     }
-    return {getLongType, getCustomType, getBlankType}
+    const refreshBlankAvgScore = async(codeId, score) => {
+        try {
+            const response = await fetch(`${API_URL}/api/blankcode`,{
+                method:'PUT',
+                headers:{'Content-Type':'application/json'},
+                body: JSON.stringify({
+                    codeId: codeId,
+                    score: score
+                })
+            });
+            const result = await response.json();
+            return result;
+        } catch (error) {
+            return {status:400, data:{message:'refreshScore Server Error'}};
+        }
+    }
+    return {getLongType, getCustomType, getBlankType, refreshLongAvgTime, refreshCustomAvgTime, refreshBlankAvgScore}
 }
 export default useTyping

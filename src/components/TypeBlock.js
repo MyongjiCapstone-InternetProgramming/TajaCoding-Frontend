@@ -36,7 +36,7 @@ export default function TypeBlock(){
                     answerCount++;
                 }
             })
-            navigate('/block-result', { state: { time: timer, correctCount: answerCount, totalCount:problemCount } })
+            navigate('/block-result', { state: { time: timer, correctCount: answerCount, totalCount:problemCount, codeId:id } })
         }
     }
     const {getBlankType} = useTyping();

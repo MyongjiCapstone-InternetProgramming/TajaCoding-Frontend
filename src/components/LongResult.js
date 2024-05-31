@@ -1,14 +1,19 @@
 // 타자연습 결과 - 담당자 : 채윤 최종수정 240523
 import { useLocation, useNavigate } from "react-router-dom"
+import useTyping from "../hook/useTyping";
 
 export default function LongResult(){
     const { state } = useLocation();
     const navigate = useNavigate();
-    const { time, correctCount, totalCount } = state;
+    const { time, correctCount, totalCount, codeId } = state;
     const accuracy = (correctCount / totalCount) * 100;
     const minute = parseInt(time/60);
     const second = time%60;
+    const {refreshLongAvgTime} = useTyping();
     const handleClick = () => {
+        refreshLongAvgTime(codeId, time).then(res=>{
+            console.log(res.data);
+        })
         navigate('/longcode');
     }
     return (

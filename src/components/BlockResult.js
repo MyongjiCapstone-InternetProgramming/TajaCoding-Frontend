@@ -1,14 +1,19 @@
 //빈칸퀴즈 결과 - 담당자 임채윤 (최종수정: 240524)
 import { useLocation, useNavigate } from "react-router-dom"
+import useTyping from "../hook/useTyping";
 
 export default function BlockResult(){
     const { state } = useLocation();
     const navigate = useNavigate();
-    const { time, correctCount, totalCount } = state;
+    const { time, correctCount, totalCount, codeId } = state;
     const score = (correctCount / totalCount) * 100;
     const minute = parseInt(time/60);
     const second = time%60;
+    const {refreshBlankAvgScore} = useTyping();
     const handleClick = () => {
+        refreshBlankAvgScore(codeId, score).then(res=>{
+            console.log(res.data);
+        })
         navigate('/blockcode');
     }
     return (
