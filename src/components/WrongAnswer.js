@@ -7,12 +7,18 @@ import styles from '../css/DotBorder.css'; // CSS 모듈 임포트
 import { useEffect, useState } from 'react';
 import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
 import WrongAnswerRetry from './WrongAnswerRetry';
+import useWrongNote from '../hook/useWrongNote';  // useWrongNote 훅을 import
+
+
 //import block from "../wrong.json";
 
 
 export default function WrongAnswer() {
   const {selectedOption} = useParams();
   const navigate = useNavigate();
+  //이 부분만 추가
+  // const {getWrongNote, deleteWrongNote} = useWrongNote();
+  // const [dataset, setDataset] = useState([]);
 
   // 모달 관련
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,6 +31,23 @@ export default function WrongAnswer() {
   const closeModal = () => {
     setModalOpen(false);
   };
+//이 부분만 추가
+  // useEffect(()=>{
+  //   getWrongNote(selectedOption).then(res=>{
+  //       setDataset(res.data);
+  //       console.log(res.data);
+  //   })
+  // },[selectedOption])
+
+  // const handleDelete = (quizId) => {
+  //   deleteWrongNote(quizId).then(res => {
+  //       // 성공적으로 삭제된 후 데이터 갱신
+  //       setDataset(prevNotes => prevNotes.filter(note => note.quizId !== quizId));
+  //       console.log(res.data);
+  //   }).catch(err => {
+  //       console.error(err);
+  //   });
+  // };
 
   useEffect(()=>{
     console.log('selectedOption: ', selectedOption)

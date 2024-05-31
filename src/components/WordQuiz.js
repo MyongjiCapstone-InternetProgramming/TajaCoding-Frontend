@@ -7,17 +7,18 @@ import { useState } from 'react';
 
 export default function WordQuiz() {
   const [selectedOption, setSelectedOption] = useState('JAVA');
+  const navigate = useNavigate();
 
   const handleStartClick = () => {
     if (!selectedOption) {
       alert('언어를 선택해주세요');
     } else {
-      console.log(`선택된 언어 : ${selectedOption}`)  
+      
+      console.log(`선택된 언어 : /wordquizstart/${selectedOption}`)  
     }
   }
 
   console.log('selectedOption : ', selectedOption)
-  const navigate = useNavigate();
   return (
     <div style={{ height: '100%' }}>
       <UserNav />
@@ -39,14 +40,14 @@ export default function WordQuiz() {
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '0rem', marginBottom: '6rem'}}>
-        <Link style={{ border: '0.5rem dashed white', padding: '8rem 10rem', fontSize: '2rem', cursor:'pointer'}} className="link-tag" onClick={handleStartClick}>시작하기</Link>
+        <Link style={{ border: '0.5rem dashed white', padding: '8rem 10rem', fontSize: '2rem', cursor:'pointer'}} to={`/wordquizstart/${selectedOption}`} className="link-tag" onClick={handleStartClick}>시작하기</Link>
         <div style={{ border: '0.5rem dashed white', padding: '8rem 10rem', fontSize: '2rem', cursor:'pointer'}} onClick={()=>{
           const userId = localStorage.getItem('id');
           if (!userId){
             return alert('회원이 아닙니다.');
           }
           navigate(`/wronganswer/${selectedOption}`)
-        }} to={`/wronganswer/${selectedOption}`} className="link-tag">내 오답노트</div>
+        }} className="link-tag">내 오답노트</div>
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ export default function LongCode() {
             {item.title} </td>
             <td>{item.descript}</td>
             <td>{item.difficulty}</td>
-            <td>{item.averageTime}</td>
+            <td>{item.averageTime === 0 ? '기록이 없습니다.' : `${item.averageTime}초`}</td>
         </tr>
     ));
 
