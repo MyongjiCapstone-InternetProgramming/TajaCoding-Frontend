@@ -1,19 +1,42 @@
-// 담당자 : 은희
+// 담당자 : 은희, 정준
 
 import { Link } from "react-router-dom";
 import UserNav from "./UserNav";
 import custom from "../custom.json";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import useCustomDel from '../hook/useCustomDel';
 
 export default function CustomDelete() {
     const [selectedOption, setSelectedOption] = useState('JAVA');
-
-    const dataset = custom[selectedOption]
+    const {getCustomDel, deleteCustomDel} = useCustomDel();
+    const [dataset, setDataset] = useState([]);
+    useEffect(()=>{
+        getCustomDel(selectedOption).then(res=>{
+            setDataset(res.data);
+            console.log(res.data);
+        })
+    },[selectedOption])
+    const handleDelete = async (codeId) => {
+        try {
+            const response = await deleteCustomDel(codeId);
+            if (response.status === 200) {
+                // 삭제 요청이 성공한 경우에만 데이터셋을 업데이트합니다.
+                setDataset(prevDataset => prevDataset.filter(item => item.codeId !== codeId));
+                alert("선택한 문제를 삭제했습니다.");
+            } else {
+                alert("문제 삭제 중에 오류가 발생했습니다.");
+            }
+        } catch (error) {
+            console.error("문제 삭제 중에 오류가 발생했습니다.", error);
+            alert("문제 삭제 중에 오류가 발생했습니다.");
+        }
+    };
+    
     const NewDataset = dataset.map((item, index) => (
         <tr key={index} className="dashed-row">
           <td>{item.title}</td>
-          <td>{item.descipt}</td> 
-          <td onClick={()=>{alert(`${selectedOption} ${index}번 인덱스 문제 삭제`)}} style={{cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'red')} onMouseOut={(e) => (e.target.style.color = 'white')}>{'DELETE'}</td>
+          <td>{item.descript}</td> 
+          <td onClick={()=>handleDelete(item.codeId)} style={{cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'red')} onMouseOut={(e) => (e.target.style.color = 'white')}>{'DELETE'}</td>
         </tr>
       ));
 

@@ -12,6 +12,7 @@ export default function Custom() {
     const [selectedOption, setSelectedOption] = useState('JAVA');
     const {getCustom} = useCustom();
     const [dataset, setDataset] = useState([]);
+    const userId = localStorage.getItem('Id');
 
     useEffect(()=>{
         getCustom(selectedOption).then(res=>{
@@ -61,7 +62,7 @@ export default function Custom() {
                     navigate('/customdelete');
                 }}>
                     <div style={{ padding: '0.5rem 8rem',fontSize: '20px',color: 'white', textDecoration: 'none'}}onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}
-                    >DELETE 코드 FROM 커스텀_목록 WHERE NICKNAME = '자기자신';
+                    >DELETE 코드 FROM 커스텀_목록 WHERE NICKNAME = {userId};
                     </div>
                 </div>
             </div>
