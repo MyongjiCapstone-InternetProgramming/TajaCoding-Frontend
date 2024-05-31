@@ -15,9 +15,9 @@ const useWrongNote = () => {
     }
 
     // 오답노트의 문제를 삭제하는 함수
-    const deleteWrongNote = async(quizId) => {
+    const deleteWrongNote = async(wrongId) => {
         try {
-            const response = await fetch(`${API_URL}/api/wrongnote?quizId=${quizId}`, {
+            const response = await fetch(`${API_URL}/api/wrongnote?quizId=${wrongId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

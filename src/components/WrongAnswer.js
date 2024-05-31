@@ -35,22 +35,20 @@ export default function WrongAnswer() {
     getWrongNote(userId).then(res=>{
         setDataset(res.data);
         console.log(res.data);
-        console.log(userId)
+        console.log("userId: ", userId)
     })
   },[selectedOption])
 
-  // const handleDelete = (quizId) => {
-  //   deleteWrongNote(quizId).then(res => {
-  //       // 성공적으로 삭제된 후 데이터 갱신
-  //       setDataset(prevNotes => prevNotes.filter(note => note.quizId !== quizId));
-  //       console.log(res.data);
-  //   }).catch(err => {
-  //       console.error(err);
-  //   });
-  // };
   const handleDelete = (wrongId) => {
-    console.log('인덱스', wrongId, "삭제")
-  }
+    alert("선택한 문제를 삭제합니다.")
+    deleteWrongNote(wrongId).then(res => {
+        // 성공적으로 삭제된 후 데이터 갱신
+        setDataset(prevNotes => prevNotes.filter(note => note.wrongId !== wrongId));
+        console.log(res.data);
+    }).catch(err => {
+        console.error(err);
+    });
+  };
 
   useEffect(()=>{
     console.log('selectedOption: ', selectedOption)
@@ -77,7 +75,7 @@ export default function WrongAnswer() {
     <tr key={index} className="dashed-row" onClick={() => setClickedRow(index)}>
       <td className='clickable-subject' onClick={openModal} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{`${value.question}`}</td>
       <td className='clickable-subject' onClick={openModal} onMouseOver={(e) => (e.target.style.color = 'limegreen')} onMouseOut={(e) => (e.target.style.color = 'white')}>{new Date(value.createDate).toISOString().split('T')[0]}</td>
-      <td onClick={handleDelete(clickedRow)} style={{cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'red')} onMouseOut={(e) => (e.target.style.color = 'white')}>{'DELETE'}</td>
+      <td onDoubleClick={()=>handleDelete(value.wrongId)} style={{cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'red')} onMouseOut={(e) => (e.target.style.color = 'white')}>{'DELETE'}</td>
     </tr>
   ))
 

@@ -12,7 +12,7 @@ export default function Custom() {
     const [selectedOption, setSelectedOption] = useState('JAVA');
     const {getCustom} = useCustom();
     const [dataset, setDataset] = useState([]);
-    const userId = localStorage.getItem('Id');
+    const userId = localStorage.getItem('id');
 
     useEffect(()=>{
         getCustom(selectedOption).then(res=>{

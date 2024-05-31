@@ -19,7 +19,7 @@ const useCustom = () => {
         }
     }
 
-    // 오답노트의 문제를 삭제하는 함수
+    // 커스텀에서 본인의 문제를 삭제하는 함수
     const deleteCustomDel = async(codeId) => {
       try {
           const response = await fetch(`${API_URL}/api/mycustom/${codeId}`, {
