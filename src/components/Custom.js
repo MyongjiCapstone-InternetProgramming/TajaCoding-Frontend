@@ -28,7 +28,7 @@ export default function Custom() {
           <td className='clickable-subject' onClick={()=>navigate(`/type-custom/${item.codeId}`)} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.title}</td>
           <td className='clickable-subject' onClick={()=>navigate(`/type-custom/${item.codeId}`)} onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}>{item.descript}</td>
           <td>{item.writer}</td>
-          <td>{item.averageTime}</td> 
+          <td>{item.averageTime === 0 ? '기록이 없습니다.' : `${item.averageTime}초`}</td> 
         </tr>
       )); 
 
