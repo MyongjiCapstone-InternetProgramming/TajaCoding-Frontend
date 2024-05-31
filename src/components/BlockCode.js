@@ -5,25 +5,25 @@ import { Link,useNavigate  } from "react-router-dom";
 import UserNav from "./UserNav";
 import {useEffect, useState } from 'react';
 import axios from 'axios';
-
+const API_URL = process.env.REACT_APP_API_URL
 
 export default function BlockCode() {
     // 언어 선택 변수 상태
     const [selectedOption, setSelectedOption] = useState('JAVA');
-    const [blockcode, setLongcode] = useState([]);
+    const [blockcode, setBlockcode] = useState([]);
 
     // 데이터 가져오기
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8081/blankcode');
-                setLongcode(response.data);
+                const response = await axios.get(`${API_URL}/blankcode`);
+                setBlockcode(response.data.data);
             } catch (error) {
                 console.error('Error fetching longcode data:', error);
             }
         };
         fetchData();
-    }, []);
+    }, [selectedOption]);
 
 
     // 타이틀 선택시 이동
@@ -45,7 +45,7 @@ export default function BlockCode() {
             onMouseOver={(e) => (e.target.style.color = 'lime')}
             onMouseOut={(e) => (e.target.style.color = 'white')}>
             {item.title} </td>
-            <td>{item.description}</td>
+            <td>{item.descript}</td>
             <td>{item.difficulty}</td>
             <td>{item.averageScore}</td>
         </tr>
@@ -125,8 +125,8 @@ export default function BlockCode() {
                             <tr className="dashed-row">
                                 <th>TITLE</th>
                                 <th>DESCRIPTION</th>
-                                <th>DIFFICULT</th>
-                                <th>AVERAGE_TIME</th>
+                                <th>DIFFICULTY</th>
+                                <th>AVERAGE_SCORE</th>
                             </tr>
                         </thead>
                         <tbody>

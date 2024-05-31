@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import UserNav from "./UserNav";
 import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL
 
 export default function LongCode() {
     const [selectedOption, setSelectedOption] = useState('JAVA');
@@ -11,14 +12,14 @@ export default function LongCode() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8081/longcode');
-                setLongcode(response.data);
+                const response = await axios.get(`${API_URL}/longcode`);
+                setLongcode(response.data.data);
             } catch (error) {
                 console.error('Error fetching longcode data:', error);
             }
         };
         fetchData();
-    }, []);
+    }, [selectedOption]);
 
     // 타이틀 선택시 이동
     const navigate = useNavigate();
@@ -37,7 +38,7 @@ export default function LongCode() {
             onMouseOver={(e) => (e.target.style.color = 'lime')}
             onMouseOut={(e) => (e.target.style.color = 'white')}>
             {item.title} </td>
-            <td>{item.description}</td>
+            <td>{item.descript}</td>
             <td>{item.difficulty}</td>
             <td>{item.averageTime}</td>
         </tr>
