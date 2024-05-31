@@ -1,13 +1,14 @@
 // 담당자 : 은희
 //수업시간 내용 : onmouseover 사용
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserNav from "./UserNav";
 import custom from "../custom.json";
 import { useEffect, useState } from 'react';
 import useCustom from "../hook/useCustom";
 
 export default function Custom() {
+    const navigate = useNavigate();
     const [selectedOption, setSelectedOption] = useState('JAVA');
     const {getCustom} = useCustom();
     const [dataset, setDataset] = useState([]);
@@ -41,11 +42,17 @@ export default function Custom() {
                     >SELECT * FROM 커스텀_목록;
                     </div>
                 </Link>
-                <Link to={'/customwrite'} style={{ textDecoration: 'none' }}>
+                <div style={{ textDecoration: 'none', cursor:'pointer' }} onClick={()=>{
+                    const userId = localStorage.getItem('id');
+                    if (!userId) {
+                        return window.alert('글쓰기는 회원만 가능합니다.');
+                    }
+                    navigate('/customwrite');
+                }}>
                     <div style={{ padding: '0.5rem 8rem',fontSize: '20px',color: 'white', textDecoration: 'none'}}onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}
                     >INSERT INTO 내_코드 FROM 커스텀_목록;
                     </div>
-                </Link>
+                </div>
                 <Link to={'/customdelete'} style={{ textDecoration: 'none' }}>
                     <div style={{ padding: '0.5rem 8rem',fontSize: '20px',color: 'white', textDecoration: 'none'}}onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}
                     >DELETE 코드 FROM 커스텀_목록 WHERE NICKNAME = '자기자신';
