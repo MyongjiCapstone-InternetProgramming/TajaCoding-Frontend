@@ -6,6 +6,8 @@ import LayoutForWrongAnswer from './layout/LayoutForWrongAnswer';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import styles from '../css/DotBorder.css';
 import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
+import axios from 'axios';
+const API_URL = process.env.REACT_APP_API_URL
 
 export default function WrongAnswerRetry(){
   const { selectedOption } = useParams();
@@ -19,6 +21,21 @@ export default function WrongAnswerRetry(){
     setModalOpen(false);
   };
 
+  const [quizData_wrongs, setQuizData_wrongs] = useState([]);
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+          const userId = localStorage.getItem('id');
+          const response = await axios.get(`${API_URL}/api/wrongnotestart/${userId}`);
+          console.log(response.data.data);
+          setQuizData_wrongs(response.data.data);
+      } catch (error) {
+          console.error('Error fetching wrongnote data:', error);
+      }
+  };
+  fetchData();
+  },[])
+
   const [timer, setTimer] = useState(0);
   const [showHint, setshowHint] = useState(false);
   const [ind, setInd] = useState(0);
@@ -26,48 +43,7 @@ export default function WrongAnswerRetry(){
   const [correctCount, setCorrectCount] = useState(0);
   const minute = parseInt(timer/60);
   const second = timer%60;
-
-  const C_wrongs = [
-    {id: 0, subject: "Queue", question:"C큐", hint:'C큐 힌트', answer:'C큐입니다'},
-    {id: 1, subject: "스택", question:"C스택", hint:'C스택 힌트', answer:'C스택입니다'},
-    {id: 2, subject: "BFS", question:"C이진검색트리", hint:'C이진검색트리 힌트', answer:'C이진검색트리입니다'},
-  ]
-  const Cpp_wrongs = [
-    {id: 0, subject: "Queue", question:"C++큐", hint:'C++큐 힌트', answer:'C++큐입니다'},
-    {id: 1, subject: "스택", question:"C++스택", hint:'C++스택 힌트', answer:'C++스택입니다'},
-    {id: 2, subject: "BFS", question:"C++이진검색트리", hint:'C++이진검색트리 힌트', answer:'C++이진검색트리입니다'},
-  ]
-  const JAVA_wrongs = [
-    {id: 0, subject: "Queue", question: "JAVA 큐", hint: 'JAVA 큐 힌트', answer: 'JAVA 큐입니다'},
-    {id: 1, subject: "스택", question: "JAVA 스택", hint: 'JAVA 스택 힌트', answer: 'JAVA 스택입니다'},
-    {id: 2, subject: "BFS", question: "JAVA 이진검색트리", hint: 'JAVA 이진검색트리 힌트', answer: 'JAVA 이진검색트리입니다'}
-  ];
-  const PYTHON_wrongs = [
-    {id: 0, subject: "Queue", question: "PYTHON 큐", hint: 'PYTHON 큐 힌트', answer: 'PYTHON 큐입니다'},
-    {id: 1, subject: "스택", question: "PYTHON 스택", hint: 'PYTHON 스택 힌트', answer: 'PYTHON 스택입니다'},
-    {id: 2, subject: "BFS", question: "PYTHON 이진검색트리", hint: 'PYTHON 이진검색트리 힌트', answer: 'PYTHON 이진검색트리입니다'}
-  ];
-
-  // 선택된 언어에 따라 문제 배열 선택
-  let quizData_wrongs;
-  switch(selectedOption) {
-    case 'C':
-      quizData_wrongs = C_wrongs;
-      break;
-    case 'Cpp':
-      quizData_wrongs = Cpp_wrongs;
-      break;
-    case 'JAVA':
-      quizData_wrongs = JAVA_wrongs;
-      break;
-    case 'PYTHON':
-      quizData_wrongs = PYTHON_wrongs;
-      break;
-    default:
-      quizData_wrongs = [];
-  }
-  console.log('quizData_wrongs: ',quizData_wrongs)
-
+  
   useEffect(()=>{ // 모달이 열려있지 않을 때만 시간이 카운트 됨
     let id;
     if(!modalOpen){
@@ -93,12 +69,12 @@ export default function WrongAnswerRetry(){
       openModal()
     }
   };
-  console.log(correctCount)
+  // console.log(correctCount)
 
   const handleInputChange = (e) => {
     setUserAnswer(e.target.value);
   }
-  console.log(userAnswer);
+  // console.log(userAnswer);
 
   const activeButton = () => {
     handleInd();
@@ -118,9 +94,10 @@ export default function WrongAnswerRetry(){
         <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='JAVA'? 'limegreen': 'white' }}>JAVA</div>
         <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='PYTHON'? 'limegreen': 'white' }}>PYTHON</div>
         <div style={{ marginRight: '3rem', fontSize: '1.8rem', color: selectedOption==='C'? 'limegreen': 'white' }}>C</div>
-        <div style={{ fontSize: '1.8rem', color: selectedOption==='Cpp'? 'limegreen': 'white' }}>C++</div>
+        <div style={{ fontSize: '1.8rem', color: selectedOption==='CPP'? 'limegreen': 'white' }}>C++</div>
       </div>
       <UserNav/>
+      {quizData_wrongs ? (
       <LayoutForWrongAnswer timer={timer} nowind={ind+1} len={quizData_wrongs.length} correctCount={correctCount}>
         <div style={{display:'flex', flex:6, height:'100%', justifyContent:'center'}}>
           <div style={{width:'85%', display:'flex', flexDirection:'column'}}>
@@ -129,7 +106,7 @@ export default function WrongAnswerRetry(){
                 <table className="dashed-table" style={{ width: '100%', fontSize: '1.5em'}}>
                   <thead>
                     <tr className="dashed-row">
-                      <th>{quizData_wrongs[ind].question}</th>
+                      <th>{quizData_wrongs[ind]?.question}</th>
                     </tr>
                   </thead>
                 </table>
@@ -169,6 +146,9 @@ export default function WrongAnswerRetry(){
           </div>
         </div>
       </LayoutForWrongAnswer>
+      ) : (
+        <></>
+      )}
       {modalOpen && <div className="modal-backdrop" />}
       {modalOpen && (
         <div className="modal-container">
