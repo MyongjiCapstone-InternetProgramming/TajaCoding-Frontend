@@ -53,11 +53,17 @@ export default function Custom() {
                     >INSERT INTO 내_코드 FROM 커스텀_목록;
                     </div>
                 </div>
-                <Link to={'/customdelete'} style={{ textDecoration: 'none' }}>
+                <div style={{ textDecoration: 'none', cursor:'pointer' }} onClick={()=>{
+                    const userId = localStorage.getItem('id');
+                    if (!userId) {
+                        return window.alert('본인 글 확인은 회원만 가능합니다.');
+                    }
+                    navigate('/customdelete');
+                }}>
                     <div style={{ padding: '0.5rem 8rem',fontSize: '20px',color: 'white', textDecoration: 'none'}}onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}
                     >DELETE 코드 FROM 커스텀_목록 WHERE NICKNAME = '자기자신';
                     </div>
-                </Link>
+                </div>
             </div>
 
 
