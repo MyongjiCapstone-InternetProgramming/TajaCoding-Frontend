@@ -36,7 +36,7 @@ export default function CustomDelete() {
         <tr key={index} className="dashed-row">
           <td>{item.title}</td>
           <td>{item.descript}</td> 
-          <td onClick={()=>handleDelete(item.codeId)} style={{cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'red')} onMouseOut={(e) => (e.target.style.color = 'white')}>{'DELETE'}</td>
+          <td onDoubleClick={()=>handleDelete(item.codeId)} style={{cursor:'pointer'}} onMouseOver={(e) => (e.target.style.color = 'red')} onMouseOut={(e) => (e.target.style.color = 'white')}>{'DELETE'}</td>
         </tr>
       ));
 
