@@ -45,6 +45,8 @@ export default function WrongAnswer() {
       handleRowClick(clickedRow + 1);
     }
   };
+
+  // *여기 임시 문제니까 이따가 get하면 지우면 돼
   const C_wrongs = [
     {id: 0, subject: "Queue", question:"C큐", hint:'C큐 힌트', answer:'C큐입니다'},
     {id: 1, subject: "스택", question:"C스택", hint:'C스택 힌트', answer:'C스택입니다'},
@@ -102,10 +104,6 @@ export default function WrongAnswer() {
   //     <td>{`Row ${i + 1}, Col 3`}</td>
   //   </tr>
   // ));
-
-  useEffect(()=>{
-    console.log(rows);
-  },[])
 
   // const dataset = wrong
   // const NewDataset = dataset.map((item, index) => (
