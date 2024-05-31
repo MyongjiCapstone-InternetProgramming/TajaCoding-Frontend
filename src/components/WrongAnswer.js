@@ -7,12 +7,18 @@ import styles from '../css/DotBorder.css'; // CSS 모듈 임포트
 import { useEffect, useState } from 'react';
 import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
 import WrongAnswerRetry from './WrongAnswerRetry';
+import useWrongNote from '../hook/useWrongNote';  // useWrongNote 훅을 import
+
+
 //import block from "../wrong.json";
 
 
 export default function WrongAnswer() {
   const {selectedOption} = useParams();
   const navigate = useNavigate();
+  //이 부분만 추가
+  // const {getWrongNote, deleteWrongNote} = useWrongNote();
+  // const [dataset, setDataset] = useState([]);
 
   // 모달 관련
   const [modalOpen, setModalOpen] = useState(false);
@@ -25,6 +31,23 @@ export default function WrongAnswer() {
   const closeModal = () => {
     setModalOpen(false);
   };
+//이 부분만 추가
+  // useEffect(()=>{
+  //   getWrongNote(selectedOption).then(res=>{
+  //       setDataset(res.data);
+  //       console.log(res.data);
+  //   })
+  // },[selectedOption])
+
+  // const handleDelete = (quizId) => {
+  //   deleteWrongNote(quizId).then(res => {
+  //       // 성공적으로 삭제된 후 데이터 갱신
+  //       setDataset(prevNotes => prevNotes.filter(note => note.quizId !== quizId));
+  //       console.log(res.data);
+  //   }).catch(err => {
+  //       console.error(err);
+  //   });
+  // };
 
   useEffect(()=>{
     console.log('selectedOption: ', selectedOption)
@@ -45,6 +68,8 @@ export default function WrongAnswer() {
       handleRowClick(clickedRow + 1);
     }
   };
+
+  // *여기 임시 문제니까 이따가 get하면 지우면 돼
   const C_wrongs = [
     {id: 0, subject: "Queue", question:"C큐", hint:'C큐 힌트', answer:'C큐입니다'},
     {id: 1, subject: "스택", question:"C스택", hint:'C스택 힌트', answer:'C스택입니다'},
@@ -102,10 +127,6 @@ export default function WrongAnswer() {
   //     <td>{`Row ${i + 1}, Col 3`}</td>
   //   </tr>
   // ));
-
-  useEffect(()=>{
-    console.log(rows);
-  },[])
 
   // const dataset = wrong
   // const NewDataset = dataset.map((item, index) => (

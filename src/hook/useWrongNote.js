@@ -1,11 +1,11 @@
-//오답노트 관히 훅 - 담당자 김은희
+//오답노트 관리 훅 - 담당자 은희
 const API_URL = process.env.REACT_APP_API_URL;
 
 const useWrongNote = () => {
     // 오답노트를 조회하는 함수
-    const getWrongNote = async(userId, language) => {
+    const getWrongNote = async(userId) => {
         try {
-            const response = await fetch(`${API_URL}/api/wrongnote?userId=${userId}&language=${language}`);
+            const response = await fetch(`${API_URL}/api/wrongnote?userId=${userId}`);
             const result = await response.json();
             return result;
         } catch (error) {
