@@ -17,6 +17,7 @@ export default function WordQuiz() {
   }
 
   console.log('selectedOption : ', selectedOption)
+  const navigate = useNavigate();
   return (
     <div style={{ height: '100%' }}>
       <UserNav />
@@ -38,8 +39,14 @@ export default function WordQuiz() {
       </div>
 
       <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '0rem', marginBottom: '6rem'}}>
-        <Link style={{ border: '0.5rem dashed white', padding: '8rem 10rem', fontSize: '2rem', cursor:'pointer'}} to={selectedOption ? `/wordquizstart/${selectedOption}` : '#'} className="link-tag" onClick={handleStartClick}>시작하기</Link>
-        <Link style={{ border: '0.5rem dashed white', padding: '8rem 10rem', fontSize: '2rem'}} to={`/wronganswer/${selectedOption}`} className="link-tag">내 오답노트</Link>
+        <Link style={{ border: '0.5rem dashed white', padding: '8rem 10rem', fontSize: '2rem', cursor:'pointer'}} className="link-tag" onClick={handleStartClick}>시작하기</Link>
+        <div style={{ border: '0.5rem dashed white', padding: '8rem 10rem', fontSize: '2rem', cursor:'pointer'}} onClick={()=>{
+          const userId = localStorage.getItem('id');
+          if (!userId){
+            return alert('회원이 아닙니다.');
+          }
+          navigate(`/wronganswer/${selectedOption}`)
+        }} to={`/wronganswer/${selectedOption}`} className="link-tag">내 오답노트</div>
       </div>
     </div>
   );
