@@ -20,6 +20,7 @@ export default function Login(){
             if (result.status === 200){
                 window.alert(result.data.message); // 로그인 여부를 알려줌 (성공)
                 localStorage.setItem('id', result.data.id);
+                localStorage.setItem('nickname', result.data.nickname);
                 navigate('/');
             } else {
                 window.alert(result.data.message); // 로그인 여부를 알려줌 (실패)
