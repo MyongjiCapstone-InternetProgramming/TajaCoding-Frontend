@@ -51,7 +51,7 @@ export default function Custom() {
                     navigate('/customwrite');
                 }}>
                     <div style={{ padding: '0.5rem 8rem',fontSize: '20px',color: 'white', textDecoration: 'none'}}onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}
-                    >INSERT INTO 내_코드 FROM 커스텀_목록;
+                    >INSERT INTO 커스텀_목록 VALUES ('제목', '설명', '언어', '코드');
                     </div>
                 </div>
                 <div style={{ textDecoration: 'none', cursor:'pointer' }} onClick={()=>{
@@ -62,7 +62,7 @@ export default function Custom() {
                     navigate('/customdelete');
                 }}>
                     <div style={{ padding: '0.5rem 8rem',fontSize: '20px',color: 'white', textDecoration: 'none'}}onMouseOver={(e) => (e.target.style.color = 'lime')} onMouseOut={(e) => (e.target.style.color = 'white')}
-                    >DELETE 코드 FROM 커스텀_목록 WHERE NICKNAME = {userId};
+                    >DELETE FROM 커스텀_목록 WHERE ID = {userId};
                     </div>
                 </div>
             </div>

@@ -11,6 +11,7 @@ const API_URL = process.env.REACT_APP_API_URL
 
 export default function WrongAnswerRetry(){
   const { selectedOption } = useParams();
+  const navigate = useNavigate();
 
   // 문제 다 풀었을 때 띄우는 모달 창 관련
   const [modalOpen, setModalOpen] = useState(false);
@@ -27,7 +28,10 @@ export default function WrongAnswerRetry(){
       try {
           const userId = localStorage.getItem('id');
           const response = await axios.get(`${API_URL}/api/wrongnotestart/${userId}`);
-          console.log(response.data.data);
+          if (response.data.data.length===0){
+            window.alert('문제가 없습니다.');
+            return navigate('/wronganswer/JAVA');
+          }
           setQuizData_wrongs(response.data.data);
       } catch (error) {
           console.error('Error fetching wrongnote data:', error);
@@ -43,7 +47,7 @@ export default function WrongAnswerRetry(){
   const [correctCount, setCorrectCount] = useState(0);
   const minute = parseInt(timer/60);
   const second = timer%60;
-  
+
   useEffect(()=>{ // 모달이 열려있지 않을 때만 시간이 카운트 됨
     let id;
     if(!modalOpen){
