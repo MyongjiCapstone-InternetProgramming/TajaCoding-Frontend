@@ -33,8 +33,8 @@ export default function WrongAnswer() {
 //이 부분만 추가
   useEffect(()=>{
     getWrongNote(userId).then(res=>{
-        setDataset(res.data);
-        console.log(res.data);
+      const datas = res.data.filter(data => data.language === selectedOption)
+        setDataset(datas);
         console.log("userId: ", userId)
     })
   },[selectedOption])

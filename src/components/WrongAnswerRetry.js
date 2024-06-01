@@ -27,7 +27,7 @@ export default function WrongAnswerRetry(){
     const fetchData = async () => {
       try {
           const userId = localStorage.getItem('id');
-          const response = await axios.get(`${API_URL}/api/wrongnotestart/${userId}`);
+          const response = await axios.get(`${API_URL}/api/wrongnotestart/${userId}?language=${selectedOption}`);
           if (response.data.data.length===0){
             window.alert('문제가 없습니다.');
             return navigate('/wronganswer/JAVA');
