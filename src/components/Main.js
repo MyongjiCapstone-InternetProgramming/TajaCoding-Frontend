@@ -1,8 +1,23 @@
-// 채윤 (마지막 수정 : 2024-04-28)
+// 채윤 (생성 : 2024-04-28)
+// 240602 : Press F11 버튼 눈에띄게 setInterval로 반짝이게 만듦
 import { Link } from 'react-router-dom';
 import UserNav from './UserNav';
+import { useEffect } from 'react';
 
 export default function Main() {
+  useEffect(()=>{
+    const blink = document.getElementsByClassName('blink');
+    let isBlank = true;
+    const blinkInterval = setInterval(() => {
+      if (isBlank) {
+        blink[0].style.color = 'limegreen';
+      } else {
+        blink[0].style.color = 'white';
+      }
+      isBlank = !isBlank;
+    }, 300);
+    return () => clearInterval(blinkInterval); 
+  },[])
   return (
     <div style={{ height: '100%' }}>
       <UserNav />
@@ -31,7 +46,7 @@ export default function Main() {
             marginTop: '3rem',
           }}
         >
-          <span>{'<< Press F11 To FullScreen >>'}</span>
+          <span className="blink">{'<< Press F11 To FullScreen >>'}</span>
         </div>
         <div
           style={{
