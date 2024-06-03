@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import UserNav from './UserNav';
 import LayoutForWrongAnswer from './layout/LayoutForWrongAnswer';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import styles from '../css/DotBorder.css';
 import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
 import axios from 'axios';
 const API_URL = process.env.REACT_APP_API_URL

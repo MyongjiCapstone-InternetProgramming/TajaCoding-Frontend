@@ -3,7 +3,7 @@
 
 import { Link, useNavigate } from "react-router-dom";
 import UserNav from "./UserNav";
-import custom from "../custom.json";
+// import custom from "../custom.json";
 import { useEffect, useState } from 'react';
 import useCustom from "../hook/useCustom";
 

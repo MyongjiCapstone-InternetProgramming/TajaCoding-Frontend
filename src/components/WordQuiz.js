@@ -1,7 +1,7 @@
 // 담당자 : 은희, 정준(언어 선택 안되면 시작 못하게 막아둠)
 //수업시간 내용 : onmouseover 사용
 
-import { Link, Route, Routes, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import UserNav from './UserNav';
 import { useState } from 'react';
 

@@ -1,12 +1,12 @@
 // 담당자 : 은희, 정준
 //수업시간 내용 : onmouseover 사용
 
-import { Link, redirect, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import UserNav from './UserNav';
-import styles from '../css/DotBorder.css'; // CSS 모듈 임포트
+import '../css/DotBorder.css'; // CSS 모듈 임포트
 import { useEffect, useState } from 'react';
 import WrongAnswerRetryStatusBar from './WrongAnswerRetryStatusBar';
-import WrongAnswerRetry from './WrongAnswerRetry';
+// import WrongAnswerRetry from './WrongAnswerRetry';
 import useWrongNote from '../hook/useWrongNote';  // useWrongNote 훅을 import
 
 
@@ -43,6 +43,7 @@ export default function WrongAnswer() {
     alert("선택한 문제를 삭제합니다.")
     deleteWrongNote(wrongId).then(res => {
         // 성공적으로 삭제된 후 데이터 갱신
+        console.log(dataset.filter(note=>note.wringId !== wrongId));
         setDataset(prevNotes => prevNotes.filter(note => note.wrongId !== wrongId));
         console.log(res.data);
     }).catch(err => {
